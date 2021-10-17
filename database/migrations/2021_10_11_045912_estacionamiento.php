@@ -26,6 +26,7 @@ class Estacionamiento extends Migration
             $table->integer('capacidad_actual');
             $table->time('apertura');
             $table->time('cierre');
+            $table->enum('estado',['Activo','Clausurado','Sin Servicio','Abierto','Cerrado','Falta Verificar'])->default('Falta Verificar');
             $table->float('precio',16,4);
             $table->string('foto');
             $table->float('longitud',16,7);
