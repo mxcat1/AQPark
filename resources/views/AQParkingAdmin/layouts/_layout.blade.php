@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <!-- Required meta tags -->
@@ -63,12 +63,12 @@
                     <div id="navPages" class="collapse " data-bs-parent="#sideNavbar">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link " href="../pages/profile.html">
+                                <a class="nav-link " href="{{route('Usuario.index')}}">
                                     Listado de Usuarios
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link has-arrow   " href="../pages/settings.html">
+                                <a class="nav-link has-arrow   " href="{{route('Usuario.create')}}">
                                     Crear Nuevo Usuario
                                 </a>
 
@@ -113,12 +113,12 @@
                     <div id="navComponents" class="collapse " data-bs-parent="#sideNavbar">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link " href="../components/accordions.html" aria-expanded="false">
+                                <a class="nav-link " href="{{route('TipoDocumento.index')}}" aria-expanded="false">
                                     Listar Tipo de Documentos
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="../components/alerts.html" aria-expanded="false">
+                                <a class="nav-link " href="{{route('TipoDocumento.create')}}" aria-expanded="false">
                                     Crear Tipo de Documento
                                 </a>
                             </li>

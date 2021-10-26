@@ -12,7 +12,9 @@ class TipoDocumento extends Model
     protected $table = 'tipo_documentos';
     protected $primaryKey = 'tipo_docu_ID';
 
-    protected $fillable = ['descripcion'];
+    protected $fillable = ['descripcion','abreviacion'];
+
+    protected $perPage = 10;
 
     /*
      * Relaciones

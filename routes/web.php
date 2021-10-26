@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdministracionSistema\InicioController;
+use App\Http\Controllers\AdministracionSistema\TipoDocumentoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[InicioController::class,'index'])->name('inicio');
+
+Route::resource('TipoDocumento',TipoDocumentoController::class);
+Route::resource('Usuario',\App\Http\Controllers\AdministracionSistema\UsuarioController::class);
