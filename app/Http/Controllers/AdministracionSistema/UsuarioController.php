@@ -70,13 +70,13 @@ class UsuarioController extends Controller
             'tipo_docu_ID' => $request->tipo_documento,
             'documento' => $request->documento,
             'foto' => $nombreimagen,
-            'rol'=>$request->rol,
-            'password'=> Hash::make($request->password),
+            'rol' => $request->rol,
+            'password' => Hash::make($request->password),
         ]);
 
         event(new Registered($usuarionuevo));
 
-        return redirect()->route('Usuario.index');
+        return redirect()->route('Usuario.index')->with('success', 'Nuevo Usuario Creado');
     }
 
     /**
@@ -87,8 +87,8 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        $usuarioselec=Usuario::find($id);
-        return view('AQParkingAdmin.Usuario.show',compact('usuarioselec'));
+        $usuarioselec = Usuario::find($id);
+        return view('AQParkingAdmin.Usuario.show', compact('usuarioselec'));
     }
 
     /**
@@ -99,9 +99,9 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        $usuarioedit=Usuario::find($id);
+        $usuarioedit = Usuario::find($id);
         $listadocu = TipoDocumento::all();
-        return view('AQParkingAdmin.Usuario.edit',compact('usuarioedit','listadocu'));
+        return view('AQParkingAdmin.Usuario.edit', compact('usuarioedit', 'listadocu'));
     }
 
     /**
@@ -113,7 +113,34 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:150',
+            'apellido' => 'required|string|max:150',
+            'email' => 'required|string|email|max:255',
+            'telefono' => 'digits_between:8,12',
+            'foto' => 'image|max:5120',
+            'rol' => ['required', Rule::in(['Usuario Natural', 'Administrador Estacionamiento', 'Administrador Sistema'])],
+        ]);
+
+        if ($usuario = Usuario::find($id)) {
+            $editarusuario = $request->all();
+
+            if ($imagen = $request->file('foto')) {
+                $destino = 'images/usuarioimg/';
+                $nombreimagen = $request->nombre . date('YmdHis') . '.' . $imagen->getClientOriginalExtension();
+                $imagen->move($destino, $nombreimagen);
+                $editarusuario['foto'] = $nombreimagen;
+                if (file_exists($destino . $usuario->foto)) {
+                    unlink($destino . $usuario->foto);
+                }
+            } else {
+                unset($editarusuario['foto']);
+            }
+            $usuario->update($editarusuario);
+            return redirect()->route('Usuario.index')->with('success', 'Se Actualizo correctamente los datos del Usuario');
+        } else {
+            return redirect()->route('Usuario.index')->with('success', 'Usuario Eliminado anteriormente no se efectuo la actualizacion');
+        }
     }
 
     /**
@@ -124,6 +151,44 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $usuario = Usuario::find($id);
+        $usuario->delete();
+        if (file_exists('images/usuarioimg/' . $usuario->foto)) {
+            unlink('images/usuarioimg/' . $usuario->foto);
+        }
+        return redirect()->route('Usuario.index')->with('success delete', 'Se Elimino correctamente el Usuario');
     }
+
+    /**
+     * Cambiar contraseña del usuario vista
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function cambiarpasswordvista($id)
+    {
+        $usuariocontraseña = Usuario::find($id);
+        return view('AQParkingAdmin.Usuario.editpassword', compact('usuariocontraseña'));
+    }
+
+    /**
+     * Cambiar contraseña del usuario vista
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function cambiarpassword(Request $request, $id)
+    {
+        $request->validate([
+            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+        ]);
+        if($usuariocontraseña = Usuario::find($id)){
+            $usuariocontraseña->update(['password'=>Hash::make($request->password)]);
+            return redirect()->route('Usuario.index')->with('success', 'Se Actualizo correctamente la contraseña del Usuario');
+        }else{
+            return redirect()->route('Usuario.index')->with('success', 'Usuario Eliminado anteriormente no se efectuo la actualizacion');
+        }
+
+    }
+
 }

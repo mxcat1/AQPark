@@ -29,8 +29,9 @@
                 <div class="card">
                     @include('AQParkingAdmin.partials.vererrores')
                     <div class="tab-content p-4">
-                        <form action="{{route('Usuario.store')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{route('Usuario.update',$usuarioedit->usuario_ID)}}" method="post" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="mb-3">
                                 <label class="form-label fw-bold" for="nombre">Nombres del Usuario</label>
                                 <input type="text" name="nombre" id="nombre" class="form-control" value="{{$usuarioedit->nombre}}" placeholder="Indique los Nombres del Usuario para Agregar">
@@ -41,17 +42,18 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label fw-bold" for="tipo_documento">Tipo de Documento del Usuario</label>
-                                <p>Tipo de Documento Actual: {{$usuarioedit->TipoDocumento->descripcion}}</p>
-                                <select name="tipo_documento" id="tipo_documento" class="form-select">
-                                    <option value="">Seleccione un Tipo de Documento</option>
-                                    @foreach($listadocu as $documento)
-                                        <option value="{{$documento->tipo_docu_ID}}">{{$documento->abreviacion}}</option>
-                                    @endforeach
-                                </select>
+                                <p class="fw-bold">Tipo de Documento Actual: {{$usuarioedit->TipoDocumento->descripcion}}</p>
+{{--                                <select name="tipo_documento" id="tipo_documento" class="form-select">--}}
+{{--                                    <option value="">Seleccione un Tipo de Documento</option>--}}
+{{--                                    @foreach($listadocu as $documento)--}}
+{{--                                        <option value="{{$documento->tipo_docu_ID}}">{{$documento->abreviacion}}</option>--}}
+{{--                                    @endforeach--}}
+{{--                                </select>--}}
                             </div>
                             <div class="mb-3">
                                 <label class="form-label fw-bold" for="documento">Documento del Usuario</label>
-                                <input type="text" name="documento" id="documento" class="form-control" value="{{$usuarioedit->documento}}" placeholder="Indique el Documento del Usuario para Agregar">
+                                <p class="fw-bold">{{$usuarioedit->TipoDocumento->abreviacion}}: {{$usuarioedit->documento}}</p>
+{{--                                <input type="text" name="documento" id="documento" class="form-control" value="{{$usuarioedit->documento}}" placeholder="Indique el Documento del Usuario para Agregar">--}}
                             </div>
                             <div class="mb-3">
                                 <label class="form-label fw-bold" for="email">Correo del Usuario</label>
@@ -66,9 +68,9 @@
                                 <p>Rol Actual del Usuario: {{$usuarioedit->rol}}</p>
                                 <select name="rol" id="rol" class="form-select">
                                     <option value="">Seleccione el Rol del Usuario</option>
-                                    <option value="Usuario Natural">Usuario Natural</option>
-                                    <option value="Administrador Estacionamiento">Administrador Estacionamiento</option>
-                                    <option value="Administrador Sistema">Administrador Sistema</option>
+                                    <option value="Usuario Natural" {{$usuarioedit->rol == 'Usuario Natural' ? 'selected':''}}>Usuario Natural</option>
+                                    <option value="Administrador Estacionamiento" {{$usuarioedit->rol == 'Administrador Estacionamiento' ? 'selected':''}}>Administrador Estacionamiento</option>
+                                    <option value="Administrador Sistema" {{$usuarioedit->rol == 'Administrador Sistema' ? 'selected':''}}>Administrador Sistema</option>
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -80,7 +82,7 @@
                             </div>
                             <div class="mb-3">
                                 <p class="form-label fw-bold" for="password">Cambiar Contraseña del Usuario</p>
-                                <a href="{{route('Usuario.index')}}" class="btn btn-primary mx-2">Haz Click Para Cambiar la contraseña</a>
+                                <a href="{{route('CambiarContraseña',$usuarioedit->usuario_ID)}}" class="btn btn-primary mx-2">Haz Click Para Cambiar la contraseña</a>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary mx-2">Guardar</button>

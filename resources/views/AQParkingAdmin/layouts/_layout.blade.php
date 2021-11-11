@@ -19,7 +19,6 @@
     <link href="{{asset('libs/@mdi/font/css/materialdesignicons.min.css')}}" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css">
-
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{asset('css/theme.min.css')}}">
     <title>Adminsitracion Sistema AQParking - @yield('title')</title>
@@ -283,7 +282,7 @@
                         <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             <div class="avatar avatar-md avatar-indicators avatar-online">
-                                <img alt="avatar" src="{{asset('images/avatar/avatar-1.jpg')}}"
+                                <img alt="avatar" src="{{asset('images/usuarioimg/' . Auth::user()->foto)}}"
                                      class="rounded-circle" />
                             </div>
                         </a>
@@ -292,7 +291,7 @@
 
 
                                 <div class="lh-1 ">
-                                    <h5 class="mb-1"> John E. Grainger</h5>
+                                    <h5 class="mb-1"> @auth {{ Auth::user()->nombre }}({{Auth::user()->rol}}) @else Invitado @endauth</h5>
                                     <a href="#" class="text-inherit fs-6">View my profile</a>
                                 </div>
                                 <div class=" dropdown-divider mt-3 mb-2"></div>
@@ -307,10 +306,12 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="../index.html">
-                                        <i class="me-2 icon-xxs dropdown-item-icon" data-feather="power"></i>Sign
-                                        Out
-                                    </a>
+                                    <form method="POST" action="{{ route('LoginDesautenticacion') }}" class="dropdown-item">
+                                        @csrf
+                                        <a href="{{route('LoginDesautenticacion')}}" role="button" onclick="event.preventDefault(); this.closest('form').submit();">
+                                            <i class="me-2 icon-xxs dropdown-item-icon" data-feather="power"></i>Cerrar Sessión
+                                        </a>
+                                    </form>
                                 </li>
                             </ul>
 

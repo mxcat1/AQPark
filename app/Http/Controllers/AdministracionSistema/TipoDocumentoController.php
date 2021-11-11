@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdministracionSistema;
 use App\Http\Controllers\Controller;
 use App\Models\TipoDocumento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TipoDocumentoController extends Controller
 {
@@ -84,9 +85,13 @@ class TipoDocumentoController extends Controller
             'descripcion'=>'required|min:1|max:255',
             'abreviacion'=>'required|min:1|max:255'
         ]);
-        $tipodocumento=TipoDocumento::find($id);
-        $tipodocumento->update($request->all());
-        return redirect()->route('TipoDocumento.index')->with('success','Se actualizo correctamente los datos del Tipo de  Documento');
+        if ($tipodocumento=TipoDocumento::find($id)) {
+            $tipodocumento->update($request->all());
+            return redirect()->route('TipoDocumento.index')->with('success','Se actualizo correctamente los datos del Tipo de  Documento');
+        }else{
+            return redirect()->route('TipoDocumento.index')->with('success','Dato Eliminado anteriormente no se efectuo la actualizacion');
+        }
+
     }
 
     /**

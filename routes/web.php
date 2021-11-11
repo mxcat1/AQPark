@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdministracionSistema\AutenticateAdminController;
 use App\Http\Controllers\AdministracionSistema\InicioController;
 use App\Http\Controllers\AdministracionSistema\TipoDocumentoController;
+use App\Http\Controllers\AdministracionSistema\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[InicioController::class,'index'])->name('inicio');
+Route::get('/',[InicioController::class,'index'])->name('inicio')->middleware('authrol');
 
-Route::resource('TipoDocumento',TipoDocumentoController::class);
-Route::resource('Usuario',\App\Http\Controllers\AdministracionSistema\UsuarioController::class);
+Route::resource('TipoDocumento',TipoDocumentoController::class)->middleware('authrol');
+Route::resource('Usuario',UsuarioController::class)->middleware('authrol');
+Route::get('Usuario/CambiarPassword/{Usuario}',[UsuarioController::class,'cambiarpasswordvista'])->name('CambiarContraseña')->middleware('authrol');
+Route::put('Usuario/CambiarPassword/{Usuario}',[UsuarioController::class,'cambiarpassword'])->name('CambiarContraseñaUsuario')->middleware('authrol');
+
+Route::get('/login-administrador-sistema',[AutenticateAdminController::class,'login'])->name('LoginAdministrador')->middleware('logincontrol');
+Route::post('/iniciarsession',[AutenticateAdminController::class,'autenticate'])->name('LoginAutenticacion')->middleware('logincontrol');;
+Route::post('/cerrarsession',[AutenticateAdminController::class,'logout'])->name('LoginDesautenticacion')->middleware('authrol');
