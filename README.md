@@ -43,7 +43,7 @@ servidor en el caso es Laragon, en el caso de XAMP copiar en la carpeta htdocs, 
    - DB_PASSWORD=XXmxcatXX -----> cambiar este por la contraseña de su servidor de base de datos
 9. Si utilizan los host virtuales http://AQPark.test deben de crear este host virtual en su servidor
 10. en el caso no utilicen host virtuales cambiar esto APP_URL=http://AQPark.test por APP_URL=http://localhost/AQPark/public/
-11. una vez terminado esa configuracion ubicarse denuevo en la terminal antes abierta y digitar el comando `$ composer install
+11. una vez terminado esa configuracion ubicarse denuevo en la terminal antes abierta y digitar el comando: composer install
 12. ejecutar el comando php artisan migrate:fresh --seed
 13. si ese comando no funciona ejecutar el comando php artisan migrate y insertar un usuario como administrador de sistema manuelmente en la base de datos
 14. Eso seria todo.
