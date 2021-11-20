@@ -14,6 +14,8 @@ class Vehiculo extends Model
 
     protected $fillable = ['usuario_ID', 'marca', 'modelo', 'color', 'placa'];
 
+    protected $perPage = 10;
+
     /*
      * Relaciones
      */

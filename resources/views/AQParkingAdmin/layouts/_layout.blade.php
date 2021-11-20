@@ -89,12 +89,12 @@
                     <div id="navvehiculos" class="collapse " data-bs-parent="#sideNavbar">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link " href="../components/accordions.html" aria-expanded="false">
+                                <a class="nav-link " href="{{route('Vehiculo.index')}}" aria-expanded="false">
                                     Listar Vehiculos
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="../components/alerts.html" aria-expanded="false">
+                                <a class="nav-link " href="{{route('Vehiculo.create')}}" aria-expanded="false">
                                     Agregar Nuevo Vehiculo
                                 </a>
                             </li>
