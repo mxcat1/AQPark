@@ -15,13 +15,13 @@
           </div>
           <div class="col-sm-8">
               <div class="row">
-                  <p>Dirección: <span> </span></p>
-                  <p>Horario de atención: <span>4:00 a.m. - 10:00 p.m.</span></p>
+                <p class="fw-bold">Dirección: <span class="fw-normal"> Calle nombre</span></p>
+                <p class="fw-bold">Horario de atención: <span class="fw-normal">4:00 a.m. - 10:00 p.m.</span></p>
               </div>
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Mapa</button>
               <div class="row mt-3">
-                  <p>Precio: <span>S/4.00</span></p>
-                  <p>Sitios disponibles: <span>7</span></p>
+                <p class="fw-bold">Precio: <span class="fw-normal">S/4.00</span></p>
+                <p class="fw-bold">Sitios disponibles: "<span class="fw-normal fs-4">7</span>"</p>
               </div>
               <a class="btn btn-primary mb-4" href="{{ route('parking-booking') }}" role="button">RESERVAR</a>
               <div id="disqus_thread"></div>

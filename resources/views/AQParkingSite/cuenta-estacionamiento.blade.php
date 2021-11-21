@@ -60,4 +60,86 @@
             </div>
         </div>
     </div>
+    
+    <!-- MODALES -->
+    <div class="modal fade" id="modaldirpark" tabindex="-1" aria-labelledby="modaldirection" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modaldirection">Cambio de Dirección</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form role="form" class="mb-2">
+                        <div class="form-group">
+                            <label for="routepark" class="fw-bolder fs-6">Ubicación: </label>
+                            <div class="input-group">
+                                <span class="input-group-text">Dirección</span>
+                                <input name="routepark" id="routepark" type="text" required class="form-control"
+                                    placeholder="Direccion">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary my-3" id="btm-routeupdate"
+                            name="btn-routeupdate">Actualizar Dirección</button>
+                        <button type="reset" class="btn btn-danger my-3" id="btm-clearroute"
+                            name="btn-clearroute">Limpiar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modaltime" tabindex="-1" aria-labelledby="modalhorario" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalhorario">Cambio de Horario de atención</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form role="form" class="mb-2">
+                        <div class="form-group">
+                            <label for="" class="fw-bolder fs-6">Horario de atención: </label>
+                            <div class="input-group">
+                                <span class="input-group-text">De: </span>
+                                <input name="horainicio" id="horainicio" type="time" required class="form-control"
+                                    placeholder="Sucursal">
+                                <span class="input-group-addon"> --</span>
+                                <span class="input-group-text">Hasta: </span>
+                                <input name="mininicio" id="mininicio" type="time" required class="form-control"
+                                    placeholder="Numero">
+                            </div>
+                            <button type="submit" class="btn btn-primary my-3" id="btn-horaupdate"
+                                name="btn-horaupdate">Actualizar Horario</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalprices" tabindex="-1" aria-labelledby="modalcosto" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalcosto">Cambio de Precio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form role="form" class="mb-2">
+                        <div class="form-group">
+                            <label for="" class="fw-bolder fs-6">Precio: </label>
+                            <div class="input-group ">
+                                <span class="input-group-text">S/.</span>
+                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                                    name="pricepark" id="pricepark">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary my-3" id="btn-priceupdate"
+                            name="btn-priceupdate">Actualizar Precio</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
