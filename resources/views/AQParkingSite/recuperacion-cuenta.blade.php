@@ -1,10 +1,13 @@
 @extends('AQParkingSite.layouts.headerfooter')
 
+@section('title')
+    Recuperación de contraseña
+@endsection
+
 @section('content')
   <!-- BODY -->
-
-  <div class="container my-5">
-    <div class="row ph-100 align-items-center justify-content-center">
+  <div class="container py-5 my-5">
+    <div class="row align-items-center justify-content-center">
       <div class="col-sm-6">
         <h1 class="text-center">RECUPERACIÓN DE CONTRASEÑA</h1>
         <p class="text-justify">Ingresa tu correo con el que te registraste y te enviaremos tu actual contraseña he
@@ -26,6 +29,9 @@
               type="submit">ENVIAR</button>
           </div>
         </form>
+      </div>
+      <div class="col-12 d-flex justify-content-center mt-5 ">
+        <img src="img/logo.png" title="logo AQPparking" alt="logo AQPparking" class="img-fluid mt-5 d-none  d-xxl-block">
       </div>
     </div>
   </div>
