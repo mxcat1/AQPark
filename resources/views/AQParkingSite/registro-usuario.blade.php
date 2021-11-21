@@ -64,7 +64,7 @@
             </form>
         </div>
         <div class="col-lg-6 d-none d-lg-block imgRegistro ">
-            <img src="/img/img_registro.jpg" alt="" style="width: 600px;">
+            <img src="img/img_registro.jpg" alt="" style="width: 600px;">
         </div>
     </div>
 </div>

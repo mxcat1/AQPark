@@ -23,7 +23,7 @@
                   <p>Precio: <span>S/4.00</span></p>
                   <p>Sitios disponibles: <span>7</span></p>
               </div>
-              <a class="btn btn-primary mb-4" href="{{ route('Parking-booking') }}" role="button">RESERVAR</a>
+              <a class="btn btn-primary mb-4" href="{{ route('parking-booking') }}" role="button">RESERVAR</a>
               <div id="disqus_thread"></div>
           </div>
       </div>
