@@ -130,7 +130,7 @@
 <script src="js/jquery-3.6.0.js"></script>
 <script src="js/script.js"></script>
 
-<!--MOTIO-->
+<!--MOTION-->
 <script src="js/jquery.motio.js"></script>
 <script>
     var element = document.querySelector('.bodyreg');
