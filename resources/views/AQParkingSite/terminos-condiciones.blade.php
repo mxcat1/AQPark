@@ -38,5 +38,6 @@
         Los Términos y Condiciones de Uso entrarán en vigor el 01 de enero de 2022 para los usuarios actuales; en el
         caso de nuevos usuarios, entrarán en vigor en cuanto sean aceptadas.
     </p>
+    <img src="img/logo.png" title="logo AQPparking" alt="logo AQPparking" class="img-fluid mt-5 d-none  d-xxl-block mx-auto mt-5 mb-3">
 </div>
 @endsection
