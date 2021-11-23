@@ -13,6 +13,23 @@
     flex-direction:column;
     height: 100%; 
 } */
+
+/*INICIO INDEX*/
+.benef p{
+    font-size: 16px;
+    text-align: justify;
+    margin-top: 10px;
+}
+
+.bene-ico{  
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;  
+    width: 25%;
+    justify-content: center;
+}
+
 /*FOOTER*/
 footer {
     margin-top: auto;
@@ -43,8 +60,6 @@ footer .container-fluid .row{
     align-items: center;
     text-align: center;
 }
-
-
 
 /* BODY DE PAG.REGISTRO */
 .bodyreg{
@@ -94,7 +109,6 @@ label, ::-webkit-input-placeholder {
 
 }
  
-
 /* BODY CARDS */
 .bg-graycard{
     background-color: #FCFCFC;
