@@ -83,15 +83,15 @@
                 <div class="col-lg-9 col-md-12">
                     <div class="row tyc">
                         <div class=" col-lg-4">
-                            <a href="terminos-condiciones.html" title="Link Terminos y condiciones">Terminos y
+                            <a href="#" title="Link Terminos y condiciones">Terminos y
                                 condiciones</a>
                         </div>
                         <div class="col-lg-4 c2">
-                            <a href="politica-privacidad.html" title="Link Política de privacidad">Política de
+                            <a href="#" title="Link Política de privacidad">Política de
                                 privacidad</a>
                         </div>
                         <div class=" col-lg-4">
-                            <a href="politica-cookies.html" title="Política de Cookies">Política de Cookies</a>
+                            <a href="#" title="Política de Cookies">Política de Cookies</a>
                         </div>
                     </div>
                 </div>
