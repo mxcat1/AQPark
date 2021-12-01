@@ -61,9 +61,9 @@
                             type="submit">Enviar</button>
                     </div>
                     <div class="my-3 text-center">
-                        <span>¿Ya tienes cuenta? <a href="#">¡Inicia sesión!</a></span><br>
-                        <span><a href="#">¿Olvidaste tu contraseña? Recuperaralá </a></span><br>
-                        <span><a href="#">Terminos y condiciones</a></span>
+                        <span>¿Ya tienes cuenta? <a href="{{route('loginAQParking')}}">¡Inicia sesión!</a></span><br>
+                        <span><a href="{{route('restore-password')}}">¿Olvidaste tu contraseña? Recuperaralá </a></span><br>
+                        <span><a href="{{route('terminosAQParking')}}">Terminos y condiciones</a></span>
                     </div>
                 </form>
             </div>

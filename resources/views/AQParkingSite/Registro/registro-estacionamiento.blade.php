@@ -117,9 +117,9 @@
                         type="submit">REGISTRARSE</button>
                 </div>
                 <div class="my-3 text-center">
-                    <span>¿Ya has creado una cuenta para tu estacionamiento? <a href="#">¡Inicia
+                    <span>¿Ya has creado una cuenta para tu estacionamiento? <a href="{{route('loginAQParking')}}">¡Inicia
                             sesión!</a></span><br>
-                    <span><a href="#">Recuperar Contraseña</a></span>
+                    <span><a href="{{route('restore-password')}}">Recuperar Contraseña</a></span>
                 </div>
             </div>
             
