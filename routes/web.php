@@ -5,7 +5,7 @@ use App\Http\Controllers\AdministracionSistema\InicioController;
 use App\Http\Controllers\AdministracionSistema\TipoDocumentoController;
 use App\Http\Controllers\AdministracionSistema\UsuarioController;
 use App\Http\Controllers\AdministracionSistema\VehiculoController;
-use App\Http\Controllers\AQParkingSite\InicioAQParkingController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,7 +48,7 @@ Route::post('/cerrarsession',[AutenticateAdminController::class,'logout'])->name
 // Route::view('terminos', 'AQParkingSite.terminos-condiciones')->name('terminos');
 // Route::view('recuperacion', 'AQParkingSite.recuperacion-cuenta')->name('recuperacion');
 
-Route::get('/main',[InicioAQParkingController::class,'index']);
+Route::get('/main','App\Http\Controllers\AQParkingSite\InicioAQParkingController@index');
 
 // Route::get('/main', function () {
 //     return view('AQParkingSite.main');
