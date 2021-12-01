@@ -49,12 +49,12 @@
                         </a>
                     </li>
                     <li class="nav-item d-none">
-                        <a href="#">
+                        <a href="{{route('cuenta-usuarioAQParking')}}">
                             <button type="button" class="btn btn-primary mx-2" id="btn_sesion" name="btn_sesion">Mi cuenta</button>
                         </a>
                     </li>
                     <li class="nav-item d-none">
-                        <a href="#">
+                        <a href="{{route('cuenta-estacionamientoAQParking')}}">
                             <button type="button" class="btn btn-primary mx-2" id="btn_sesion" name="btn_sesion">Mi estacionamiento</button>
                         </a>
                     </li>
