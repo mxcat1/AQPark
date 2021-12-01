@@ -42,10 +42,10 @@
                                                     name="timeplaya">9am - 5pm</span></p>
                                         </div>
                                         <div class="col-12">
-                                            <a href="#"><button type="button"
+                                            <a href="{{route('reserva-estacionamiento')}}"><button type="button"
                                                     class="btn btn-primary">Reservar</button></a>
 
-                                            <a href="#"><button type="button"
+                                            <a href="{{route('estacionamientoAQParking')}}"><button type="button"
                                                     class="btn btn-success">Ver más</button></a>
                                         </div>
 

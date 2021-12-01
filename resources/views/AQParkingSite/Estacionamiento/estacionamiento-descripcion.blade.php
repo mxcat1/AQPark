@@ -10,7 +10,7 @@
     <div class="container py-5 my-5">
         <div class="row">
             <div class="col-sm-4">
-                <img class="img-fluid" src="img/estacionamiento1.jpg" alt="estacionamiento" width="400" height="600">
+                <img class="img-fluid" src="{{asset('img/fotoestacionamiento.jpg')}}" alt="estacionamiento" width="400" height="600">
                 <hr class="d-sm-none">
             </div>
             <div class="col-sm-8">
@@ -24,7 +24,7 @@
                     <p class="fw-bold">Precio: <span class="fw-normal">S/4.00</span></p>
                     <p class="fw-bold">Sitios disponibles: "<span class="fw-normal fs-4">7</span>"</p>
                 </div>
-                <a class="btn btn-primary mb-4" href="#" role="button">RESERVAR</a>
+                <a class="btn btn-primary mb-4" href="{{route('reserva-estacionamiento')}}" role="button">RESERVAR</a>
                 <div id="disqus_thread"></div>
             </div>
         </div>
