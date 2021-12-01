@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-<!-- BODY -->
-<h2 class="text-center my-5">NOMBRE DE ESTACIONAMIENTO</h2>
+    <!-- BODY -->
+    <h2 class="text-center my-5">NOMBRE DE ESTACIONAMIENTO</h2>
     <div class="container py-5 my-5">        
         <div class="row">
             <div class="col-sm-4">
@@ -60,7 +60,6 @@
             </div>
         </div>
     </div>
-    
     <!-- MODALES -->
     <div class="modal fade" id="modaldirpark" tabindex="-1" aria-labelledby="modaldirection" aria-hidden="true">
         <div class="modal-dialog">

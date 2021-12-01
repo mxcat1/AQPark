@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-<!-- BODY -->
-<h2 class="text-center my-5">Mi Cuenta</h2>
+    <!-- BODY -->
+    <h2 class="text-center my-5">Mi Cuenta</h2>
     <div class="container my-5 py-5">        
         <div class="row align-items-stretch">
             <div class="col-sm-6 mb-2">

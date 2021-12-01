@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-  <!-- BODY -->		
-  <h2 class="text-center pt-xxl-3 my-5">RESERVA DE ESTACIONAMIENTO</h2>
+    <!--BODY-->   
+    <h2 class="text-center pt-xxl-3 my-5">RESERVA DE ESTACIONAMIENTO</h2>
     <div class="container py-5 my-5">        
         <div class="form-wrapper pb-xxl-5">
             <div class="row">

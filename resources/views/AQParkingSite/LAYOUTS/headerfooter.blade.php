@@ -12,6 +12,8 @@
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/estilos.css">
+    <!--flatpickr time picker CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <title>AQParking - @yield('title')</title>
 </head>
 <body>
@@ -124,11 +126,17 @@
 <script>
     feather.replace()
 </script>
+
+<!-- FONTAWESONE -->
 <!-- <script src="https://kit.fontawesome.com/f52de5d372.js" crossorigin="anonymous"></script> -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.6.0.js"></script>
 <script src="js/script.js"></script>
+
+<!-- flatpickr time picker JS-->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <!--MOTIO-->
 <script src="js/jquery.motio.js"></script>
@@ -143,5 +151,34 @@
     });
     panning.play();
 </script>
+
+<!--PICCKER PARA EL HORARIO-->
+<script>
+    config = {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+    }
+    flatpickr("#timepkr", config);
+
+</script>
+
+<!-- FIN DEL TIME PICKER -->
+
+
+<!-- COMIENZA MODAL TYC -->
+<script>
+
+let myModal = new bootstrap.Modal(document.getElementById('myModal'), {})
+myModal.toggle()
+
+// CANCELAR MODAL --> redirect
+
+document.getElementById("redirect").onclick = function(){
+    window.location.replace('registro.html')
+}
+
+</script>
+<!-- FIN MODAL TYC -->
 
 </html>
