@@ -50,6 +50,6 @@ Route::post('/cerrarsession',[AutenticateAdminController::class,'logout'])->name
 
 Route::get('/main','App\Http\Controllers\AQParkingSite\InicioAQParkingController@index');
 
-Route::get('/main2', function () {
-    return view('AQParkingSite.main');
-});
+// Route::get('/main', function () {
+//     return view('AQParkingSite.main');
+// });
