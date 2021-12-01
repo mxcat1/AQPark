@@ -56,3 +56,6 @@ Route::post('/cerrarsession',[AutenticateAdminController::class,'logout'])->name
 // Route::view('recuperacion', 'AQParkingSite.recuperacion-cuenta')->name('recuperacion');
 
 Route::get('/AQParking',[AQParkingController::class,'index'])->name('indexAQParking');
+
+Route::get('/AQParking/registro',[AQParkingController::class,'registro'])->name('registroAQParking');
+

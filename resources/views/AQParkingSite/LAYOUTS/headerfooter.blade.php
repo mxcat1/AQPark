@@ -10,8 +10,8 @@
     <meta name="description"
         content="Encuentra tu estacionamiento en la ciudad de Arequipa y reserva tu sitio facilmente">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
     <!--flatpickr time picker CSS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <title>AQParking - @yield('title')</title>
@@ -127,7 +127,7 @@
 <script id="dsq-count-scr" src="//aqparking.disqus.com/count.js" async></script>
 
 <!-- FEATHER-ICONS -->
-<script src="feather-icons/dist/feather.min.js"></script>
+<script src="{{asset('feather-icons/dist/feather.min.js')}}"></script>
 <script>
     feather.replace()
 </script>
@@ -135,15 +135,15 @@
 <!-- FONTAWESONE -->
 <!-- <script src="https://kit.fontawesome.com/f52de5d372.js" crossorigin="anonymous"></script> -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery-3.6.0.js"></script>
-<script src="js/script.js"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/jquery-3.6.0.js')}}"></script>
+<script src="{{asset('js/script.js')}}"></script>
 
 <!-- flatpickr time picker JS-->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <!--MOTIO-->
-<script src="js/jquery.motio.js"></script>
+<script src="{{asset('js/jquery.motio.js')}}"></script>
 <script>
     var element = document.querySelector('.bodyreg');
     var panning = new Motio(element, {
