@@ -5,7 +5,7 @@ namespace App\Http\Controllers\AQParkingSite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class RegistroUserController extends Controller
+class RegistroParkingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class RegistroUserController extends Controller
      */
     public function index()
     {
-        //
-        return view('AQParkingSite.Registro.registro-usuario');
+        return view('AQParkingSite.Registro.registro-estacionamiento');
     }
 
     /**

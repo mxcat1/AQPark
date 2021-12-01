@@ -9,11 +9,11 @@ class AutenticasionUserController extends Controller
 {
     public function login()
     {
-        return view('AQParkingSite.Index.login')->name('LoginUsers');
+        return view('AQParkingSite.Index.login');
     }
 
     public function autenticacion()
     {
-        return view('AQParkingSite.Index.principal')->name('MainPage');
+        return view('AQParkingSite.Index.principal');
     }
 }
