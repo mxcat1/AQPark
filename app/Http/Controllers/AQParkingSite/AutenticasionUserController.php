@@ -11,4 +11,9 @@ class AutenticasionUserController extends Controller
     {
         return view('AQParkingSite.Index.login')->name('LoginUsers');
     }
+
+    public function autenticacion()
+    {
+        return view('AQParkingSite.Index.principal')->name('MainPage');
+    }
 }
