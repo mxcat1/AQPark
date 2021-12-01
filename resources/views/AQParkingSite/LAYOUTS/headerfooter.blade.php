@@ -21,7 +21,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-sky">
         <div class="container-fluid">
             <a href="#" class="text-decoration-none" title="Link to INDEX">
-            <img src="img/logo.png" title="logo AQPparking" alt="logo AQPparking" class="img-fluid ms-2" style="width: 7em;"></a>
+            <img src="{{asset('img/logo.png')}}" title="logo AQPparking" alt="logo AQPparking" class="img-fluid ms-2" style="width: 7em;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-12">
                     <div class="col col-lg-12 my-4">
-                        <img src="img/logo.png" title="logo AQPparking" alt="logo AQPparking">
+                        <img src="{{asset('img/logo.png')}}" title="logo AQPparking" alt="logo AQPparking">
                         <a class="text-light display-6 px-4 " href="#" target="_blank" alt="icono instagram"
                             title="Link to Instsgram"><i data-feather="instagram"></i></a>
                         <a class="text-light display-6 px-4" href="#" target="_blank" alt="icono twitter"
