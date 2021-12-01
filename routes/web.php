@@ -56,6 +56,11 @@ Route::post('/cerrarsession',[AutenticateAdminController::class,'logout'])->name
 // Route::view('recuperacion', 'AQParkingSite.recuperacion-cuenta')->name('recuperacion');
 
 Route::get('/AQParking',[AQParkingController::class,'index'])->name('indexAQParking');
-
 Route::get('/AQParking/registro',[AQParkingController::class,'registro'])->name('registroAQParking');
+Route::get('/AQParking/politica-de-cookies',[AQParkingController::class,'cookies'])->name('cookiesAQParking');
+Route::get('/AQParking/politica-de-privacidad',[AQParkingController::class,'privacidad'])->name('privacidadAQParking');
+Route::get('/AQParking/terminos-y-condiciones',[AQParkingController::class,'terminos'])->name('terminosAQParking');
+
+Route::get('/AQParking/login',[AutenticacionUserController::class,'login'])->name('loginAQParking');
+Route::get('/SesionAQParking',[AutenticacionUserController::class,'autenticacion'])->name('autenticateAQParking');
 

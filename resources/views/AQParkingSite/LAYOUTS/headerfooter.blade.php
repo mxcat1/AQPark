@@ -20,7 +20,7 @@
     <!-- HEADER -->
         <nav class="navbar navbar-expand-lg navbar-light bg-sky">
         <div class="container-fluid">
-            <a href="#" class="text-decoration-none" title="Link to INDEX">
+            <a href="{{route('indexAQParking')}}" class="text-decoration-none" title="Link to INDEX">
             <img src="{{asset('img/logo.png')}}" title="logo AQPparking" alt="logo AQPparking" class="img-fluid ms-2" style="width: 7em;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -37,13 +37,13 @@
                 </form>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item mb-2 mb-lg-0">
-                        <a href="#">
+                        <a href="{{route('registroAQParking')}}">
                             <button type="submit" class="btn btn-secondary mx-3" id="btn_registro"
                                 name="btn_registro">Registrarse</button>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">
+                        <a href="{{route('loginAQParking')}}">
                             <button type="button" class="btn btn-primary mx-2" id="btn_sesion" name="btn_sesion">Iniciar
                                 Sesión</button>
                         </a>
@@ -83,15 +83,15 @@
                 <div class="col-lg-9 col-md-12">
                     <div class="row tyc">
                         <div class=" col-lg-4">
-                            <a href="#" title="Link Terminos y condiciones">Terminos y
+                            <a href="{{route('terminosAQParking')}}" title="Link Terminos y condiciones">Terminos y
                                 condiciones</a>
                         </div>
                         <div class="col-lg-4 c2">
-                            <a href="#" title="Link Política de privacidad">Política de
+                            <a href="{{route('privacidadAQParking')}}" title="Link Política de privacidad">Política de
                                 privacidad</a>
                         </div>
                         <div class=" col-lg-4">
-                            <a href="#" title="Política de Cookies">Política de Cookies</a>
+                            <a href="{{route('cookiesAQParking')}}" title="Política de Cookies">Política de Cookies</a>
                         </div>
                     </div>
                 </div>

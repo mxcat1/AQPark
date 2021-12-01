@@ -11,7 +11,7 @@
       <div class="col imglogin d-none d-md-block"></div>
       <div class="col">
         <div class="text-end">
-          <img src="img/logo.png" width="48" alt="logo">
+          <img src="{{asset('img/logo.png')}}" width="48" alt="logo">
         </div>
         <h2 class="fw-bold text-center py-5">Iniciar Sesión</h2>
         <form form name="formulariologin" id="formulariologin" action="">

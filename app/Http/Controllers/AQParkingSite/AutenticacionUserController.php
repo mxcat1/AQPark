@@ -5,7 +5,7 @@ namespace App\Http\Controllers\AQParkingSite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AutenticasionUserController extends Controller
+class AutenticacionUserController extends Controller
 {
     public function login()
     {
