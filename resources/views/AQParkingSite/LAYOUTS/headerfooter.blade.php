@@ -70,29 +70,34 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-md-12">
-                    <div class="col col-lg-12">
+                    <div class="col col-lg-12 my-4">
                         <img src="img/logo.png" title="logo AQPparking" alt="logo AQPparking">
-                        <a class="text-light display-6 px-4 text-dark" href="#" target="_blank" alt="icono instagram" title="Link to Instsgram"><i data-feather="instagram"></i></i></a>
-                        <a class="text-light display-6 px-4 text-dark" href="#" target="_blank" alt="icono twitter" title="Link to Twitter"><i data-feather="twitter"></i></i></a>
-                        <a class="text-light display-6 px-4 text-dark" href="#" target="_blank" alt="icono facebook" title="Link to Facebook"><i data-feather="facebook"></i></a>
+                        <a class="text-light display-6 px-4 " href="#" target="_blank" alt="icono instagram"
+                            title="Link to Instsgram"><i data-feather="instagram"></i></a>
+                        <a class="text-light display-6 px-4" href="#" target="_blank" alt="icono twitter"
+                            title="Link to Twitter"><i data-feather="twitter"></i></a>
+                        <a class="text-light display-6 px-4" href="#" target="_blank" alt="icono facebook"
+                            title="Link to Facebook"><i data-feather="facebook"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-12">
                     <div class="row tyc">
                         <div class=" col-lg-4">
-                            <a href="#" title="Link Terminos y condiciones">Terminos y condiciones</a>
+                            <a href="terminos-condiciones.html" title="Link Terminos y condiciones">Terminos y
+                                condiciones</a>
+                        </div>
+                        <div class="col-lg-4 c2">
+                            <a href="politica-privacidad.html" title="Link Política de privacidad">Política de
+                                privacidad</a>
                         </div>
                         <div class=" col-lg-4">
-                            <a href="#" title="Link Política de privacidad">Política de privacidad</a>
-                        </div>
-                        <div class=" col-lg-4">
-                            <a href="#" title="Política de Cookies">Política de Cookies</a>
-                        </div>
-                        <div class="row end">
-                            <p class="text-center">© <span id="anio"></span> AQParking.com by Nosotros SAC</p>
+                            <a href="politica-cookies.html" title="Política de Cookies">Política de Cookies</a>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row end ">
+                <p class="text-center mt-3">© <span id="anio"></span> AQParking.com by Nosotros SAC</p>
             </div>
         </div>
     </footer>   
@@ -130,7 +135,6 @@
 <!-- FONTAWESONE -->
 <!-- <script src="https://kit.fontawesome.com/f52de5d372.js" crossorigin="anonymous"></script> -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
-
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.6.0.js"></script>
 <script src="js/script.js"></script>
