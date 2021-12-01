@@ -42,10 +42,10 @@
                                                     name="timeplaya">9am - 5pm</span></p>
                                         </div>
                                         <div class="col-12">
-                                            <a href="estacionamiento-reserva.html"><button type="button"
+                                            <a href="#"><button type="button"
                                                     class="btn btn-primary">Reservar</button></a>
 
-                                            <a href="estacionamiento-descripcion.html"><button type="button"
+                                            <a href="#"><button type="button"
                                                     class="btn btn-success">Ver más</button></a>
                                         </div>
 

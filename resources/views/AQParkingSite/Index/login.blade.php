@@ -14,7 +14,7 @@
           <img src="img/logo.png" width="48" alt="logo">
         </div>
         <h2 class="fw-bold text-center py-5">Iniciar Sesión</h2>
-        <form form name="formulariologin" id="formulariologin" action="principal.html">
+        <form form name="formulariologin" id="formulariologin" action="">
           <div class="mb-4">
             <label for="iptmail" class="form-label">Correo Electronico</label>
             <input type="email" class="form-control" id="iptmaillogin" name="iptmaillogin"
@@ -33,8 +33,8 @@
               SESIÓN</button>
           </div>
           <div class="my-3 text-center">
-            <span>No tienes cuenta <a href="registro.html">Registrate</a></span><br>
-            <span><a href="recuperacion.html">Recuperar Contraseña</a></span>
+            <span>No tienes cuenta <a href="#">Registrate</a></span><br>
+            <span><a href="#">Recuperar Contraseña</a></span>
           </div>
         </form>
       </div>

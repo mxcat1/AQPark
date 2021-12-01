@@ -24,7 +24,7 @@
                     <p class="fw-bold">Precio: <span class="fw-normal">S/4.00</span></p>
                     <p class="fw-bold">Sitios disponibles: "<span class="fw-normal fs-4">7</span>"</p>
                 </div>
-                <a class="btn btn-primary mb-4" href="estacionamiento-reserva.html" role="button">RESERVAR</a>
+                <a class="btn btn-primary mb-4" href="#" role="button">RESERVAR</a>
                 <div id="disqus_thread"></div>
             </div>
         </div>
