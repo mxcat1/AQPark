@@ -119,6 +119,6 @@
                 <span><a href="{{ route('cuenta-usr') }}">Recuperar Contraseña</a></span>
             </div>
         </div>
-    </div>recuperacion
+    </div>
 @endsection
 

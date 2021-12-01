@@ -18,7 +18,7 @@
     <!-- HEADER -->
         <nav class="navbar navbar-expand-lg navbar-light bg-sky">
         <div class="container-fluid">
-            <a href="{{ route('indexusr') }}" class="text-decoration-none" title="Link to INDEX">
+            <a href="#" class="text-decoration-none" title="Link to INDEX">
             <img src="img/logo.png" title="logo AQPparking" alt="logo AQPparking" class="img-fluid ms-2" style="width: 7em;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -35,24 +35,24 @@
                 </form>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item mb-2 mb-lg-0">
-                        <a href="{{ route('registro') }}">
+                        <a href="#">
                             <button type="submit" class="btn btn-secondary mx-3" id="btn_registro"
                                 name="btn_registro">Registrarse</button>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('login') }}">
+                        <a href="#">
                             <button type="button" class="btn btn-primary mx-2" id="btn_sesion" name="btn_sesion">Iniciar
                                 Sesión</button>
                         </a>
                     </li>
                     <li class="nav-item d-none">
-                        <a href="{{ route('cuenta-usr') }}">
+                        <a href="#">
                             <button type="button" class="btn btn-primary mx-2" id="btn_sesion" name="btn_sesion">Mi cuenta</button>
                         </a>
                     </li>
                     <li class="nav-item d-none">
-                        <a href="{{ route('cuenta-parking') }}">
+                        <a href="#">
                             <button type="button" class="btn btn-primary mx-2" id="btn_sesion" name="btn_sesion">Mi estacionamiento</button>
                         </a>
                     </li>
@@ -78,13 +78,13 @@
                 <div class="col-lg-9 col-md-12">
                     <div class="row tyc">
                         <div class=" col-lg-4">
-                            <a href="{{url('terminos')}}" title="Link Terminos y condiciones">Terminos y condiciones</a>
+                            <a href="#" title="Link Terminos y condiciones">Terminos y condiciones</a>
                         </div>
                         <div class=" col-lg-4">
-                            <a href="{{url('privacidad')}}" title="Link Política de privacidad">Política de privacidad</a>
+                            <a href="#" title="Link Política de privacidad">Política de privacidad</a>
                         </div>
                         <div class=" col-lg-4">
-                            <a href="{{url('cookies')}}" title="Política de Cookies">Política de Cookies</a>
+                            <a href="#" title="Política de Cookies">Política de Cookies</a>
                         </div>
                         <div class="row end">
                             <p class="text-center">© <span id="anio"></span> AQParking.com by Nosotros SAC</p>

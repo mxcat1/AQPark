@@ -5,6 +5,7 @@ use App\Http\Controllers\AdministracionSistema\InicioController;
 use App\Http\Controllers\AdministracionSistema\TipoDocumentoController;
 use App\Http\Controllers\AdministracionSistema\UsuarioController;
 use App\Http\Controllers\AdministracionSistema\VehiculoController;
+use App\Http\Controllers\AQParkingSite\InicioAQParkingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,17 +33,23 @@ Route::post('/iniciarsession',[AutenticateAdminController::class,'autenticate'])
 Route::post('/cerrarsession',[AutenticateAdminController::class,'logout'])->name('LoginDesautenticacion')->middleware('authrol');
 
 // RUTAS AQParkingSite
-Route::view('main', 'AQParkingSite.main')->name('indexusr');
-Route::view('login', 'AQParkingSite.login')->name('login');
-Route::view('principal', 'AQParkingSite.principal')->name('principal');
-Route::view('registro', 'AQParkingSite.registro')->name('registro');
-Route::view('registro-usr', 'AQParkingSite.registro-usuario')->name('registro-usr');
-Route::view('registro-parking', 'AQParkingSite.registro-estacionamiento')->name('registro-parking');
-Route::view('cuenta-usr', 'AQParkingSite.cuenta-usuario')->name('cuenta-usr');
-Route::view('cuenta-parking', 'AQParkingSite.cuenta-estacionamiento')->name('cuenta-parking');
-Route::view('parking-description', 'AQParkingSite.estacionamiento-descripcion')->name('parking-description');
-Route::view('parking-booking', 'AQParkingSite.estacionamiento-reserva')->name('parking-booking');  
-Route::view('cookies', 'AQParkingSite.politica-cookies')->name('cookies');
-Route::view('privacidad', 'AQParkingSite.politica-privacidad')->name('privacidad');
-Route::view('terminos', 'AQParkingSite.terminos-condiciones')->name('terminos');
-Route::view('recuperacion', 'AQParkingSite.recuperacion-cuenta')->name('recuperacion');
+// Route::view('main', 'AQParkingSite.main')->name('indexusr');
+// Route::view('login', 'AQParkingSite.login')->name('login');
+// Route::view('principal', 'AQParkingSite.principal')->name('principal');
+// Route::view('registro', 'AQParkingSite.registro')->name('registro');
+// Route::view('registro-usr', 'AQParkingSite.registro-usuario')->name('registro-usr');
+// Route::view('registro-parking', 'AQParkingSite.registro-estacionamiento')->name('registro-parking');
+// Route::view('cuenta-usr', 'AQParkingSite.cuenta-usuario')->name('cuenta-usr');
+// Route::view('cuenta-parking', 'AQParkingSite.cuenta-estacionamiento')->name('cuenta-parking');
+// Route::view('parking-description', 'AQParkingSite.estacionamiento-descripcion')->name('parking-description');
+// Route::view('parking-booking', 'AQParkingSite.estacionamiento-reserva')->name('parking-booking');  
+// Route::view('cookies', 'AQParkingSite.politica-cookies')->name('cookies');
+// Route::view('privacidad', 'AQParkingSite.politica-privacidad')->name('privacidad');
+// Route::view('terminos', 'AQParkingSite.terminos-condiciones')->name('terminos');
+// Route::view('recuperacion', 'AQParkingSite.recuperacion-cuenta')->name('recuperacion');
+
+Route::get('/main',[InicioAQParkingController::class,'index']);
+
+// Route::get('/main', function () {
+//     return view('AQParkingSite.main');
+// });
