@@ -7,6 +7,11 @@ use App\Http\Controllers\AdministracionSistema\UsuarioController;
 use App\Http\Controllers\AdministracionSistema\VehiculoController;
 use App\Http\Controllers\AQParkingSite\AQParkingController;
 use App\Http\Controllers\AQParkingSite\AutenticacionUserController;
+use App\Http\Controllers\AQParkingSite\EstacionamientoAQParkingController;
+use App\Http\Controllers\AQParkingSite\RegistroParkingController;
+use App\Http\Controllers\AQParkingSite\RegistroUserController;
+use App\Http\Controllers\AQParkingSite\ReservaAQParkingController;
+use App\Http\Controllers\AQParkingSite\UsuarioAQParkingController;
 
 use Illuminate\Support\Facades\Route;
 
