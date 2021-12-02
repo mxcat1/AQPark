@@ -16,6 +16,7 @@ Login
             </div>
             <h2 class="fw-bold text-center py-5">Iniciar Sesión</h2>
             <form action="{{ route('autenticacionAQParking')}}" method="POST">
+                @csrf
                 <div class="mb-4">
                     <label for="iptmail" class="form-label">Correo Electronico</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
