@@ -50,7 +50,7 @@ Route::get('/AQParking/politica-de-privacidad',[AQParkingController::class,'priv
 Route::get('/AQParking/terminos-y-condiciones',[AQParkingController::class,'terminos'])->name('terminosAQParking');
 
 Route::get('/AQParking/login',[AutenticacionUserController::class,'login'])->name('loginAQParking');
-Route::get('/AQParkingSite',[AutenticacionUserController::class,'autenticacion']);
+Route::get('/iniciarsession',[AutenticacionUserController::class,'autenticacion'])->name('autenticacionAQParking');
 
 Route::get('/AQParkingSite/detalles-estacionamiento',[EstacionamientoAQParkingController::class,'index'])->name('estacionamientoAQParking');
 Route::get('/AQParkingSite/cuenta-estacionamiento',[EstacionamientoAQParkingController::class,'show'])->name('cuenta-estacionamientoAQParking');
