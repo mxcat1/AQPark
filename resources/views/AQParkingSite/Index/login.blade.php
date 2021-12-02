@@ -15,7 +15,7 @@ Login
                 <img src="{{asset('img/logo.png')}}" width="48" alt="logo">
             </div>
             <h2 class="fw-bold text-center py-5">Iniciar Sesión</h2>
-            <form action="{{ route('autenticacionAQParking')}}" method="POST">
+            <form method="POST" action="{{ route('autenticacionAQParking')}}">
                 @csrf
                 <div class="mb-4">
                     <label for="iptmail" class="form-label">Correo Electronico</label>
