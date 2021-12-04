@@ -1,4 +1,4 @@
-@extends('AQParkingSite.layouts.headerfooter')
+@extends('AQParkingSite.layouts.headerfooter-user')
 
 @section('title')
     Pagina principal

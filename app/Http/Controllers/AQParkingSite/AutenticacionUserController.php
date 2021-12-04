@@ -30,4 +30,15 @@ class AutenticacionUserController extends Controller
             'email' => 'Usuario y Contraseña proporcionadas no coinciden con nuestros registros.'
         ]);
     }
+    
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('indexAQParking');
+    }
 }
