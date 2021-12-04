@@ -16,12 +16,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <title>AQParking - @yield('title')</title>
 </head>
+
 <body>
     <!-- HEADER -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-sky">
+    <nav class="navbar navbar-expand-lg navbar-light bg-sky">
         <div class="container-fluid">
             <a href="{{route('indexAQParking')}}" class="text-decoration-none" title="Link to INDEX">
-            <img src="{{asset('img/logo.png')}}" title="logo AQPparking" alt="logo AQPparking" class="img-fluid ms-2" style="width: 7em;"></a>
+                <img src="{{asset('img/logo.png')}}" title="logo AQPparking" alt="logo AQPparking"
+                    class="img-fluid ms-2" style="width: 7em;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -32,9 +34,45 @@
                     <div class="input-group mb-3 my-sm-3">
                         <input class="form-control" type="search" placeholder="Search" aria-label="Search"
                             aria-describedby="barrabuscarheader">
-                        <button class="btn btn-primary" type="submit" id="barrabuscarheader"><i data-feather="search"></i></button>
+                        <button class="btn btn-primary" type="submit" id="barrabuscarheader"><i
+                                data-feather="search"></i></button>
                     </div>
                 </form>
+                @if(Auth::check())
+                <ul class="navbar-nav ms-auto">
+                    <li>
+                        <div class="dropdown mx-4">
+                            <a class="dropdown-toggle text-uppercase" type="button" id="dropdownMenuUser"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->nombre }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuUser">
+                                <li>
+                                    <a class="dropdown-item" href="{{route('cuenta-usuarioAQParking')}}">Mi cuenta
+                                    </a>
+                                </li>
+                                @if(Auth::user()->rol == 'Administrador Estacionamiento')
+                                <li class="nav-item">
+                                    <a class="dropdown-item"
+                                        href="{{route('cuenta-estacionamientoAQParking')}}">Estacionamiento
+                                    </a>
+                                </li>
+                                @endif
+                                <li>
+                                    <form method="POST" action="{{route('logout')}}" class="dropdown-item">
+                                        @csrf
+                                        <a href="{{route('logout')}}" role="button"
+                                            onclick="event.preventDefault(); this.closest('form').submit();">
+                                            <i class="me-2 icon-xxs dropdown-item-icon" data-feather="power"></i>Cerrar
+                                            Sessión
+                                        </a>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                @else
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item mb-2 mb-lg-0">
                         <a href="{{route('registroAQParking')}}">
@@ -42,23 +80,15 @@
                                 name="btn_registro">Registrarse</button>
                         </a>
                     </li>
+
                     <li class="nav-item">
                         <a href="{{route('loginAQParking')}}">
                             <button type="button" class="btn btn-primary mx-2" id="btn_sesion" name="btn_sesion">Iniciar
                                 Sesión</button>
                         </a>
                     </li>
-                    <li class="nav-item d-none">
-                        <a href="{{route('cuenta-usuarioAQParking')}}">
-                            <button type="button" class="btn btn-primary mx-2" id="btn_sesion" name="btn_sesion">Mi cuenta</button>
-                        </a>
-                    </li>
-                    <li class="nav-item d-none">
-                        <a href="{{route('cuenta-estacionamientoAQParking')}}">
-                            <button type="button" class="btn btn-primary mx-2" id="btn_sesion" name="btn_sesion">Mi estacionamiento</button>
-                        </a>
-                    </li>
                 </ul>
+                @endif
             </div>
         </div>
     </nav>
@@ -100,7 +130,7 @@
                 <p class="text-center mt-3">© <span id="anio"></span> AQParking.com by Nosotros SAC</p>
             </div>
         </div>
-    </footer>   
+    </footer>
 </body>
 <!-- DISQUS -->
 <script>
@@ -111,7 +141,7 @@
     var disqus_config = function () {
         this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
         this.page.identifier =
-        PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
     (function () { // DON'T EDIT BELOW THIS LINE
@@ -121,6 +151,7 @@
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
+
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
         Disqus.</a></noscript>
@@ -130,6 +161,7 @@
 <script src="{{asset('feather-icons/dist/feather.min.js')}}"></script>
 <script>
     feather.replace()
+
 </script>
 
 <!-- FONTAWESONE -->
@@ -154,6 +186,7 @@
         bgHeight: 1024,
     });
     panning.play();
+
 </script>
 
 <!--PICCKER PARA EL HORARIO-->
@@ -172,15 +205,14 @@
 
 <!-- COMIENZA MODAL TYC -->
 <script>
+    let myModal = new bootstrap.Modal(document.getElementById('myModal'), {})
+    myModal.toggle()
 
-let myModal = new bootstrap.Modal(document.getElementById('myModal'), {})
-myModal.toggle()
+    // CANCELAR MODAL --> redirect
 
-// CANCELAR MODAL --> redirect
-
-document.getElementById("redirect").onclick = function(){
-    window.location.replace('registro.html')
-}
+    document.getElementById("redirect").onclick = function () {
+        window.location.replace('registro.html')
+    }
 
 </script>
 <!-- FIN MODAL TYC -->

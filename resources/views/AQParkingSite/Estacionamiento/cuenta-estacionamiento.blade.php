@@ -10,7 +10,7 @@
     <div class="container py-5 my-5">        
         <div class="row">
             <div class="col-sm-4">
-                <img class="img-fluid" src="img/estacionamiento1.jpg" alt="estacionamiento" width="400" height="600">
+                <img class="img-fluid" src="{{asset('img/fotoestacionamiento.jpg')}}" alt="estacionamiento" width="400" height="600">
                 <hr class="d-sm-none ">
                 <form role="form" class="mb-2">
                     <div class="input-group mb-1 mt-3">
