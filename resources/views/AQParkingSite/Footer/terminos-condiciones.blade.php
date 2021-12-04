@@ -6,7 +6,7 @@
 
 @section('content')
     <!--BODY-->
-    <div class="container w-50 py-5 my-5">
+    <div class="container w-50 py-5 mb-5">
         <h2 class="text-center my-5">TÉRMINOS Y CONDICIONES DE USO</h2>
         <p class="text-justify">
             A continuación, se describen las condiciones bajo las cuales
