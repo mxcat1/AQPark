@@ -21,7 +21,13 @@
     <!-- HEADER -->
     <nav class="navbar navbar-expand-lg navbar-light bg-sky">
         <div class="container-fluid">
-            <a href="{{route('indexAQParking')}}" class="text-decoration-none" title="Link to INDEX">
+            <a href="
+            @if(Auth::check())
+            {{route('main-pageAQParking')}}
+            @else
+            {{route('indexAQParking')}}
+            @endif
+            " class="text-decoration-none" title="Link to INDEX">
                 <img src="{{asset('img/logo.png')}}" title="logo AQPparking" alt="logo AQPparking"
                     class="img-fluid ms-2" style="width: 7em;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
