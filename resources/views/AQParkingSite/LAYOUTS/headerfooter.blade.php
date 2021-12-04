@@ -48,7 +48,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li>
                         <div class="dropdown mx-4">
-                            <a class="dropdown-toggle text-uppercase" type="button" id="dropdownMenuUser"
+                            <a class="dropdown-toggle text-uppercase text-white" type="button" id="dropdownMenuUser"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ Auth::user()->nombre }}
                             </a>
