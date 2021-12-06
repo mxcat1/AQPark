@@ -8,52 +8,57 @@
     <!--REGISTRO DE USUARIOS-->
     <div class="container  my-5">
         <div class="row align-items-stretch">
+            @include('AQParkingSite.Mensajes.error')
             <div class="col-lg-6 col-md-12">
                 <h2 class="fw-bold text-center py-5">Registrate</h2>
-                <form class="usr-form" id="usr-form">
+                <form action="{{route('new-user')}}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div class="mb-4">
-                        <label for="nameRegistro" class="form-label">Nombres</label>
-                        <input type="text" class="form-control" id="nameRegistro" name="nameRegistro"
+                        <label for="nombre" class="form-label fw-bolder">Nombres</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{old('nombre')}}"
                             placeholder="Escribe acá tus nombres" required>
                     </div>
                     <div class="mb-4">
-                        <label for="apellidosRegistro" class="form-label">Apellidos</label>
-                        <input type="text" class="form-control" id="apellidosRegistro" name="apellidosRegistro"
+                        <label for="apellido" class="form-label fw-bolder">Apellidos</label>
+                        <input type="text" class="form-control" id="apellido" name="apellido" value="{{old('apellido')}}"
                             placeholder="Escribe acá tus apellidos" required>
                     </div>
                     <div class="mb-4">
-                        <label for="mailRegistro" class="form-label">Correo Electronico</label>
-                        <input type="email" class="form-control" id="mailRegistro" name="mailRegistro"
-                            placeholder="name@example.com" oninvalid="alert('Ingrese un correo electrónico válido');" required 
-                            pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$">
+                        <label for="email" class="form-label fw-bolder">Correo Electronico</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{old('email')}}"
+                            placeholder="name@example.com" oninvalid="alert('Ingrese un correo electrónico válido');" 
+                            pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" required >
                     </div>
                     <div class="mb-4">
-                        <label for="registroPass" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="registroPass" name="registroPass" placeholder="Almenos una mayúscula, una minúscula y un número"
-                        oninvalid="alert('Ingrese una contraseña válida');"
-                        required pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$">
-                    </div>
+                        <label class="form-label fw-bolder" for="foto">Foto del Usuario</label>
+                        <input type="file" name="foto" id="foto" class="form-control" accept="image/png, image/jpeg">
+                    </div>                    
                     <div class="mb-4">
-                        <label for="registroPass2" class="form-label">Confirmar contraseña</label>
-                        <input type="password" class="form-control" id="registroPass2" name="registroPass2" placeholder="Vuelva a escribir la contraseña"
-                        required pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$" oninvalid="alert('Ingrese una contraseña válida');" >
-                    </div>
-                    <div class="mb-4">
-                        <label for="tipoDocumento" class="form-label">Tipo de documento</label>
-                        <select class="form-select" aria-label="tipoDocumento" id="tipoDocumento" required>
-                            <option value="DNI">DNI</option>
-                            <option value="Carnet de estranjeria">Carnet de estrangería</option>
+                        <label for="tipo_documento" class="form-label fw-bolder">Tipo de documento</label>
+                        <select class="form-select" aria-label="tipo_documento" id="tipo_documento" required>
+                            <option value="">Seleccione un Tipo de Documento</option>
+                            {{-- <option value="1">DNI</option>
+                            <option value="3">Carnet de extranjeria</option> --}}
+                            @foreach($listadocu as $documento)
+                                        <option value="{{$documento->tipo_docu_ID}}">{{$documento->abreviacion}}</option>
+                                    @endforeach
                         </select>
+                    </div>                    
+                    <div class="mb-4">
+                        <label for="documento" class="form-label fw-bolder">N° de documento</label>
+                        <input type="text" class="form-control" id="documento" name="documento" placeholder="Indique el número de su documento de identidad" value="{{old('documento')}}" required>
                     </div>
                     <div class="mb-4">
-                        <label for="nroDocumento" class="form-label">N° de documento</label>
-                        <input type="text" class="form-control" id="nroDocumento" name="nroDocumento" placeholder=""
-                            required pattern="[0-9]{8}" oninvalid="alert('Ingrese un N° de documento válido');">
+                        <label for="telefono" class="form-label fw-bolder">N° de celular</label>
+                        <input type="text" class="form-control" id="telefono" name="telefono" value="{{old('telefono')}}" placeholder="Indique su número de celular" required>
                     </div>
                     <div class="mb-4">
-                        <label for="nroCelular" class="form-label">N° de celular</label>
-                        <input type="text" class="form-control" id="nroCelular" name="nroCelular" placeholder=""
-                            required pattern="[0-9]{9}" oninvalid="alert('Ingrese un número de celular válido');">
+                        <label for="password" class="form-label fw-bolder">Contraseña</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Almenos una mayúscula, una minúscula y un número" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="password_confirmation" class="form-label fw-bolder">Confirmar contraseña</label>
+                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Vuelva a escribir la contraseña" required>
                     </div>
 
                     <div class="d-grid ">

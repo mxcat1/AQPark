@@ -8,6 +8,15 @@
     <!-- BODY -->
     <div class="container mb-5">
         <div class="row">
+            @if ($message = Session::get('success'))
+                    <div class="alert alert-success my-3">
+                        <p>{{ $message }}</p>
+                    </div>
+                @elseif($message = Session::get('success delete'))
+                    <div class="alert alert-danger my-3">
+                        <p>{{ $message }}</p>
+                    </div>
+            @endif
             <div class="col-12 col-sm-6 d-flex align-items-center justify-content-center">
                 <div>
                     <h2 class="mt-5 mt-sm-0">Encuentra estacionamiento en segundos </h2>

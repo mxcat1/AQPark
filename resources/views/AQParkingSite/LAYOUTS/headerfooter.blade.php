@@ -48,8 +48,10 @@
                 <ul class="navbar-nav ms-auto">
                     <li>
                         <div class="dropdown mx-4">
-                            <a class="dropdown-toggle text-uppercase text-white" type="button" id="dropdownMenuUser"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="dropdown-toggle text-uppercase text-white text-decoration-none" type="button"
+                                id="dropdownMenuUser" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img alt="avatar" src="{{asset('images/usuarioimg/' . Auth::user()->foto)}}"
+                                    class="img-fluid" width="70px" /><br>
                                 {{ Auth::user()->nombre }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuUser">
