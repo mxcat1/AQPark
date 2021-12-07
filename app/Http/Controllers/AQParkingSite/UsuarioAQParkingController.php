@@ -45,15 +45,15 @@ class UsuarioAQParkingController extends Controller
     {
         $nombreimagen = 'foto-perfil.jpg';
         $request->validate([
-            'nombre' => 'required|string|max:150',
-            'apellido' => 'required|string|max:150',
-            'email' => 'required|string|email|max:255|unique:usuarios',
+            'nombre' => 'required|string|max:45',
+            'apellido' => 'required|string|max:45',
+            'email' => 'required|string|email|max:76|unique:usuarios',
             'foto' => 'image|max:5120',
             'tipo_documento' => 'required|exists:tipo_documentos,tipo_docu_ID',
             'documento' => 'required|max:10',            
             // 'rol' => ['required', Rule::in(['Usuario Natural', 'Administrador Estacionamiento', 'Administrador Sistema'])],
             'telefono' => 'digits:9',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+            'password' => ['required','regex:/^\S+$/', 'confirmed', Rules\Password::defaults()]
         ]);
 
         if ($imagen = $request->file('foto')) {
