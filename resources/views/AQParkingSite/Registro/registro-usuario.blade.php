@@ -51,7 +51,7 @@
                     </div>
                     <div class="mb-4">
                         <label for="password" class="form-label fw-bolder">Contraseña</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Almenos una mayúscula, una minúscula y un número" required>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Almenos una mayúscula, una minúscula y un número, sin espacios" required>
                     </div>
                     <div class="mb-4">
                         <label for="password_confirmation" class="form-label fw-bolder">Confirmar contraseña</label>
