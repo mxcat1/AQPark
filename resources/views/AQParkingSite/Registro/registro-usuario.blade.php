@@ -35,13 +35,10 @@
                     </div>                    
                     <div class="mb-4">
                         <label for="tipo_documento" class="form-label fw-bolder">Tipo de documento</label>
-                        <select class="form-select" aria-label="tipo_documento" id="tipo_documento" required>
-                            <option value="">Seleccione un Tipo de Documento</option>
-                            {{-- <option value="1">DNI</option>
-                            <option value="3">Carnet de extranjeria</option> --}}
-                            @foreach($listadocu as $documento)
-                                        <option value="{{$documento->tipo_docu_ID}}">{{$documento->abreviacion}}</option>
-                                    @endforeach
+                        <select class="form-select" aria-label="tipo_documento" id="tipo_documento" name="tipo_documento" required>
+                            <option selected>Seleccione un Tipo de Documento</option>
+                            <option value="1">DNI</option>
+                            <option value="3">Carnet de extranjeria</option>
                         </select>
                     </div>                    
                     <div class="mb-4">

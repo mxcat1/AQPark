@@ -29,9 +29,10 @@ class UsuarioAQParkingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function registro()
     {
         //
+        return view('AQParkingSite.Registro.registro-usuario');
     }
 
     /**
