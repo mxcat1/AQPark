@@ -52,7 +52,7 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ Auth::user()->nombre }}
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuUser">
+                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuUser">
                                 <li>
                                     <a class="dropdown-item" href="{{route('cuenta-usuarioAQParking')}}">Mi cuenta
                                     </a>
