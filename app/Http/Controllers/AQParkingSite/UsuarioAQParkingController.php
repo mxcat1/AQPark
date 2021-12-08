@@ -95,7 +95,6 @@ class UsuarioAQParkingController extends Controller
     public function show()
     // public function show($id)
     {
-        //
         return view('AQParkingSite.Usuario.cuenta-usuario');
     }
 
