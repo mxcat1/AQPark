@@ -12,7 +12,7 @@
             <div class="col-sm-6 mb-2">
                 <div name="datos_login" class="text-center border border-1 p-2 mb-2">
                     <h3>Datos del login</h3>
-                    <p><strong>Correo: </strong><span id="usrlogmail" name="usrlogmail">correo@gmail.com</span></p>
+                    <p><strong>Correo: </strong><span id="usrlogmail" name="usrlogmail">{{ Auth::user()->email }}</span></p>
                     <p><strong>Contraseña: </strong><span id="usrlogpass" name="usrlogpass">xxxxx</span></p>
                     <button type="button" class="btn btn-primary" id="btn-changepass" name="btn-changepass"
                         data-bs-toggle="modal" data-bs-target="#modalpassusr">Cambiar
@@ -51,14 +51,13 @@
 
                 <div name="datos_usuario" class="text-center border border-1 p-2">
                     <h3>Datos del usuario</h3>
-                    <img src="img/usuario.png" alt="user" class="img-fluid rounded-circle mx-auto my-3" width="100">
-
-                    <p><strong>Usuario: </strong><span id="usrname" name="usrname">nombre apellido</span></p>
+                    <img src="{{asset('images/usuarioimg/' . Auth::user()->foto)}}" alt="user" class="img-fluid rounded-circle mx-auto my-3" width="100">
+                    <p><strong>Usuario: </strong><span id="usrname" name="usrname">{{ Auth::user()->nombre }} {{ Auth::user()->apellido }}</span></p>
 
                     <p><strong>Correo de destino: </strong><span id="usrcorreo"
-                            name="usrcorreo">correo-destino@gmail.com</span></p>
+                            name="usrcorreo">{{ Auth::user()->email }}</span></p>
 
-                    <p><strong>Celular: </strong><span id="usrcel" name="usrcel">123456789</span></p>
+                    <p><strong>Celular: </strong><span id="usrcel" name="usrcel">{{ Auth::user()->telefono }}</span></p>
 
                     <button type="button" class="btn btn-primary" id="btn-changedata" name="btn-changedata"
                         data-bs-toggle="modal" data-bs-target="#modaldatausr">Editar
@@ -78,32 +77,22 @@
                                     <div class="mb-3">
                                         <label for="fotousr" class="form-label fw-bold">Perfil del Usuario</label>
                                         <br>
-                                        <input type="file" class="my-3 mx-auto" id="fotousr" name="fotousr" required>
+                                        <img src="{{asset('images/usuarioimg/' . Auth::user()->foto)}}" alt="user" class="img-fluid rounded-circle mx-auto my-3" width="100">
+                                        <input type="file" class="my-3 mx-auto" id="foto" name="foto" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="nameusrac" class="form-label fw-bold">Nombre</label>
-                                        <input type="text" class="form-control" id="nameusr" name="nameusr"
+                                        <label for="nombre" class="form-label fw-bold">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ Auth::user()->nombre }}"
                                             placeholder="Ingrese su nombre" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="ape1usrac" class="form-label fw-bold">Apellido Paterno</label>
-                                        <input type="text" class="form-control" id="ape1usrac" name="ape1usrac"
+                                        <label for="apellido" class="form-label fw-bold">Apellidos </label>
+                                        <input type="text" class="form-control" value="{{ Auth::user()->apellido }}" id="apellido" name="apellido"
                                             placeholder="Ingrese su apellido paterno" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="ape2usrac" class="form-label fw-bold">Apellido Materno</label>
-                                        <input type="text" class="form-control" id="ape2usrac" name="ape2usrac"
-                                            placeholder="Ingrese su apellido materno" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="mailusrac" class="form-label fw-bold">Correo de destino
-                                            preferido</label>
-                                        <input type="email" class="form-control" id="mailusrac" name="mailusrac"
-                                            placeholder="Ingrese un correo" required>
-                                    </div>
+                                    </div>                                   
                                     <div class="mb-3">
                                         <label for="celusrac" class="form-label fw-bold">Celular</label>
-                                        <input type="number" class="form-control" id="celusrac" name="celusrac"
+                                        <input type="number" class="form-control" value="{{ Auth::user()->telefono }}" id="celusrac" name="celusrac"
                                             placeholder="Ingrese su número" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="btn-savedata"

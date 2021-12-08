@@ -9,8 +9,7 @@ use App\Http\Controllers\AQParkingSite\AQParkingController;
 use App\Http\Controllers\AQParkingSite\AutenticacionUserController;
 use App\Http\Controllers\AQParkingSite\EstacionamientoAQParkingController;
 use App\Http\Controllers\AQParkingSite\RegistroParkingController;
-use App\Http\Controllers\AQParkingSite\RegistroUserController;
-use App\Http\Controllers\AQParkingSite\ReservaAQParkingController;
+use App\Http\Controllers\AQParkingSite\ReservaParkingController;
 use App\Http\Controllers\AQParkingSite\UsuarioAQParkingController;
 
 use Illuminate\Support\Facades\Route;
@@ -58,10 +57,10 @@ Route::get('/AQParkingSite/cuenta-estacionamiento',[EstacionamientoAQParkingCont
 
 Route::get('/AQParking/registro/estacionamiento',[RegistroParkingController::class,'index'])->name('registro-estacionamiento');
 
-Route::get('/AQParking/registro/usuario',[RegistroUserController::class,'index'])->name('registro-usuario');
-
-Route::get('/AQParkingSite/detalles-estacionamiento/reserva',[ReservaAQParkingController::class,'index'])->name('reserva-estacionamiento');
+Route::get('/AQParkingSite/detalles-estacionamiento/reserva',[ReservaParkingController::class,'index'])->name('reserva-estacionamiento');
 
 Route::get('/AQParkingSite',[UsuarioAQParkingController::class,'index'])->name('main-pageAQParking');
 Route::get('/AQParkingSite/cuenta-usuario',[UsuarioAQParkingController::class,'show'])->name('cuenta-usuarioAQParking');
 Route::get('/AQParkingSite/cuenta-usuario/restore-password',[UsuarioAQParkingController::class,'restore'])->name('restore-password');
+Route::post('/AQParking/registro/newusuario',[UsuarioAQParkingController::class,'store'])->name('new-user');
+Route::get('/AQParking/registro/usuario',[UsuarioAQParkingController::class,'registro'])->name('registro-usuario');

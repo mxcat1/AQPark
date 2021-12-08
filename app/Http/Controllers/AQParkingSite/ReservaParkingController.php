@@ -5,7 +5,7 @@ namespace App\Http\Controllers\AQParkingSite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ReservaAQParkingController extends Controller
+class ReservaParkingController extends Controller
 {
     /**
      * Display a listing of the resource.

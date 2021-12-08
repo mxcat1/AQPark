@@ -31,6 +31,7 @@ Login
                     <label for="iptchk" class="form-check-label">Mantenerme conectado</label>
                     <input type="checkbox" class="form-check-input" id="iptchklogin" name="iptchklogin">
                 </div>
+                @include('AQParkingSite.Mensajes.error')
                 <div class="d-grid ">
                     <button class="btn btn-lg btn-primary rounded-pill" id="btn_login" name="btn_login"
                         type="submit">INICIAR
@@ -43,7 +44,6 @@ Login
             </form>
         </div>
     </div>
-    @include('AQParkingSite.Mensajes.error')
     <div>
     </div>
 </div>
