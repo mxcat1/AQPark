@@ -32,7 +32,8 @@ class UsuarioAQParkingController extends Controller
     public function registro()
     {
         //
-        return view('AQParkingSite.Registro.registro-usuario');
+        $listadocu = TipoDocumento::all();
+        return view('AQParkingSite.Registro.registro-usuario', compact('listadocu'));
     }
 
     /**
