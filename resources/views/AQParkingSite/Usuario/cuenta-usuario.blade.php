@@ -77,26 +77,22 @@
                                     <div class="mb-3">
                                         <label for="fotousr" class="form-label fw-bold">Perfil del Usuario</label>
                                         <br>
-                                        <input type="file" class="my-3 mx-auto" id="fotousr" name="fotousr" required>
+                                        <img src="{{asset('images/usuarioimg/' . Auth::user()->foto)}}" alt="user" class="img-fluid rounded-circle mx-auto my-3" width="100">
+                                        <input type="file" class="my-3 mx-auto" id="foto" name="foto" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="nameusrac" class="form-label fw-bold">Nombre</label>
-                                        <input type="text" class="form-control" id="nameusr" name="nameusr"
+                                        <label for="nombre" class="form-label fw-bold">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ Auth::user()->nombre }}"
                                             placeholder="Ingrese su nombre" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="ape1usrac" class="form-label fw-bold">Apellido Paterno</label>
-                                        <input type="text" class="form-control" id="ape1usrac" name="ape1usrac"
+                                        <label for="apellido" class="form-label fw-bold">Apellidos </label>
+                                        <input type="text" class="form-control" value="{{ Auth::user()->apellido }}" id="apellido" name="apellido"
                                             placeholder="Ingrese su apellido paterno" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="ape2usrac" class="form-label fw-bold">Apellido Materno</label>
-                                        <input type="text" class="form-control" id="ape2usrac" name="ape2usrac"
-                                            placeholder="Ingrese su apellido materno" required>
-                                    </div>                                    
+                                    </div>                                   
                                     <div class="mb-3">
                                         <label for="celusrac" class="form-label fw-bold">Celular</label>
-                                        <input type="number" class="form-control" id="celusrac" name="celusrac"
+                                        <input type="number" class="form-control" value="{{ Auth::user()->telefono }}" id="celusrac" name="celusrac"
                                             placeholder="Ingrese su número" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="btn-savedata"
