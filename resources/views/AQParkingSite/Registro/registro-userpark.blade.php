@@ -35,7 +35,7 @@
                     </div>                  
                     <div class="mb-4">
                         <label for="documento" class="form-label fw-bolder">RUC</label>
-                        <input type="text" class="form-control" id="documento" name="documento" placeholder="Indique el número de su documento de identidad" value="{{old('documento')}}" required>
+                        <input type="text" class="form-control" id="documento" name="documento" placeholder="Indique el número del RUC" value="{{old('documento')}}" required>
                     </div>
                     <div class="mb-4">
                         <label for="telefono" class="form-label fw-bolder">N° de celular</label>
