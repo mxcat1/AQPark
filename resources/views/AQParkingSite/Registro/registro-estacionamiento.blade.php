@@ -113,8 +113,9 @@
             </div>
             <div class="row">
                 <div class="button-reg">
+                    <a href="{{route('registro-estacionamiento-dueño')}}">
                     <button class="btn btn-reg btn-primary rounded-pill" id="btn_login" name="btn_login"
-                        type="submit">REGISTRARSE</button>
+                        type="submit">CONTINUAR</button></a>
                 </div>
                 <div class="my-3 text-center">
                     <span>¿Ya has creado una cuenta para tu estacionamiento? <a href="{{route('loginAQParking')}}">¡Inicia

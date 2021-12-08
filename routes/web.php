@@ -48,17 +48,25 @@ Route::get('/AQParking/politica-de-cookies',[AQParkingController::class,'cookies
 Route::get('/AQParking/politica-de-privacidad',[AQParkingController::class,'privacidad'])->name('privacidadAQParking');
 Route::get('/AQParking/terminos-y-condiciones',[AQParkingController::class,'terminos'])->name('terminosAQParking');
 
+    //AUTENTICACION
 Route::get('/AQParking/login',[AutenticacionUserController::class,'login'])->name('loginAQParking');
 Route::post('/Sesionusuario',[AutenticacionUserController::class,'autenticacion'])->name('autenticacionAQParking');
 Route::post('/Cerrarsesion',[AutenticacionUserController::class,'logout'])->name('logout');
 
+    //ESTACIONAMIENTO
 Route::get('/AQParkingSite/detalles-estacionamiento',[EstacionamientoAQParkingController::class,'index'])->name('estacionamientoAQParking');
 Route::get('/AQParkingSite/cuenta-estacionamiento',[EstacionamientoAQParkingController::class,'show'])->name('cuenta-estacionamientoAQParking');
 
+    //REGISTROPARKING
 Route::get('/AQParking/registro/estacionamiento',[RegistroParkingController::class,'index'])->name('registro-estacionamiento');
+Route::get('/AQParking/registro/estacionamiento/propietario',[RegistroParkingController::class,'userpark'])->name('registro-estacionamiento-dueño');
+Route::post('/AQParking/registro/estacionamiento/propietario',[RegistroParkingController::class,'storeuser'])->name('create-dueño-parking');
 
+
+    //RESERVAPARKING
 Route::get('/AQParkingSite/detalles-estacionamiento/reserva',[ReservaParkingController::class,'index'])->name('reserva-estacionamiento');
 
+    //USUARIO
 Route::get('/AQParkingSite',[UsuarioAQParkingController::class,'index'])->name('main-pageAQParking');
 Route::get('/AQParkingSite/cuenta-usuario',[UsuarioAQParkingController::class,'show'])->name('cuenta-usuarioAQParking');
 Route::get('/AQParkingSite/cuenta-usuario/restore-password',[UsuarioAQParkingController::class,'restore'])->name('restore-password');

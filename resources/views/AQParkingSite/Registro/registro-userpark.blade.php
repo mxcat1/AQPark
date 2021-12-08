@@ -10,8 +10,8 @@
         <div class="row align-items-stretch">
             @include('AQParkingSite.Mensajes.error')
             <div class="col-lg-6 col-md-12">
-                <h2 class="fw-bold text-center py-5">Registrate</h2>
-                <form action="{{route('new-user')}}" method="post" enctype="multipart/form-data">
+                <h2 class="fw-bold text-center py-5">Registro de dueño de estacionamiento</h2>
+                <form action="{{route('create-dueño-parking')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4">
                         <label for="nombre" class="form-label fw-bolder">Nombres</label>
@@ -32,20 +32,9 @@
                     <div class="mb-4">
                         <label class="form-label fw-bolder" for="foto">Foto del Usuario</label>
                         <input type="file" name="foto" id="foto" class="form-control" accept="image/png, image/jpeg">
-                    </div>                    
+                    </div>                  
                     <div class="mb-4">
-                        <label for="tipo_documento" class="form-label fw-bolder">Tipo de documento</label>
-                        <select class="form-select" aria-label="tipo_documento" id="tipo_documento" name="tipo_documento" required>
-                            <option selected>Seleccione un Tipo de Documento</option>
-                            @foreach($listadocu as $documento)
-                                        <option value="{{$documento->tipo_docu_ID}}">{{$documento->abreviacion}}</option>
-                                    @endforeach
-                            {{-- <option value="1">DNI</option>
-                            <option value="3">Carnet de extranjeria</option> --}}
-                        </select>
-                    </div>                    
-                    <div class="mb-4">
-                        <label for="documento" class="form-label fw-bolder">N° de documento</label>
+                        <label for="documento" class="form-label fw-bolder">RUC</label>
                         <input type="text" class="form-control" id="documento" name="documento" placeholder="Indique el número de su documento de identidad" value="{{old('documento')}}" required>
                     </div>
                     <div class="mb-4">
