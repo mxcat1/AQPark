@@ -150,7 +150,7 @@ class UsuarioAQParkingController extends Controller
     public function changepassword(Request $request, $id)
     {
         $request->validate([
-            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+            'password' => ['required', 'regex:/^\S+$/', 'confirmed', Rules\Password::defaults()]
         ]);
         if($usuariocontraseña = Usuario::find($id)){
             $usuariocontraseña->update(['password'=>Hash::make($request->password)]);
