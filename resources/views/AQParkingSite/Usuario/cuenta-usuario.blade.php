@@ -7,9 +7,14 @@
 @section('content')
     <!-- BODY -->
     <h2 class="text-center my-5">Mi Cuenta</h2>
-    <div class="container my-5 py-5"> 
-        @include('AQParkingSite.Mensajes.error')       
+    <div class="container my-5 py-5">             
         <div class="row align-items-stretch">
+            @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+            @endif  
+            @include('AQParkingSite.Mensajes.error') 
             <div class="col-sm-6 mb-2">
                 <div name="datos_login" class="text-center border border-1 p-2 mb-2">
                     <h3>Datos del login</h3>
@@ -29,16 +34,19 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form action="
+                                {{route('updatepassword',Auth::user()->usuario_ID)}}
+                                " method="post">
+                                    @csrf
+                                    @method('PUT')
                                     <div class="mb-3">
-                                        <label for="newusrlogpass1" class="form-label fw-bold">Nueva contraseña</label>
-                                        <input type="password" class="form-control" id="newusrlogpass1"
+                                        <label for="password" class="form-label fw-bold">Nueva contraseña</label>
+                                        <input type="password" class="form-control" id="password" name="password"
                                             placeholder="Ingrese nueva contraseña" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="newusrlogpass2" class="form-label fw-bold">Repita contraseña</label>
-                                        <input type="password" class="form-control" id="newusrlogpass2"
-                                            placeholder="Repita nueva contraseña" required>
+                                        <label for="password_confirmation" class="form-label fw-bold">Repita contraseña</label>
+                                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Repita nueva contraseña" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="btn-savepass"
                                         name="btn-savepass">Guardar</button>
