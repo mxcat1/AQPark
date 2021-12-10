@@ -7,7 +7,7 @@
 @section('content')
     <!-- BODY -->
     <h2 class="text-center my-5">Mi Cuenta</h2>
-    <div class="container my-5 py-5">             
+    <div class="container mb-5 pb-5">             
         <div class="row align-items-stretch">
             @if ($message = Session::get('success'))
                     <div class="alert alert-success">
