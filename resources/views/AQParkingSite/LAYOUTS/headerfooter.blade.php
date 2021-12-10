@@ -47,14 +47,18 @@
                 @if(Auth::check())
                 <ul class="navbar-nav ms-auto">
                     <li>
-                        <div class="dropdown mx-4">
-                            <a class="dropdown-toggle text-uppercase text-white text-decoration-none" type="button"
+                        <div class="dropdown me-4">
+                            <a class="dropdown" role="button"
                                 id="dropdownMenuUser" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img alt="avatar" src="{{asset('images/usuarioimg/' . Auth::user()->foto)}}"
-                                    class="img-fluid" width="70px" /><br>
-                                {{ Auth::user()->nombre }}
+                                <img alt="{{ Auth::user()->nombre }}" src="{{asset('images/usuarioimg/' . Auth::user()->foto)}}"
+                                    class="img-fluid" width="70px">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuUser">
+                                <li>
+                                    <h4 class="dropdown-item text-center"> {{ Auth::user()->nombre }}
+                                    </h4>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <a class="dropdown-item" href="{{route('cuenta-usuarioAQParking')}}">Mi cuenta
                                     </a>
