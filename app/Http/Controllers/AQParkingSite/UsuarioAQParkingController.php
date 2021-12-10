@@ -119,7 +119,32 @@ class UsuarioAQParkingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:45',
+            'apellido' => 'required|string|max:45',
+            'telefono' => 'digits:9',
+            'foto' => 'image|max:5120',
+        ]);
+
+        if ($usuario = Usuario::find($id)) {
+            $editarusuario = $request->all();
+
+            if ($imagen = $request->file('foto')) {
+                $destino = 'images/usuarioimg/';
+                $nombreimagen = $request->nombre . date('YmdHis') . '.' . $imagen->getClientOriginalExtension();
+                $imagen->move($destino, $nombreimagen);
+                $editarusuario['foto'] = $nombreimagen;
+                if (file_exists($destino . $usuario->foto)) {
+                    unlink($destino . $usuario->foto);
+                }
+            } else {
+                unset($editarusuario['foto']);
+            }
+            $usuario->update($editarusuario);
+            return redirect()->route('cuenta-usuarioAQParking')->with('success', 'Se Actualizo correctamente los datos del Usuario');
+        } else {
+            return redirect()->route('cuenta-usuarioAQParking')->with('success', 'Usuario Eliminado anteriormente no se efectuo la actualizacion');
+        }
     }
 
     /**

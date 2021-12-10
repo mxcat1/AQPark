@@ -74,3 +74,4 @@ Route::get('/AQParkingSite/cuenta-usuario',[UsuarioAQParkingController::class,'s
 Route::get('/AQParkingSite/cuenta-usuario/restore-password',[UsuarioAQParkingController::class,'restore'])->name('restore-password')->middleware('usercheck');
 Route::post('/AQParking/registro/newusuario',[UsuarioAQParkingController::class,'store'])->name('new-user');
 Route::get('/AQParking/registro/usuario',[UsuarioAQParkingController::class,'registro'])->name('registro-usuario');
+Route::put('/AQParkingSite/cuenta-usuario/{usuario}', [UsuarioAQParkingController::class, 'update'])->name('updateusuario')->middleware('usercheck');

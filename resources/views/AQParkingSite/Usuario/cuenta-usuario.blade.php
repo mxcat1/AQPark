@@ -7,7 +7,8 @@
 @section('content')
     <!-- BODY -->
     <h2 class="text-center my-5">Mi Cuenta</h2>
-    <div class="container my-5 py-5">        
+    <div class="container my-5 py-5"> 
+        @include('AQParkingSite.Mensajes.error')       
         <div class="row align-items-stretch">
             <div class="col-sm-6 mb-2">
                 <div name="datos_login" class="text-center border border-1 p-2 mb-2">
@@ -71,14 +72,16 @@
                                 <h5 class="modal-title" id="modaldata">Cambio de datos del Usuario</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
+                            </div>                            
+                            <div class="modal-body">                            
+                                <form action="{{route('updateusuario', Auth::user()->usuario_ID)}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
                                     <div class="mb-3">
-                                        <label for="fotousr" class="form-label fw-bold">Perfil del Usuario</label>
+                                        <label for="foto" class="form-label fw-bold">Perfil del Usuario</label>
                                         <br>
                                         <img src="{{asset('images/usuarioimg/' . Auth::user()->foto)}}" alt="user" class="img-fluid rounded-circle mx-auto my-3" width="100">
-                                        <input type="file" class="my-3 mx-auto" id="foto" name="foto" required>
+                                        <input type="file" class="my-3 mx-auto" id="foto" name="foto">
                                     </div>
                                     <div class="mb-3">
                                         <label for="nombre" class="form-label fw-bold">Nombre</label>
@@ -91,8 +94,8 @@
                                             placeholder="Ingrese su apellido paterno" required>
                                     </div>                                   
                                     <div class="mb-3">
-                                        <label for="celusrac" class="form-label fw-bold">Celular</label>
-                                        <input type="number" class="form-control" value="{{ Auth::user()->telefono }}" id="celusrac" name="celusrac"
+                                        <label for="telefono" class="form-label fw-bold">Celular</label>
+                                        <input type="number" class="form-control" value="{{ Auth::user()->telefono }}" id="telefono" name="telefono"
                                             placeholder="Ingrese su número" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="btn-savedata"
