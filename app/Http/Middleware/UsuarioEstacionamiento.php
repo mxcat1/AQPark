@@ -20,7 +20,7 @@ class UsuarioEstacionamiento
         if (Auth::check() && Auth::user()->rol=='Administrador Estacionamiento') {
             return $next($request);
         }
-        if (Auth::user()->rol=='Usuario Natural') {
+        if (Auth::check() && Auth::user()->rol=='Usuario Natural') {
             return redirect()->route('main-pageAQParking');
         }
         if (! Auth::check() ) {
