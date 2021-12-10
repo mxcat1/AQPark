@@ -54,6 +54,13 @@ class EstacionamientoAQParkingController extends Controller
         return view('AQParkingSite.Estacionamiento.cuenta-estacionamiento');
     }
 
+    public function control()
+    {
+        //
+        return view('AQParkingSite.Estacionamiento.control-reservas');
+        
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

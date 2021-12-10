@@ -66,5 +66,9 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+
+        // Se registro el Middleware para la administracion de Estacionamiento
+        'authro2' => \App\Http\Middleware\UsuarioEstacionamiento::class,
+        'usercheck' => \App\Http\Middleware\UsuarioAutenticado::class,
     ];
 }

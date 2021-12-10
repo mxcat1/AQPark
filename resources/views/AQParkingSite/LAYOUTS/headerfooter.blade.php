@@ -55,8 +55,8 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuUser">
                                 <li>
-                                    <h4 class="dropdown-item text-center"> {{ Auth::user()->nombre }}
-                                    </h4>
+                                    <h5 class="dropdown-item text-center"> {{ Auth::user()->nombre }}
+                                    </h5>
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
@@ -67,6 +67,11 @@
                                 <li class="nav-item">
                                     <a class="dropdown-item"
                                         href="{{route('cuenta-estacionamientoAQParking')}}">Estacionamiento
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item"
+                                        href="{{route('control-reservasAQParking')}}">Reservaciones
                                     </a>
                                 </li>
                                 @endif
@@ -228,5 +233,12 @@
 
 </script>
 <!-- FIN MODAL TYC -->
+
+<!-- BOTON SEARCH TABLA -->
+<script>
+    $(document).ready(function() {
+    $('#tableReserva').DataTable();
+} );
+</script>
 
 </html>

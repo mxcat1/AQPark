@@ -23,9 +23,9 @@ class ReservaParkingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function check()
     {
-        //
+        return view('AQParkingSite.Estacionamiento.confirmacion-reserva');
     }
 
     /**
