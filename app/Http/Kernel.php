@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
         // Se registro el Middleware para la administracion de Estacionamiento
         'authro2' => \App\Http\Middleware\UsuarioEstacionamiento::class,
         'usercheck' => \App\Http\Middleware\UsuarioAutenticado::class,
+        'userloged' => \App\Http\Middleware\UsuarioLogueado::class,
     ];
 }

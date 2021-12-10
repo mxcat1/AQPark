@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UsuarioEstacionamiento
+class UsuarioLogueado
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,9 @@ class UsuarioEstacionamiento
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->rol=='Administrador Estacionamiento') {
-            return $next($request);
+        if (Auth::check() ) {
+            return redirect()->route('main-pageAQParking');
         }
-        else{
-            return redirect()->route('indexAQParking');
-        }
+        return $next($request);
     }
 }

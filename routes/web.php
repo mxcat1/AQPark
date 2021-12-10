@@ -42,14 +42,14 @@ Route::post('/cerrarsession',[AutenticateAdminController::class,'logout'])->name
 
 // RUTAS AQParkingSite
 
-Route::get('/AQParking',[AQParkingController::class,'index'])->name('indexAQParking');
+Route::get('/AQParking',[AQParkingController::class,'index'])->name('indexAQParking')->middleware('userloged');
 Route::get('/AQParking/registro',[AQParkingController::class,'registro'])->name('registroAQParking');
 Route::get('/AQParking/politica-de-cookies',[AQParkingController::class,'cookies'])->name('cookiesAQParking');
 Route::get('/AQParking/politica-de-privacidad',[AQParkingController::class,'privacidad'])->name('privacidadAQParking');
 Route::get('/AQParking/terminos-y-condiciones',[AQParkingController::class,'terminos'])->name('terminosAQParking');
 
     //AUTENTICACION
-Route::get('/AQParking/login',[AutenticacionUserController::class,'login'])->name('loginAQParking');
+Route::get('/AQParking/login',[AutenticacionUserController::class,'login'])->name('loginAQParking')->middleware('userloged');
 Route::post('/Sesionusuario',[AutenticacionUserController::class,'autenticacion'])->name('autenticacionAQParking');
 Route::post('/Cerrarsesion',[AutenticacionUserController::class,'logout'])->name('logout');
 
