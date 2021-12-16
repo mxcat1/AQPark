@@ -63,7 +63,7 @@ Registro de estacionamiento
             </div>
         </div>
 
-        <h2 class="text-center mt-4 mb-3">ESTACIONAMIENTO</h2>
+        <h2 class="text-center mt-5 mb-3">ESTACIONAMIENTO</h2>
         <div class="form dobleForm mt-4 mb-4 ">
             <div class="row align-items-stretch">
                 <div class="col col-lg-6 col-sm-12 col-12">
