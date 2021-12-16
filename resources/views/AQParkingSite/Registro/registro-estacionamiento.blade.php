@@ -99,6 +99,16 @@ Registro de estacionamiento
                             <label for="refEstacionamiento" class="form-label">Referencia</label>
                             <input type="text" class="form-control" id="refEstacionamiento" name="refEstacionamiento"
                                 placeholder="Escriba una referencia" >
+                        </div>                        
+                        <div class="mb-4">
+                            <label for="precioEstacionamiento" class="form-label">Precio</label>
+                            <input type="number" step="0.01" class="form-control" id="precioEstacionamiento"
+                                name="precioEstacionamiento" placeholder="En soles" >
+                        </div>
+                        <div class="mb-4">
+                            <label for="capEstacionamiento" class="form-label ">Capacidad</label>
+                            <input type="number" class="form-control" id="capEstacionamiento" name="capEstacionamiento"
+                                placeholder="Capacidad de su estacionamiento" >
                         </div>
                         <div class="timepicker mb-4">
                             <div class="row time">
@@ -115,16 +125,6 @@ Registro de estacionamiento
                                 </div>
                                 <div class="timepicker"></div>
                             </div>
-                        </div>
-                        <div class="mb-4">
-                            <label for="precioEstacionamiento" class="form-label">Precio</label>
-                            <input type="number" step="0.01" class="form-control" id="precioEstacionamiento"
-                                name="precioEstacionamiento" placeholder="En soles" >
-                        </div>
-                        <div class="mb-4">
-                            <label for="capEstacionamiento" class="form-label ">Capacidad</label>
-                            <input type="number" class="form-control" id="capEstacionamiento" name="capEstacionamiento"
-                                placeholder="Capacidad de su estacionamiento" >
                         </div>
                     </div>
                 </div>
