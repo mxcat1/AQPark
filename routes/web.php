@@ -60,8 +60,7 @@ Route::get('/AQParkingSite/cuenta-estacionamiento/control-reservas',[Estacionami
 
     //REGISTROPARKING
 Route::get('/AQParking/registro/estacionamiento',[RegistroParkingController::class,'index'])->name('registro-estacionamiento');
-Route::get('/AQParking/registro/estacionamiento/propietario',[RegistroParkingController::class,'userpark'])->name('registro-estacionamiento-dueño');
-Route::post('/AQParking/registro/estacionamiento/propietario',[RegistroParkingController::class,'storeuser'])->name('create-dueño-parking');
+Route::post('/AQParking/registro/estacionamiento',[RegistroParkingController::class,'store'])->name('create-parking');
 
 
     //RESERVAPARKING

@@ -4,11 +4,12 @@ namespace App\Http\Controllers\AQParkingSite;
 
 use App\Http\Controllers\Controller;
 use App\Models\Usuario;
+use App\Models\Estacionamiento;
 use App\Models\TipoDocumento;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class RegistroParkingController extends Controller
@@ -28,9 +29,9 @@ class RegistroParkingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function userpark()
+    public function create()
     {
-        return view('AQParkingSite.Registro.registro-userpark');
+        //
     }
 
     /**
@@ -39,9 +40,84 @@ class RegistroParkingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeparking(Request $request)
+    public function store(Request $request)
     {
-        //
+        $nombreimagen = 'foto-perfil.jpg';
+        $request->validate([
+            'nombre' => 'required|string|max:45',
+            'apellido' => 'required|string|max:45',
+            'email' => 'required|string|email|max:76|unique:usuarios',
+            'foto' => 'image|max:5120',
+            'documento' => 'required|digits:11|unique:usuarios',            
+            'telefono' => 'digits:9',
+            'password' => ['required','regex:/^\S+$/', 'confirmed', Rules\Password::defaults()],
+
+            //ESTACIONAMIENTO
+            'nomEstacionamiento' => 'required|string|max:60',
+            'dirEstacionamiento' => 'required|string|max:120',
+            'telEstacionamiento' => 'required|digits:9',          
+            'fotoEstacionamiento' => 'image|max:5120',
+            'refEstacionamiento' => 'required|string|max:120',
+            'precioEstacionamiento' => 'required|numeric|min:0',
+            'capEstacionamiento' => 'required|numeric|min:0',
+            'horarioApertura' => 'required|string|max:5',
+            'horarioCierre' => 'required|string|max:5',
+            'distrito' => 'required',
+        ]);
+
+        
+
+        try{
+         DB::transaction(function () use ($request) {
+
+            if ($imagen = $request->file('foto')) {
+                $destino = 'images/usuarioimg';
+                $nombreimagen = $request->nombre . date('YmdHis') . '.' . $imagen->getClientOriginalExtension();
+                $imagen->move($destino, $nombreimagen);
+            }
+    
+            if ($imagen2 = $request->file('fotoEstacionamiento')) {
+                $destino2 = 'images/usuarioimg';
+                $nombreimagen2 = $request->nomEstacionamiento . date('YmdHis') . '.' . $imagen2->getClientOriginalExtension();
+                $imagen2->move($destino2, $nombreimagen2);
+            }
+
+            $usuarionuevo = Usuario::create([
+                'nombre' => $request->nombre,
+                'apellido' => $request->apellido,
+                'email' => $request->email,
+                'foto' => $nombreimagen,
+                'telefono' => $request->telefono,
+                'tipo_docu_ID' => 2,
+                'documento' => $request->documento,            
+                'rol' => 'Administrador Estacionamiento',
+                'password' => Hash::make($request->password),
+            ]);
+    
+            $parkingnuevo = Estacionamiento::create([
+                'nombre' => $request->nomEstacionamiento,
+                'telefono' => $request->telEstacionamiento,
+                'direccion' => $request->dirEstacionamiento,
+                'referencia' => $request->refEstacionamiento,
+                'precio' => $request->precioEstacionamiento,
+                'capacidad' => $request->capEstacionamiento,
+                'apertura' => $request->horarioApertura,
+                'cierre' => $request->horarioCierre,
+                'distrito' => $request->distrito,              
+                'foto' => $nombreimagen2,
+                'capacidad_actual' => $request->capEstacionamiento,    
+                'usuario_ID' => $usuarionuevo->usuario_ID,                    
+                'longitud'=> 1,
+                'latitud' => 1,         
+            ]);
+            event(new Registered($usuarionuevo));
+            event(new Registered($parkingnuevo));
+        });   
+        } catch (\Exception $e) {
+            // return redirect()->back()->with('success delete', 'Error al registrar el Estacionamiento');
+            return redirect()->route('indexAQParking')->with('success delete', 'Error al registrar el Usuario y el Estacionamiento');
+        }      
+        return redirect()->route('indexAQParking')->with('success', 'Nuevo Usuario y Estacionamiento Creados');
     }
 
     /**

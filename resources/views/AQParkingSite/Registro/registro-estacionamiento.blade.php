@@ -9,7 +9,7 @@ Registro de estacionamiento
 <h2 class="text-center mt-5 mb-3">REGISTRO DE ESTACIONAMIENTO</h2>
 <div class="container">
     @include('AQParkingSite.Mensajes.error')
-    <form action="{{route('create-dueño-parking')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('create-parking')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row align-items-stretch">
             <div class="col-lg-6 col-md-12">
@@ -71,26 +71,28 @@ Registro de estacionamiento
                         <div class="mb-4">
                             <label for="nomEstacionamiento" class="form-label">Nombre</label>
                             <input type="text" class="form-control" id="nomEstacionamiento" name="nomEstacionamiento"
-                                placeholder="Nombre del estacionamiento" >
+                                placeholder="Nombre del estacionamiento" value="{{old('nomEstacionamiento')}}" >
                         </div>
                         <div class="mb-4">
                             <label for="dirEstacionamiento" class="form-label">Dirección</label>
                             <input type="text" class="form-control" id="dirEstacionamiento" name="dirEstacionamiento"
-                                placeholder="Dirección del estacionamiento" >
+                                placeholder="Dirección del estacionamiento" value="{{old('dirEstacionamiento')}}" >
                         </div>
 
                         <div class="mb-4">
                             <label for="telEstacionamiento" class="form-label">Telefono</label>
                             <input type="tel" class="form-control" id="telEstacionamiento" name="telEstacionamiento"
-                                placeholder="Ingrese un numero de celular" pattern="[0-9]{9}"
+                                placeholder="Ingrese un numero de celular" pattern="[0-9]{9}" value="{{old('telEstacionamiento')}}"
                                 oninvalid="alert('Ingrese un número de celular válido');">
                         </div>
                         <div class="mb-4">
-                            <label for="fotoEstacionamiento" class="form-label">Foto</label>
-                            <input type="file" ccept="image/jpg, image/jpeg, image/png" class="form-control"
-                                id="fotoEstacionamiento" name="fotoEstacionamiento" >
+                            <label for="distrito" class="form-label">Distrito</label>
+                            <select class="form-select" aria-label="distrito" id="distrito" name="distrito" required>
+                                <option selected>Selecciona un distrito</option>
+                                <option value="Arequipa">Arequipa</option>
+                                <option value="Cayma">Cayma</option>
+                            </select>
                         </div>
-
                     </div>
                 </div>
                 <div class="col col-lg-6 col-sm-12 col-12">
@@ -98,30 +100,35 @@ Registro de estacionamiento
                         <div class="mb-4">
                             <label for="refEstacionamiento" class="form-label">Referencia</label>
                             <input type="text" class="form-control" id="refEstacionamiento" name="refEstacionamiento"
-                                placeholder="Escriba una referencia" >
+                                placeholder="Escriba una referencia" value="{{old('refEstacionamiento')}}">
                         </div>                        
                         <div class="mb-4">
                             <label for="precioEstacionamiento" class="form-label">Precio</label>
                             <input type="number" step="0.01" class="form-control" id="precioEstacionamiento"
-                                name="precioEstacionamiento" placeholder="En soles" >
+                                name="precioEstacionamiento" placeholder="En soles" value="{{old('precioEstacionamiento')}}">
                         </div>
                         <div class="mb-4">
                             <label for="capEstacionamiento" class="form-label ">Capacidad</label>
                             <input type="number" class="form-control" id="capEstacionamiento" name="capEstacionamiento"
-                                placeholder="Capacidad de su estacionamiento" >
+                                placeholder="Capacidad de su estacionamiento" value="{{old('capEstacionamiento')}}">
+                        </div>
+                        <div class="mb-4">
+                            <label for="fotoEstacionamiento" class="form-label">Foto</label>
+                            <input type="file" accept="image/jpg, image/jpeg, image/png" class="form-control"
+                                id="fotoEstacionamiento" name="fotoEstacionamiento" >
                         </div>
                         <div class="timepicker mb-4">
                             <div class="row time">
                                 <label for="horario" class="form-label">Horarios</label>
                                 <div class="col-6">
                                     <label for="timeppkr" class="form-label">Desde</label>
-                                    <input type="text" class="timepicker form-control" id="timepkr" name="horario"
-                                        placeholder="">
+                                    <input type="text" class="timepicker form-control" id="timepkr" name="horarioApertura"
+                                        placeholder="" value="{{old('horarioApertura')}}">
                                 </div>
                                 <div class="col-6">
                                     <label for="timeppkr" class="form-label">Hasta</label>
-                                    <input type="text" class="timepicker form-control" id="timepkr" name="horario"
-                                        placeholder="" >
+                                    <input type="text" class="timepicker form-control" id="timepkr" name="horarioCierre"
+                                        placeholder="" value="{{old('horarioCierre')}}">
                                 </div>
                                 <div class="timepicker"></div>
                             </div>
