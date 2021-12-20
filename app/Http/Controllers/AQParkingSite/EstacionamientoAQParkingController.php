@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AQParkingSite;
 
 use App\Http\Controllers\Controller;
+use App\Models\Estacionamiento;
 use Illuminate\Http\Request;
 
 class EstacionamientoAQParkingController extends Controller
@@ -12,10 +13,10 @@ class EstacionamientoAQParkingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function details($estacionamiento_ID)
     {
-        //
-        return view('AQParkingSite.Estacionamiento.estacionamiento-descripcion');
+        $parking=Estacionamiento::findOrFail($estacionamiento_ID);
+        return view('AQParkingSite.Estacionamiento.estacionamiento-descripcion', compact('parking'));
         
     }
 

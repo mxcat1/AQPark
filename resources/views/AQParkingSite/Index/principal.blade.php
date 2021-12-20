@@ -45,7 +45,7 @@
                                             <a href="{{route('reserva-estacionamiento')}}"><button type="button"
                                                     class="btn btn-primary">Reservar</button></a>
 
-                                            <a href="{{route('estacionamientoAQParking')}}"><button type="button"
+                                            <a href="{{route('estacionamientoAQParking',$parking->estacionamiento_ID)}}"><button type="button"
                                                     class="btn btn-success">Ver más</button></a>
                                         </div>
 

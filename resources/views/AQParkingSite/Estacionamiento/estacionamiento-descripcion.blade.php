@@ -6,23 +6,26 @@
 
 @section('content')
     <!-- BODY -->
-    <h2 class="text-center pt-3 my-5">NOMBRE DE ESTACIONAMIENTO</h2>
-    <div class="container py-5 my-5">
+    
+    <div class="container pb-5 my-5">
+        <h2 class="text-center pt-3 my-5">{{$parking->nombre}}</h2>
         <div class="row">
             <div class="col-sm-4">
-                <img class="img-fluid" src="{{asset('img/fotoestacionamiento.jpg')}}" alt="estacionamiento" width="400" height="600">
+                <img class="img-fluid" src="{{asset('images/usuarioimg/' . $parking->foto)}}" alt="estacionamiento" width="400" height="600">
                 <hr class="d-sm-none">
             </div>
             <div class="col-sm-8">
                 <div class="row">
-                    <p class="fw-bold">Dirección: <span class="fw-normal"> Usuario nombre</span></p>
-                    <p class="fw-bold">Horario de atención: <span class="fw-normal">4:00 a.m. - 10:00 p.m.</span></p>
+                    <p class="fw-bold">Dirección: <span class="fw-normal"> {{$parking->direccion}}</span></p>
+                    <p class="fw-bold">Referencia: <span class="fw-normal"> {{$parking->referencia}}</span></p>
+                    <p class="fw-bold">Horario de atención: <span class="fw-normal">{{$parking->apertura}} a.m. - {{$parking->cierre}} p.m.</span></p>
                 </div>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">Mapa</button>
                 <div class="row mt-3">
-                    <p class="fw-bold">Precio: <span class="fw-normal">S/4.00</span></p>
-                    <p class="fw-bold">Sitios disponibles: "<span class="fw-normal fs-4">7</span>"</p>
+                    <p class="fw-bold">Precio: <span class="fw-normal">S/{{$parking->precio}}</span></p>
+                    <p class="fw-bold">Capacidad Total: "<span class="fw-normal">El estacionamiento tiene una capacidad para albergar a {{$parking->capacidad}} coches</span>"</p>
+                    <p class="fw-bold">Sitios libres disponibles: "<span class="fw-normal fs-4">{{$parking->capacidad_actual}}</span>"</p>
                 </div>
                 <a class="btn btn-primary mb-4" href="{{route('reserva-estacionamiento')}}" role="button">RESERVAR</a>
                 <div id="disqus_thread"></div>
