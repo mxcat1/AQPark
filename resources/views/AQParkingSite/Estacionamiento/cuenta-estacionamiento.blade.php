@@ -37,7 +37,7 @@
                         <p class="fw-bolder fs-6">Referencia:</p>
                         <p id="referenciapark" name="referenciapark">{{$parking->referencia}}</p>
                     </div>
-                        <div class="col-12">    
+                        <div class="col-12 mb-3">    
                         <button type="button" class="btn btn-primary my-2" id="modaldirection" name="modaldirection"
                             data-bs-toggle="modal" data-bs-target="#modaldirpark">Actualizar Dirección y/o Referencia</button>
                     </div>
@@ -63,17 +63,16 @@
                         <hr class="d-sm-none ">
                         <form role="form" class="mb-2 mx-auto">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary my-2" id="btn-sitioplus"
-                                    name="btn-sitioplus"><i data-feather="plus"></i></button>
-                                <button type="submit" class="btn btn-danger my-2" id="btn-sitiominus"
-                                    name="btn-sitiominus"><i data-feather="minus"></i></button>
+                                <button type="button" class="btn btn-primary my-2" id="btn-modalespacios" name="btn-modalespacios"
+                            data-bs-toggle="modal" data-bs-target="#modalespacios">Actualizar
+                            Espacios</button>
                             </div>
                         </form>
                     </div>
                     <div class="col-sm-6">
-                        <p class="fw-bolder fs-6">Capacidad:</p>
+                        <p class="fw-bolder fs-6">Capacidad Total:</p>
                         <p id="totalparking" name="totalparking" class="ms-5 fw-bold fs-4"> {{$parking->capacidad}}</p>
-                        <button type="button" class="btn btn-primary my-2" id="btn-modalcapacidad" name="btn-modalprecio"
+                        <button type="button" class="btn btn-primary my-2" id="btn-modalcapacidad" name="btn-modalcapacidad"
                             data-bs-toggle="modal" data-bs-target="#modalcapacidad">Actualizar
                             Capacidad</button>
                     </div>
@@ -195,6 +194,31 @@
                         </div>
                         <button type="submit" class="btn btn-primary my-3" id="btn-capacidadupdate"
                             name="btn-capacidadupdate">Actualizar Capacidad</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalespacios" tabindex="-1" aria-labelledby="modalcosto" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalcosto">Actualizar espacios libres</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('cambioespacios',$parking->estacionamiento_ID)}}" class="mb-2" method="post">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group">
+                            <div class="input-group ">
+                                <span class="input-group-text">Espacios Libres:</span>
+                                <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" value="{{$parking->capacidad_actual}}"
+                                    name="espaciosfree" id="espaciosfree" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary my-3" id="btn-espaciosupdate"
+                            name="btn-espaciosupdate">Actualizar espacios</button>
                     </form>
                 </div>
             </div>

@@ -106,6 +106,20 @@ class EstacionamientoAQParkingController extends Controller
         // return redirect()->route('estacionamiento.descripcion', $estacionamiento_ID)->with('success', 'Dirección actualizada');        
     }
 
+    public function updatespaces(Request $request, $estacionamiento_ID)
+    {
+        $request->validate([
+            'espaciosfree' => 'required|numeric',
+
+        ]);
+
+        $parking=Estacionamiento::findOrFail($estacionamiento_ID);
+        $parking->capacidad_actual=$request->espaciosfree;
+        $parking->save();
+        return redirect()->back()->with('success', 'Se actualizo los espacios libres');
+        // return redirect()->route('estacionamiento.descripcion', $estacionamiento_ID)->with('success', 'Dirección actualizada');        
+    }
+
     
 
     /**

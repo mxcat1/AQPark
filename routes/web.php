@@ -62,6 +62,7 @@ Route::put('/AQParkingSite/cuenta-estacionamiento/control-reservas/cambiohorario
 Route::put('/AQParkingSite/cuenta-estacionamiento/control-reservas/cambioprecio/{parking}',[EstacionamientoAQParkingController::class,'updateprice'])->name('cambioprecio')->middleware('authro2');
 Route::put('/AQParkingSite/cuenta-estacionamiento/control-reservas/cambiocapacidad/{parking}',[EstacionamientoAQParkingController::class,'updatecapacidad'])->name('cambiocapacidad')->middleware('authro2');
 Route::put('/AQParkingSite/cuenta-estacionamiento/control-reservas/cambiofoto/{parking}',[EstacionamientoAQParkingController::class,'updatefoto'])->name('cambiofoto')->middleware('authro2');
+Route::put('/AQParkingSite/cuenta-estacionamiento/control-reservas/cambioespacios/{parking}',[EstacionamientoAQParkingController::class,'updatespaces'])->name('cambioespacios')->middleware('authro2');
 
     //REGISTROPARKING
 Route::get('/AQParking/registro/estacionamiento',[RegistroParkingController::class,'index'])->name('registro-estacionamiento');
