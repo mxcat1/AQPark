@@ -23,7 +23,8 @@ class AutenticacionUserController extends Controller
         $usuario = Usuario::where('email',$credenciales['email'])->first();        
             if (Auth::attempt($credenciales)) {
                 $request->session()->regenerate();
-                return view('AQParkingSite.Index.principal');
+                return redirect()->route('main-pageAQParking');
+                // return view('AQParkingSite.Index.principal');
             }
         
         return back()->withErrors([

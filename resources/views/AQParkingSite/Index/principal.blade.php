@@ -18,28 +18,28 @@
             </div>
             <div class="col-sm-6">
                 <h2 class="text-center mb-3">Playas cerca</h2>
-                <div class="">
+                @foreach($parkingLots as $parking)
                     <div class="card mb-3 mx-auto bg-graycard" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="..." class="img-fluid rounded-start" alt="img-estacionamiento">
+                                <img src="{{asset('images/usuarioimg/' . $parking->foto)}}" class="img-fluid rounded-start" alt="img-estacionamiento">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-6">
-                                            <h4 class="card-title" id="tituloplaya" name="tituloplaya">Playa prueba</h4>
+                                            <h4 class="card-title" id="tituloplaya" name="tituloplaya">{{$parking->nombre}}</h4>
                                             <p class="card-text"><strong>Direccio: </strong><span id="dirplaya"
-                                                    name="dirplaya">calle xxxx - 304, JBR</span>
+                                                    name="dirplaya">{{$parking->direccion}}</span>
                                             </p>
                                         </div>
                                         <div class="col-6">
                                             <p class="card-text"><strong>Precio: </strong><span id="priceplaya"
-                                                    name="priceplaya">$/.5</span></p>
+                                                    name="priceplaya">$/.{{$parking->precio}}</span></p>
                                             <p class="card-text"><strong>Espacios libres: </strong><span class="border"
-                                                    id="spaceplaya" name="spaceplaya">15</span></p>
+                                                    id="spaceplaya" name="spaceplaya">{{$parking->capacidad_actual}}</span></p>
                                             <p class="card-text"><strong>Horario: </strong><span id="timeplaya"
-                                                    name="timeplaya">9am - 5pm</span></p>
+                                                    name="timeplaya">{{$parking->apertura}} - {{$parking->cierre}}</span></p>
                                         </div>
                                         <div class="col-12">
                                             <a href="{{route('reserva-estacionamiento')}}"><button type="button"
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

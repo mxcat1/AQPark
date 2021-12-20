@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AQParkingSite;
 
 use App\Http\Controllers\Controller;
 use App\Models\Usuario;
+use App\Models\Estacionamiento;
 use App\Models\TipoDocumento;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +22,8 @@ class UsuarioAQParkingController extends Controller
     public function index()
     {
         //
-        return view('AQParkingSite.Index.principal');
+        $parkingLots = Estacionamiento::all();
+        return view('AQParkingSite.Index.principal', compact('parkingLots'));
     }
 
     /**
