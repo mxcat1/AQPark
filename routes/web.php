@@ -57,6 +57,7 @@ Route::post('/Cerrarsesion',[AutenticacionUserController::class,'logout'])->name
 Route::get('/AQParkingSite/detalles-estacionamiento/{estacionamiento}',[EstacionamientoAQParkingController::class,'details'])->name('estacionamientoAQParking')->middleware('usercheck');
 Route::get('/AQParkingSite/cuenta-estacionamiento/{usuario}',[EstacionamientoAQParkingController::class,'show'])->name('cuenta-estacionamientoAQParking')->middleware('authro2');
 Route::get('/AQParkingSite/cuenta-estacionamiento/control-reservas/{usuario}',[EstacionamientoAQParkingController::class,'control'])->name('control-reservasAQParking')->middleware('authro2');
+Route::put('/AQParkingSite/cuenta-estacionamiento/control-reservas/{parking}',[EstacionamientoAQParkingController::class,'updatedireccion'])->name('cambiodir_ref')->middleware('authro2');
 
     //REGISTROPARKING
 Route::get('/AQParking/registro/estacionamiento',[RegistroParkingController::class,'index'])->name('registro-estacionamiento');

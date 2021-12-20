@@ -9,6 +9,12 @@
     <h2 class="text-center my-5 text-uppercase">{{$parking->nombre}}</h2>
     <div class="container py-5 my-5">        
         <div class="row">
+            @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+            @endif  
+            @include('AQParkingSite.Mensajes.error') 
             <div class="col-sm-4">
                 <img class="img-fluid" src="{{asset('images/usuarioimg/' . $parking->foto)}}" alt="estacionamiento" width="400" height="600">
                 <hr class="d-sm-none ">
@@ -62,6 +68,13 @@
                             </div>
                         </form>
                     </div>
+                    <div class="col-sm-6">
+                        <p class="fw-bolder fs-6">Capacidad:</p>
+                        <p id="totalparking" name="totalparking" class="ms-5 fw-bold fs-4"> {{$parking->capacidad}}</p>
+                        <button type="button" class="btn btn-primary my-2" id="btn-modalcapacidad" name="btn-modalprecio"
+                            data-bs-toggle="modal" data-bs-target="#modalcapacidad">Actualizar
+                            Capacidad</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -75,15 +88,23 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form role="form" class="mb-2">
+                    <form action="{{route('cambiodir_ref',$parking->estacionamiento_ID)}}" class="mb-2" method="post">
+                        @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label for="routepark" class="fw-bolder fs-6">Ubicación: </label>
                             <div class="input-group">
                                 <span class="input-group-text">Dirección</span>
-                                <input name="routepark" id="routepark" type="text" required class="form-control"
-                                    placeholder="Direccion">
+                                <input name="routepark" id="routepark" type="text" class="form-control" value="{{$parking->direccion}}"
+                                    placeholder="Direccion" required >
+                            </div>
+                            <div class="input-group mt-2">
+                                <span class="input-group-text">Referencia</span>
+                                <input name="refepark" id="refepark" type="text" class="form-control" value="{{$parking->referencia}}"
+                                    placeholder="Referencia" required >
                             </div>
                         </div>
+                        
                         <button type="submit" class="btn btn-primary my-3" id="btm-routeupdate"
                             name="btn-routeupdate">Actualizar Dirección</button>
                         <button type="reset" class="btn btn-danger my-3" id="btm-clearroute"
@@ -107,12 +128,12 @@
                             <label for="" class="fw-bolder fs-6">Horario de atención: </label>
                             <div class="input-group">
                                 <span class="input-group-text">De: </span>
-                                <input name="horainicio" id="horainicio" type="time" required class="form-control"
-                                    placeholder="Sucursal">
+                                <input name="horainicio" id="horainicio" type="time" class="form-control" value="{{$parking->apertura}}"
+                                    placeholder="Hora" required >
                                 <span class="input-group-addon"> --</span>
                                 <span class="input-group-text">Hasta: </span>
-                                <input name="mininicio" id="mininicio" type="time" required class="form-control"
-                                    placeholder="Numero">
+                                <input name="mininicio" id="mininicio" type="time"  class="form-control" value="{{$parking->cierre}}"
+                                    placeholder="Numero" required>
                             </div>
                             <button type="submit" class="btn btn-primary my-3" id="btn-horaupdate"
                                 name="btn-horaupdate">Actualizar Horario</button>
@@ -136,12 +157,36 @@
                             <label for="" class="fw-bolder fs-6">Precio: </label>
                             <div class="input-group ">
                                 <span class="input-group-text">S/.</span>
-                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
-                                    name="pricepark" id="pricepark">
+                                <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" value="{{$parking->precio}}"
+                                    name="pricepark" id="pricepark" required>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary my-3" id="btn-priceupdate"
                             name="btn-priceupdate">Actualizar Precio</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalcapacidad" tabindex="-1" aria-labelledby="modalcosto" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalcosto">Actualizar capacidad</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form role="form" class="mb-2">
+                        <div class="form-group">
+                            <label for="" class="fw-bolder fs-6">Capacidad Total: </label>
+                            <div class="input-group ">
+                                <span class="input-group-text">Total de Espacios</span>
+                                <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" value="{{$parking->capacidad}}"
+                                    name="capacidadpark" id="capacidadpark" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary my-3" id="btn-capacidadupdate"
+                            name="btn-capacidadupdate">Actualizar Capacidad</button>
                     </form>
                 </div>
             </div>

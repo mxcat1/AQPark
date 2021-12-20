@@ -26,9 +26,22 @@ class EstacionamientoAQParkingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function updatedireccion(Request $request, $estacionamiento_ID)
     {
-        //
+        $request->validate([
+            'routepark' => 'required|string|max:150',
+            'refepark' => 'required|string|max:150',
+
+        ]);
+
+        $parking=Estacionamiento::findOrFail($estacionamiento_ID);
+        $parking->direccion=$request->routepark;
+        $parking->referencia=$request->refepark;
+        $parking->save();
+        return redirect()->back()->with('success', 'Dirección actualizada');
+        // return redirect()->route('estacionamiento.descripcion', $estacionamiento_ID)->with('success', 'Dirección actualizada');
+
+        
     }
 
     /**
