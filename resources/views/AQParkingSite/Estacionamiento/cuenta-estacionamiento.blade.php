@@ -18,11 +18,13 @@
             <div class="col-sm-4">
                 <img class="img-fluid" src="{{asset('images/usuarioimg/' . $parking->foto)}}" alt="estacionamiento" width="400" height="600">
                 <hr class="d-sm-none ">
-                <form role="form" class="mb-2">
+                <form action="{{route('cambiofoto',$parking->estacionamiento_ID)}}" class="mb-2" method="post" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
                     <div class="input-group mb-1 mt-3">
-                        <input type="file" class="form-control" id="inputGroupFile02">
+                        <input type="file" class="form-control" id="fotoparking" name="fotoparking">
                     </div>
-                    <button type="submit" class="btn btn-primary my-1" id="fotopark" name="fotopark">Subir foto</button>
+                    <button type="submit" class="btn btn-primary my-1" id="btn_fotopark" name="btn_fotopark">Subir foto</button>
                 </form>
             </div>
             <div class="col-sm-8">
@@ -95,12 +97,12 @@
                             <label for="routepark" class="fw-bolder fs-6">Ubicación: </label>
                             <div class="input-group">
                                 <span class="input-group-text">Dirección</span>
-                                <input name="routepark" id="routepark" type="text" class="form-control" value="{{$parking->direccion}}"
+                                <input name="direccion_1" id="direccion_1" type="text" class="form-control" value="{{$parking->direccion}}"
                                     placeholder="Direccion" required >
                             </div>
                             <div class="input-group mt-2">
                                 <span class="input-group-text">Referencia</span>
-                                <input name="refepark" id="refepark" type="text" class="form-control" value="{{$parking->referencia}}"
+                                <input name="referencia_1" id="referencia_1" type="text" class="form-control" value="{{$parking->referencia}}"
                                     placeholder="Referencia" required >
                             </div>
                         </div>
@@ -123,7 +125,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form role="form" class="mb-2">
+                    <form action="{{route('cambioatencion',$parking->estacionamiento_ID)}}" class="mb-2" method="post">
+                        @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label for="" class="fw-bolder fs-6">Horario de atención: </label>
                             <div class="input-group">
@@ -132,7 +136,7 @@
                                     placeholder="Hora" required >
                                 <span class="input-group-addon"> --</span>
                                 <span class="input-group-text">Hasta: </span>
-                                <input name="mininicio" id="mininicio" type="time"  class="form-control" value="{{$parking->cierre}}"
+                                <input name="horafin" id="horafin" type="time"  class="form-control" value="{{$parking->cierre}}"
                                     placeholder="Numero" required>
                             </div>
                             <button type="submit" class="btn btn-primary my-3" id="btn-horaupdate"
@@ -152,7 +156,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form role="form" class="mb-2">
+                    <form action="{{route('cambioprecio',$parking->estacionamiento_ID)}}" class="mb-2" method="post">
+                        @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label for="" class="fw-bolder fs-6">Precio: </label>
                             <div class="input-group ">
@@ -176,7 +182,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form role="form" class="mb-2">
+                    <form action="{{route('cambiocapacidad',$parking->estacionamiento_ID)}}" class="mb-2" method="post">
+                        @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label for="" class="fw-bolder fs-6">Capacidad Total: </label>
                             <div class="input-group ">

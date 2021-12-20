@@ -29,31 +29,84 @@ class EstacionamientoAQParkingController extends Controller
     public function updatedireccion(Request $request, $estacionamiento_ID)
     {
         $request->validate([
-            'routepark' => 'required|string|max:150',
-            'refepark' => 'required|string|max:150',
+            'direccion_1' => 'required|string|max:150',
+            'referencia_1' => 'required|string|max:150',
 
         ]);
 
         $parking=Estacionamiento::findOrFail($estacionamiento_ID);
-        $parking->direccion=$request->routepark;
-        $parking->referencia=$request->refepark;
+        $parking->direccion=$request->direccion_1;
+        $parking->referencia=$request->referencia_1;
         $parking->save();
         return redirect()->back()->with('success', 'Dirección actualizada');
-        // return redirect()->route('estacionamiento.descripcion', $estacionamiento_ID)->with('success', 'Dirección actualizada');
-
-        
+        // return redirect()->route('estacionamiento.descripcion', $estacionamiento_ID)->with('success', 'Dirección actualizada');        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function updatehorario(Request $request, $estacionamiento_ID)
     {
-        //
+        $request->validate([
+            'horainicio' => 'required|string|max:10',
+            'horafin' => 'required|string|max:10',
+
+        ]);
+
+        $parking=Estacionamiento::findOrFail($estacionamiento_ID);
+        $parking->apertura=$request->horainicio;
+        $parking->cierre=$request->horafin;
+        $parking->save();
+        return redirect()->back()->with('success', 'Horario de atención actualizado');
+        // return redirect()->route('estacionamiento.descripcion', $estacionamiento_ID)->with('success', 'Dirección actualizada');        
     }
+
+    public function updateprice(Request $request, $estacionamiento_ID)
+    {
+        $request->validate([
+            'pricepark' => 'required|numeric',
+
+        ]);
+
+        $parking=Estacionamiento::findOrFail($estacionamiento_ID);
+        $parking->precio=$request->pricepark;
+        $parking->save();
+        return redirect()->back()->with('success', 'Precio actualizado');
+        // return redirect()->route('estacionamiento.descripcion', $estacionamiento_ID)->with('success', 'Dirección actualizada');        
+    }
+
+    public function updatecapacidad(Request $request, $estacionamiento_ID)
+    {
+        $request->validate([
+            'capacidadpark' => 'required|numeric',
+
+        ]);
+
+        $parking=Estacionamiento::findOrFail($estacionamiento_ID);
+        $parking->capacidad=$request->capacidadpark;
+        $parking->save();
+        return redirect()->back()->with('success', 'Se actualizo la capacidad');
+        // return redirect()->route('estacionamiento.descripcion', $estacionamiento_ID)->with('success', 'Dirección actualizada');        
+    }
+
+    public function updatefoto(Request $request, $estacionamiento_ID)
+    {
+        $request->validate([
+            'fotoparking' => 'image|max:5120',
+
+        ]);
+
+        if ($imagen2 = $request->file('fotoparking')) {
+            $destino2 = 'images/usuarioimg';
+            $nombreimagen2 = $request->nomEstacionamiento . date('YmdHis') . '.' . $imagen2->getClientOriginalExtension();
+            $imagen2->move($destino2, $nombreimagen2);
+        }
+
+        $parking=Estacionamiento::findOrFail($estacionamiento_ID);
+        $parking->foto=$nombreimagen2;
+        $parking->save();
+        return redirect()->back()->with('success', 'Se actualizo la foto del estacionamiento');
+        // return redirect()->route('estacionamiento.descripcion', $estacionamiento_ID)->with('success', 'Dirección actualizada');        
+    }
+
+    
 
     /**
      * Display the specified resource.
