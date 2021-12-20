@@ -6,7 +6,7 @@ Control de Reservaciones
 
 @section('content')
     <!-- BODY -->
-    <h2 class="text-center my-5">NOMBRE DE ESTACIONAMIENTO</h2>
+    <h2 class="text-center my-5 text-uppercase">historial de reservaciones <br> en {{$parking->nombre}}</h2>
     
     <div class="container py-5 my-5">
         <form class="d-inline-flex my-2 my-lg-0 ms-auto">

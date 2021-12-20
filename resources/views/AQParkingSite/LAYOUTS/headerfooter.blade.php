@@ -66,12 +66,12 @@
                                 @if(Auth::user()->rol == 'Administrador Estacionamiento')
                                 <li class="nav-item">
                                     <a class="dropdown-item"
-                                        href="{{route('cuenta-estacionamientoAQParking')}}">Estacionamiento
+                                        href="{{route('cuenta-estacionamientoAQParking',Auth::user()->usuario_ID)}}">Estacionamiento
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="dropdown-item"
-                                        href="{{route('control-reservasAQParking')}}">Reservaciones
+                                        href="{{route('control-reservasAQParking',Auth::user()->usuario_ID)}}">Reservaciones
                                     </a>
                                 </li>
                                 @endif

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AQParkingSite;
 
 use App\Http\Controllers\Controller;
 use App\Models\Estacionamiento;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class EstacionamientoAQParkingController extends Controller
@@ -48,17 +49,17 @@ class EstacionamientoAQParkingController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function show()
-    // public function show($id)
+
+    public function show($usuario_ID)
     {
-        //
-        return view('AQParkingSite.Estacionamiento.cuenta-estacionamiento');
+        $parking=Estacionamiento::findOrFail(Estacionamiento::where('usuario_ID',$usuario_ID)->first()->estacionamiento_ID);
+        return view('AQParkingSite.Estacionamiento.cuenta-estacionamiento', compact('parking'));
     }
 
-    public function control()
+    public function control($usuario_ID)
     {
-        //
-        return view('AQParkingSite.Estacionamiento.control-reservas');
+        $parking=Estacionamiento::findOrFail(Estacionamiento::where('usuario_ID',$usuario_ID)->first()->estacionamiento_ID);
+        return view('AQParkingSite.Estacionamiento.control-reservas', compact('parking'));
         
     }
 
