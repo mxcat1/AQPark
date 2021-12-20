@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AQParkingSite;
 
 use App\Http\Controllers\Controller;
+use App\Models\Estacionamiento;
 use Illuminate\Http\Request;
 
 class ReservaParkingController extends Controller
@@ -12,10 +13,10 @@ class ReservaParkingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($estacionamiento_ID)
     {
-        //
-        return view('AQParkingSite.Estacionamiento.estacionamiento-reserva');
+        $parking=Estacionamiento::findOrFail($estacionamiento_ID);
+        return view('AQParkingSite.Estacionamiento.estacionamiento-reserva', compact('parking'));
     }
 
     /**

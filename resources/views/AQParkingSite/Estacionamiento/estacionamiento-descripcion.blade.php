@@ -27,7 +27,7 @@
                     <p class="fw-bold">Capacidad Total: "<span class="fw-normal">El estacionamiento tiene una capacidad para albergar a {{$parking->capacidad}} coches</span>"</p>
                     <p class="fw-bold">Sitios libres disponibles: "<span class="fw-normal fs-4">{{$parking->capacidad_actual}}</span>"</p>
                 </div>
-                <a class="btn btn-primary mb-4" href="{{route('reserva-estacionamiento')}}" role="button">RESERVAR</a>
+                <a class="btn btn-primary mb-4" href="{{route('reserva-estacionamiento',$parking->estacionamiento_ID)}}" role="button">RESERVAR</a>
                 <div id="disqus_thread"></div>
             </div>
         </div>
