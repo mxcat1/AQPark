@@ -21,8 +21,8 @@
                 @foreach($parkingLots as $parking)
                     <div class="card mb-3 mx-auto bg-graycard" style="max-width: 540px;">
                         <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="{{asset('images/usuarioimg/' . $parking->foto)}}" class="img-fluid rounded-start" alt="img-estacionamiento">
+                            <div class="col-md-4 d-none d-md-block">
+                                <img src="{{asset('images/usuarioimg/' . $parking->foto)}}" class="img-fluid" alt="img-estacionamiento">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -48,7 +48,6 @@
                                             <a href="{{route('estacionamientoAQParking',$parking->estacionamiento_ID)}}"><button type="button"
                                                     class="btn btn-success">Ver más</button></a>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
