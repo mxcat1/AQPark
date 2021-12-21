@@ -31,14 +31,16 @@ class EstacionamientoAQParkingController extends Controller
         $request->validate([
             'direccion_1' => 'required|string|max:150',
             'referencia_1' => 'required|string|max:150',
+            'nombreparking' => 'required|string|max:60',
 
         ]);
 
         $parking=Estacionamiento::findOrFail($estacionamiento_ID);
         $parking->direccion=$request->direccion_1;
         $parking->referencia=$request->referencia_1;
+        $parking->nombre=$request->nombreparking;
         $parking->save();
-        return redirect()->back()->with('success', 'Dirección actualizada');
+        return redirect()->back()->with('success', 'Datos actualizados actualizada');
         // return redirect()->route('estacionamiento.descripcion', $estacionamiento_ID)->with('success', 'Dirección actualizada');        
     }
 

@@ -104,10 +104,15 @@
                                 <input name="referencia_1" id="referencia_1" type="text" class="form-control" value="{{$parking->referencia}}"
                                     placeholder="Referencia" required >
                             </div>
+                            <div class="input-group mt-2">
+                                <span class="input-group-text">Nombre</span>
+                                <input name="nombreparking" id="nombreparking" type="text" class="form-control" value="{{$parking->nombre}}"
+                                    placeholder="Nombre" required >
+                            </div>
                         </div>
                         
                         <button type="submit" class="btn btn-primary my-3" id="btm-routeupdate"
-                            name="btn-routeupdate">Actualizar Dirección</button>
+                            name="btn-routeupdate">Actualizar</button>
                         <button type="reset" class="btn btn-danger my-3" id="btm-clearroute"
                             name="btn-clearroute">Limpiar</button>
                     </form>
