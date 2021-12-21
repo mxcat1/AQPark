@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-sm-6">
                         <p class="fw-bolder fs-6">Precio:</p>
-                        <p>Hora o fracción: S/.<span id="precioparking" name="precioparking">{{$parking->precio}} </span></p>
+                        <p>Hora o fracción: <strong>S/</strong> <span id="precioparking" name="precioparking">{{$parking->precio}} </span></p>
                         <button type="button" class="btn btn-primary my-2" id="btn-modalprecio" name="btn-modalprecio"
                             data-bs-toggle="modal" data-bs-target="#modalprices">Actualizar
                             Precio</button>
@@ -166,8 +166,8 @@
                         <div class="form-group">
                             <label for="" class="fw-bolder fs-6">Precio: </label>
                             <div class="input-group ">
-                                <span class="input-group-text">S/.</span>
-                                <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" value="{{$parking->precio}}"
+                                <span class="input-group-text">S/</span>
+                                <input type="number" step="0.1" class="form-control" aria-label="Amount (to the nearest dollar)" value="{{$parking->precio}}"
                                     name="pricepark" id="pricepark" required>
                             </div>
                         </div>

@@ -55,7 +55,7 @@ class EstacionamientoAQParkingController extends Controller
         $parking=Estacionamiento::findOrFail($estacionamiento_ID);
         $parking->apertura=$request->horainicio;
         $parking->cierre=$request->horafin;
-        $parking->save();
+        $parking->update();
         return redirect()->back()->with('success', 'Horario de atención actualizado');
         // return redirect()->route('estacionamiento.descripcion', $estacionamiento_ID)->with('success', 'Dirección actualizada');        
     }
@@ -69,7 +69,7 @@ class EstacionamientoAQParkingController extends Controller
 
         $parking=Estacionamiento::findOrFail($estacionamiento_ID);
         $parking->precio=$request->pricepark;
-        $parking->save();
+        $parking->update();
         return redirect()->back()->with('success', 'Precio actualizado');
         // return redirect()->route('estacionamiento.descripcion', $estacionamiento_ID)->with('success', 'Dirección actualizada');        
     }
@@ -83,7 +83,7 @@ class EstacionamientoAQParkingController extends Controller
 
         $parking=Estacionamiento::findOrFail($estacionamiento_ID);
         $parking->capacidad=$request->capacidadpark;
-        $parking->save();
+        $parking->update();
         return redirect()->back()->with('success', 'Se actualizo la capacidad');
         // return redirect()->route('estacionamiento.descripcion', $estacionamiento_ID)->with('success', 'Dirección actualizada');        
     }
@@ -103,7 +103,7 @@ class EstacionamientoAQParkingController extends Controller
 
         $parking=Estacionamiento::findOrFail($estacionamiento_ID);
         $parking->foto=$nombreimagen2;
-        $parking->save();
+        $parking->update();
         return redirect()->back()->with('success', 'Se actualizo la foto del estacionamiento');
         // return redirect()->route('estacionamiento.descripcion', $estacionamiento_ID)->with('success', 'Dirección actualizada');        
     }
@@ -117,7 +117,7 @@ class EstacionamientoAQParkingController extends Controller
 
         $parking=Estacionamiento::findOrFail($estacionamiento_ID);
         $parking->capacidad_actual=$request->espaciosfree;
-        $parking->save();
+        $parking->update();
         return redirect()->back()->with('success', 'Se actualizo los espacios libres');
         // return redirect()->route('estacionamiento.descripcion', $estacionamiento_ID)->with('success', 'Dirección actualizada');        
     }
