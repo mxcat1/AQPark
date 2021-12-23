@@ -25,6 +25,6 @@
                 cookies que hemos emitido para usted. Sin embargo, en sus próximos usos de <b>PARKNER</b>, puede que sea
                 menos personalizado y conveniente.</p>
         </p>
-        <img src="img/logo.png" title="logo AQPparking" alt="logo AQPparking" class="img-fluid mt-5 d-none  d-xxl-block mx-auto mt-5 mb-3">
+        <img src="{{asset('img/logo.png')}}" title="logo AQPparking" alt="logo AQPparking" class="img-fluid mt-5 d-none  d-xxl-block mx-auto mt-5 mb-3">
     </div>
 @endsection
