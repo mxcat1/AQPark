@@ -13,6 +13,10 @@
                     <div class="alert alert-success">
                         <p>{{ $message }}</p>
                     </div>
+                    @elseif($message = Session::get('success delete'))
+                    <div class="alert alert-danger my-3">
+                        <p>{{ $message }}</p>
+                    </div>
             @endif  
             @include('AQParkingSite.Mensajes.error') 
             <div class="col-sm-6 mb-2">

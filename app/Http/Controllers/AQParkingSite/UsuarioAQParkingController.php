@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class UsuarioAQParkingController extends Controller
 {
@@ -129,7 +131,8 @@ class UsuarioAQParkingController extends Controller
         ]);
 
         if ($usuario = Usuario::find($id)) {
-
+            //  if($usuario->update_at < (Carbon::now())->diffInSeconds(Carbon::parse($usuario->updated_at))){
+            if((Carbon::now())->diffInSeconds(Carbon::parse($usuario->updated_at))>10){
                 $editarusuario = $request->all();
                 if ($imagen = $request->file('foto')) {
                     $destino = 'images/usuarioimg/';
@@ -144,6 +147,9 @@ class UsuarioAQParkingController extends Controller
                 }
                 $usuario->update($editarusuario);
                 return redirect()->route('cuenta-usuarioAQParking')->with('success', 'Se Actualizo correctamente los datos del Usuario');
+            }else {
+                return redirect()->route('cuenta-usuarioAQParking')->with('success delete', 'El Usuario se actualizo hace poco revise antes de actualizar de nuevo');
+            }
         } else {
             return redirect()->route('cuenta-usuarioAQParking')->with('success', 'Usuario Eliminado anteriormente no se efectuo la actualizacion');
         }
