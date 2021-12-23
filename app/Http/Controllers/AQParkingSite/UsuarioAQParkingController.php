@@ -131,7 +131,7 @@ class UsuarioAQParkingController extends Controller
         ]);
 
         if ($usuario = Usuario::find($id)) {
-            //  if($usuario->update_at < (Carbon::now())->diffInSeconds(Carbon::parse($usuario->updated_at))){
+
             if((Carbon::now())->diffInSeconds(Carbon::parse($usuario->updated_at))>10){
                 $editarusuario = $request->all();
                 if ($imagen = $request->file('foto')) {
