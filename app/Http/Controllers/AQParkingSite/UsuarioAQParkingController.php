@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
+// use Carbon\Carbon;
 
 
 class UsuarioAQParkingController extends Controller
@@ -132,7 +133,7 @@ class UsuarioAQParkingController extends Controller
 
         if ($usuario = Usuario::find($id)) {
 
-            if((Carbon::now())->diffInSeconds(Carbon::parse($usuario->updated_at))>10){
+            if((Carbon::now())->diffInSeconds(Carbon::parse($usuario->updated_at))>20){
                 $editarusuario = $request->all();
                 if ($imagen = $request->file('foto')) {
                     $destino = 'images/usuarioimg/';
