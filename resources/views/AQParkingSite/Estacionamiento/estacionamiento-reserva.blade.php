@@ -32,7 +32,14 @@
                                 <option value="2"> vehículo 02</option>
                                 <option value="3"> vehículo 03</option>
                             </select>
+                        </div>                        
+                        <div class="d-grid mb-4">
+                            <button type="submit" class="btn btn-primary">RESERVAR</button>
                         </div>
+                    </div>
+                </form>
+                <h3 class="text-center mt-4 mt-md-5">Registra tu auto para hacer tu reserva</h3>
+                <form>
                         <div class="mb-3">
                             <label for="marcaVehiculo" class="form-label">Marca</label>
                             <input type="text" class="form-control" id="marcaVehiculo" name="marcaVehiculo"
@@ -54,7 +61,7 @@
                                 placeholder="AFG-717" required>
                         </div>
                         <div class="d-grid ">
-                            <button type="submit" class="btn btn-primary">RESERVAR</button>
+                            <button type="submit" class="btn btn-primary">REGISTRAR</button>
                         </div>
                     </div>
                 </form>
