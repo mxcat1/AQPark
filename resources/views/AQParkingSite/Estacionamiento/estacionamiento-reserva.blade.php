@@ -26,8 +26,8 @@
                     @csrf
                         <div class="mb-4">
                             <label for="vehiculoRegistrado" class="form-label">Vehículos Registrados</label>                            
-                            <select class="form-select" aria-label="vehiculo" id="vehiculoRegistrado" name="vehiculoRegistrado" required>
-                                <option selected>Selecciona un vehículo</option>
+                            <select class="form-select" aria-label="vehiculo" id="vehiculoRegistrado" name="vehiculoRegistrado" >
+                                <option value="">Selecciona un vehículo</option>
                                 @foreach($autos as $auto)
                                 @if ($auto->usuario_ID === Auth::user()->usuario_ID)
                                         <option value="{{$auto->vehiculo_ID}}">{{$auto->marca}} {{$auto->modelo}}</option>
