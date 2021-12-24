@@ -22,11 +22,11 @@
                     </div>
                     @endif
                 </div>
-                <form>
-                    <div class="form">
+                <form action="{{route('proceso-reserva')}}" method="post">
+                    @csrf
                         <div class="mb-4">
                             <label for="vehiculoRegistrado" class="form-label">Vehículos Registrados</label>                            
-                            <select class="form-select" aria-label="vehiculo" id="vehiculoRegistrado" required>
+                            <select class="form-select" aria-label="vehiculo" id="vehiculoRegistrado" name="vehiculoRegistrado" required>
                                 <option selected>Selecciona un vehículo</option>
                                 @foreach($autos as $auto)
                                 @if ($auto->usuario_ID === Auth::user()->usuario_ID)
@@ -34,11 +34,12 @@
                                 @endif
                                     @endforeach
                             </select>
-                        </div>                        
+                            
+                        </div>
+                        <input type="hidden"  name="idParking" value="{{$parking->estacionamiento_ID}}">                        
                         <div class="d-grid mb-4">
                             <button type="submit" class="btn btn-primary">RESERVAR</button>
                         </div>
-                    </div>
                 </form>
                 <h3 class="text-center mt-4 mt-md-5">Registra tu auto para hacer tu reserva</h3>
                 <form action="{{route('registro-auto')}}" method="post">

@@ -43,52 +43,45 @@ class ReservaParkingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
     public function store(Request $request)
     {
-        //
-    }
-    
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'placaVehiculo' => 'required|regex:/^[A-Z]{3}[-][0-9]{3}$/',         
-    //     ]);
+        $request->validate([
+            'vehiculoRegistrado' => 'required',         
+        ]);
 
-    //     $parking=Estacionamiento::findOrFail($request->idParking);
-    //     $capacidad=$parking->capacidad_actual;
+        $parking=Estacionamiento::findOrFail($request->idParking);
+        $capacidad=$parking->capacidad_actual;
 
-    //     if($capacidad != 0){
-    //         try{
-    //             DB::transaction(function () use ($request) {
+        if($capacidad != 0){
+            try{
+                DB::transaction(function () use ($request) {
                     
 
-    //             $reservanueva = Reserva::create([
-    //                 'estacionamiento_ID' => $request->idParking,
-    //                 //'vehiculo_ID' => 1, $request->placaVehiculo,
-    //                 'fecha' => Carbon::now(),  
-    //                 // 'estado' => 'Pendiente',
-    //                 // 'ingreso' => Carbon::now(),
-    //                 // 'salida' => Carbon::now(),
-    //             ]);
+                $reservanueva = Reserva::create([
+                    'estacionamiento_ID' => $request->idParking,
+                    'vehiculo_ID' => 1, $request->vehiculoRegistrado,
+                    'fecha' => Carbon::now(),  
+                ]);
                 
-    //             $parking=Estacionamiento::findOrFail($request->idParking);
-    //             $parking->update([
-    //                 'capacidad_actual' => $parking->capacidad_actual - 1,
-    //             ]);
+                $parking=Estacionamiento::findOrFail($request->idParking);
+                $parking->update([
+                    'capacidad_actual' => $parking->capacidad_actual - 1,
+                ]);
 
-    //             event(new Registered($reservanueva));
+                // event(new Registered($reservanueva));
 
-    //         });   
-    //         }catch(\Exception $e){
-    //             return redirect()->back()->with('success delete', 'Algo sucedio y no se pudo realizar la reserva');
-    //         } 
-    //         return redirect()->back()->with('success', 'Reserva confirmada');
-    //     }else{
-    //         return redirect()->back()->with('success delete', 'No hay espacios disponibles');
-    //     }    
+            });   
+            }catch(\Exception $e){
+                return redirect()->back()->with('success delete', 'Algo sucedio y no se pudo realizar la reserva');
+            } 
+            return redirect()->back()->with('success', 'Reserva confirmada');
+        }else{
+            return redirect()->back()->with('success delete', 'No hay espacios disponibles');
+        }    
 
 
-    // }
+    }
 
     /**
      * Display the specified resource.
