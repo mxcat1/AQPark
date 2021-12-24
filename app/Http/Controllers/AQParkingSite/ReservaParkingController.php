@@ -23,7 +23,7 @@ class ReservaParkingController extends Controller
     public function index($estacionamiento_ID)
     {
         $parking=Estacionamiento::findOrFail($estacionamiento_ID);
-        $autos = Vehiculo::where('usuario_ID' == Auth::user()->usuario_ID);
+        $autos = Vehiculo::all();
         return view('AQParkingSite.Estacionamiento.estacionamiento-reserva', compact('parking', 'autos'));
     }
 

@@ -29,7 +29,9 @@
                             <select class="form-select" aria-label="vehiculo" id="vehiculoRegistrado" required>
                                 <option selected>Selecciona un vehículo</option>
                                 @foreach($autos as $auto)
+                                @if ($auto->usuario_ID === Auth::user()->usuario_ID)
                                         <option value="{{$auto->vehiculo_ID}}">{{$auto->marca}} {{$auto->modelo}}</option>
+                                @endif
                                     @endforeach
                             </select>
                         </div>                        
