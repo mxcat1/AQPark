@@ -5,11 +5,13 @@ namespace App\Http\Controllers\AQParkingSite;
 use App\Http\Controllers\Controller;
 use App\Models\Usuario;
 use App\Models\Estacionamiento;
+use App\Models\Vehiculo;
 use App\Models\Reserva;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ReservaParkingController extends Controller
 {
@@ -21,7 +23,8 @@ class ReservaParkingController extends Controller
     public function index($estacionamiento_ID)
     {
         $parking=Estacionamiento::findOrFail($estacionamiento_ID);
-        return view('AQParkingSite.Estacionamiento.estacionamiento-reserva', compact('parking'));
+        $autos = Vehiculo::where('usuario_ID', Auth::user()->ID);
+        return view('AQParkingSite.Estacionamiento.estacionamiento-reserva', compact('parking', 'autos'));
     }
 
     /**

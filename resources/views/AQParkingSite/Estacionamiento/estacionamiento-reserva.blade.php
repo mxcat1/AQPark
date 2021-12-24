@@ -25,12 +25,12 @@
                 <form>
                     <div class="form">
                         <div class="mb-4">
-                            <label for="vehiculoRegistrad-sio" class="form-label">Vehículos Registrados</label>
-                            <select class="form-select" aria-label="tipoDocumento" id="vehiculoRegistrado" required>
+                            <label for="vehiculoRegistrado" class="form-label">Vehículos Registrados</label>                            
+                            <select class="form-select" aria-label="vehiculo" id="vehiculoRegistrado" required>
                                 <option selected>Selecciona un vehículo</option>
-                                <option value="1"> vehículo 01</option>
-                                <option value="2"> vehículo 02</option>
-                                <option value="3"> vehículo 03</option>
+                                @foreach($autos as $auto)
+                                        <option value="{{$auto->vehiculo_ID}}">{{$auto->marca}} {{$auto->modelo}}</option>
+                                    @endforeach
                             </select>
                         </div>                        
                         <div class="d-grid mb-4">
