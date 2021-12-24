@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AQParkingSite;
 use App\Http\Controllers\Controller;
 use App\Models\Usuario;
 use App\Models\Estacionamiento;
+use App\Models\Vehiculo;
 use App\Models\TipoDocumento;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
@@ -12,6 +13,8 @@ use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+
 // use Carbon\Carbon;
 
 
@@ -83,6 +86,25 @@ class UsuarioAQParkingController extends Controller
         event(new Registered($usuarionuevo));
 
         return redirect()->route('indexAQParking')->with('success', 'Nuevo Usuario Creado');
+    }
+
+    public function store_auto(Request $request){
+        $request->validate([
+            'marcaVehiculo' => 'required|string|max:30',
+            'modeloVehiculo' => 'required|string|max:30',
+            'colorVehiculo' => 'required|string|max:30',
+            'placaVehiculo' => 'required|regex:/^[A-Z]{3}[-][0-9]{3}$/',
+        ]);
+
+        Vehiculo::create([
+            'usuario_ID' => Auth::user()->usuario_ID,
+            'marca' => $request->marcaVehiculo,
+            'modelo' => $request->modeloVehiculo,
+            'color' => $request->colorVehiculo,
+            'placa' => $request->placaVehiculo,
+        ]);
+
+        return redirect()->back()->with('success', 'Vehiculo Registrado');
     }
 
     public function restore()

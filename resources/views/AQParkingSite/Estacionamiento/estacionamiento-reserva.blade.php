@@ -39,7 +39,8 @@
                     </div>
                 </form>
                 <h3 class="text-center mt-4 mt-md-5">Registra tu auto para hacer tu reserva</h3>
-                <form>
+                <form action="{{route('registro-auto')}}" method="post">
+                    @csrf
                         <div class="mb-3">
                             <label for="marcaVehiculo" class="form-label">Marca</label>
                             <input type="text" class="form-control" id="marcaVehiculo" name="marcaVehiculo"
@@ -58,7 +59,7 @@
                         <div class="mb-3">
                             <label for="placaVehiculo" class="form-label">Placa vehicular</label>
                             <input type="text" class="form-control" id="placaVehiculo" name="placaVehiculo"
-                                placeholder="AFG-717" required>
+                                placeholder="XXX-123" required>
                         </div>
                         <div class="d-grid ">
                             <button type="submit" class="btn btn-primary">REGISTRAR</button>
