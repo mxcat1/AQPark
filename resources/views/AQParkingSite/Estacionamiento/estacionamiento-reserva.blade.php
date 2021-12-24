@@ -10,6 +10,18 @@
     <div class="container pb-5 my-5">    
         <div class="form-wrapper pb-xxl-5">
             <div class="row">
+                <div class="my-3">
+                    @include('AQParkingSite.Mensajes.error')
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success my-3">
+                        <p>{{ $message }}</p>
+                    </div>
+                    @elseif($message = Session::get('success delete'))
+                    <div class="alert alert-danger my-3">
+                        <p>{{ $message }}</p>
+                    </div>
+                    @endif
+                </div>
                 <form>
                     <div class="form">
                         <div class="mb-4">

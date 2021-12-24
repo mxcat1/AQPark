@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\AQParkingSite;
 
 use App\Http\Controllers\Controller;
+use App\Models\Usuario;
 use App\Models\Estacionamiento;
+use App\Models\Reserva;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\DB;
 
 class ReservaParkingController extends Controller
 {
@@ -39,6 +44,48 @@ class ReservaParkingController extends Controller
     {
         //
     }
+    
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'placaVehiculo' => 'required|regex:/^[A-Z]{3}[-][0-9]{3}$/',         
+    //     ]);
+
+    //     $parking=Estacionamiento::findOrFail($request->idParking);
+    //     $capacidad=$parking->capacidad_actual;
+
+    //     if($capacidad != 0){
+    //         try{
+    //             DB::transaction(function () use ($request) {
+                    
+
+    //             $reservanueva = Reserva::create([
+    //                 'estacionamiento_ID' => $request->idParking,
+    //                 //'vehiculo_ID' => 1, $request->placaVehiculo,
+    //                 'fecha' => Carbon::now(),  
+    //                 // 'estado' => 'Pendiente',
+    //                 // 'ingreso' => Carbon::now(),
+    //                 // 'salida' => Carbon::now(),
+    //             ]);
+                
+    //             $parking=Estacionamiento::findOrFail($request->idParking);
+    //             $parking->update([
+    //                 'capacidad_actual' => $parking->capacidad_actual - 1,
+    //             ]);
+
+    //             event(new Registered($reservanueva));
+
+    //         });   
+    //         }catch(\Exception $e){
+    //             return redirect()->back()->with('success delete', 'Algo sucedio y no se pudo realizar la reserva');
+    //         } 
+    //         return redirect()->back()->with('success', 'Reserva confirmada');
+    //     }else{
+    //         return redirect()->back()->with('success delete', 'No hay espacios disponibles');
+    //     }    
+
+
+    // }
 
     /**
      * Display the specified resource.

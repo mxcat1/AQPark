@@ -218,7 +218,7 @@
                         <div class="form-group">
                             <div class="input-group ">
                                 <span class="input-group-text">Espacios Libres:</span>
-                                <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" value="{{$parking->capacidad_actual}}"
+                                <input type="number" min="0" class="form-control" aria-label="Amount (to the nearest dollar)" value="{{$parking->capacidad_actual}}"
                                     name="espaciosfree" id="espaciosfree" required>
                             </div>
                         </div>
