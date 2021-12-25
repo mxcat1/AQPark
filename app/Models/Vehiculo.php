@@ -14,7 +14,7 @@ class Vehiculo extends Model
 
     protected $fillable = ['usuario_ID', 'marca', 'modelo', 'color', 'placa'];
 
-    protected $perPage = 12;
+    protected $perPage = 10;
 
     /*
      * Relaciones
@@ -26,6 +26,6 @@ class Vehiculo extends Model
 
     public function Reserva()
     {
-        return $this->hasMany(Reserva::class);
+        return $this->hasMany(Reserva::class,'reserva_ID', 'reserva_ID');
     }
 }

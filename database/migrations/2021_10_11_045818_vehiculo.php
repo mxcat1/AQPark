@@ -20,7 +20,7 @@ class Vehiculo extends Migration
             $table->string('marca',150);
             $table->string('modelo',150);
             $table->string('color',100);
-            $table->string('placa',10);
+            $table->string('placa',10)->unique();
             $table->timestamps();
 
             $table->foreign('usuario_ID')->references('usuario_ID')->on('usuarios')->onDelete('cascade');
