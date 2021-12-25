@@ -67,11 +67,11 @@ class Usuario extends Authenticatable
 
     public function Vehiculos()
     {
-        return $this->hasMany(Vehiculo::class,'usuario_ID','usuario_ID');
+        return $this->hasMany(Vehiculo::class);
     }
 
     public function Estacionamientos()
     {
-        return $this->hasMany(Estacionamiento::class,'usuario_ID','usuario_ID');
+        return $this->hasMany(Estacionamiento::class);
     }
 }

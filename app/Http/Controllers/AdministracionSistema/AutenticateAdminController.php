@@ -30,18 +30,13 @@ class AutenticateAdminController extends Controller
     public function autenticate(Request $request)
     {
         $credenciales = $request->validate([
-            'email' => ['required', 'email', 'exists:usuarios'],
-            'password' => ['required'],
+            'email' => ['required', 'email','exists:usuarios'],
+            'password' => ['required']
         ]);
-        $usuario = Usuario::where('email', $credenciales['email'])->first();
-
-        $remember = false;
-        if ($request['remember']) {
-            $remember = true;
-        }
+        $usuario = Usuario::where('email',$credenciales['email'])->first();
 
         if ($usuario && $usuario->rol == 'Administrador Sistema') {
-            if (Auth::attempt($credenciales, $remember)) {
+            if (Auth::attempt($credenciales)) {
                 $request->session()->regenerate();
                 return redirect()->route('inicio');
             }

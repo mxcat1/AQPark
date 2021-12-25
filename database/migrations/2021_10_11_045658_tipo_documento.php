@@ -17,7 +17,7 @@ class TipoDocumento extends Migration
         Schema::create('tipo_documentos', function (Blueprint $table) {
             $table->id('tipo_docu_ID');
             $table->string('descripcion');
-            $table->string('abreviacion')->unique();
+            $table->string('abreviacion');
             $table->timestamps();
         });
     }

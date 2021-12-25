@@ -76,11 +76,7 @@
                             <div class="mb-3">
                                 <label class="form-label fw-bold" for="foto">Foto del Usuario</label>
                                 <p>Foto del Usuario Actual: </p>
-                                @if($usuarioedit->foto=="foto-perfil.jpg")
-                                    <img src="/images/avatar/{{$usuarioedit->foto}}" class="rounded-circle" alt="foto {{$usuarioedit->nombre}}" width="50px">
-                                @else
-                                    <img src="/images/usuarioimg/{{$usuarioedit->foto}}" class="rounded-circle" alt="foto {{$usuarioedit->nombre}}" width="50px">
-                                @endif
+                                <img src="{{asset('images/usuarioimg/'.$usuarioedit->foto)}}" class="img-fluid" alt="{{$usuarioedit->nombre}}">
                                 <hr>
                                 <input type="file" name="foto" id="foto" class="form-control" accept="image/png, image/jpeg">
                             </div>

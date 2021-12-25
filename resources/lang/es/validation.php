@@ -151,7 +151,7 @@ return [
         'nombre' => 'Nombres del Usuario',
         'apellido' => 'Apellidos del Usuario',
         'email' => 'Correo del Usuario',
-        'telefono' => 'Telefono',
+        'telefono' => 'Telefono del Usuario',
         'tipo_documento' => 'Tipo de Documento',
         'documento' => 'Documento del Usuario',
         'rol' => 'Rol del Usuario',

@@ -40,7 +40,7 @@ class TipoDocumentoController extends Controller
     {
         $request->validate([
             'descripcion'=>'required|min:1|max:255',
-            'abreviacion'=>'required|min:1|max:255|unique:tipo_documentos',
+            'abreviacion'=>'required|min:1|max:255'
         ]);
         $nuevotipodocumento=$request->all();
         TipoDocumento::create($nuevotipodocumento);
@@ -83,7 +83,7 @@ class TipoDocumentoController extends Controller
     {
         $request->validate([
             'descripcion'=>'required|min:1|max:255',
-            'abreviacion'=>'required|min:1|max:255|unique:tipo_documentos'
+            'abreviacion'=>'required|min:1|max:255'
         ]);
         if ($tipodocumento=TipoDocumento::find($id)) {
             $tipodocumento->update($request->all());

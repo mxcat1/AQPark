@@ -11,7 +11,6 @@ class Estacionamiento extends Model
 
     protected $table = 'estacionamientos';
     protected $primaryKey = 'estacionamiento_ID';
-    protected $perPage = 10;
 
     protected $fillable = [
         'usuario_ID',
@@ -26,7 +25,6 @@ class Estacionamiento extends Model
         'cierre',
         'precio',
         'foto',
-        'estado',
         'longitud',
         'latitud'
     ];
@@ -42,6 +40,6 @@ class Estacionamiento extends Model
 
     public function Reserva()
     {
-        return $this->hasMany(Reserva::class, 'reserva_ID', 'reserva_ID');
+        return $this->hasMany(Reserva::class);
     }
 }
