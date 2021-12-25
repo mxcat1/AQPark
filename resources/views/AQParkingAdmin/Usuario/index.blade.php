@@ -67,7 +67,13 @@
                                             <td>{{$item->apellido}}</td>
                                             <td>{{$item->email}}</td>
                                             <td>{{$item->rol}}</td>
-                                            <td><img src="/images/usuarioimg/{{$item->foto}}" class="rounded-circle" alt="foto {{$item->nombre}}" width="50px"></td>
+                                            <td>
+                                                @if($item->foto=="foto-perfil.jpg")
+                                                    <img src="/images/avatar/{{$item->foto}}" class="rounded-circle" alt="foto {{$item->nombre}}" width="50px">
+                                                @else
+                                                    <img src="/images/usuarioimg/{{$item->foto}}" class="rounded-circle" alt="foto {{$item->nombre}}" width="50px">
+                                                @endif
+                                            </td>
                                             <td class="d-flex justify-content-center">
                                                 <a href="{{route('Usuario.show',$item->usuario_ID)}}" title="Detalle Usuario" class="btn btn-primary mx-1">
                                                     <i data-feather="eye" class="icon-xs"></i>
