@@ -29,8 +29,8 @@ class Estacionamiento extends Migration
             $table->enum('estado',['Activo','Clausurado','Sin Servicio','Abierto','Cerrado','Falta Verificar'])->default('Falta Verificar');
             $table->float('precio',16,4);
             $table->string('foto');
-            $table->float('longitud',16,7);
-            $table->float('latitud',16,7);
+            $table->float('longitud',18,15);
+            $table->float('latitud',18,15);
             $table->timestamps();
 
             $table->foreign('usuario_ID')->references('usuario_ID')->on('usuarios')->onDelete('cascade');

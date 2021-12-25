@@ -54,12 +54,12 @@
                                 <select name="usuario" id="usuario" class="form-select">
                                     <option value="">Seleccione al Propietario del Vehiculo</option>
                                     @foreach($listadousuarios as $usuario)
-                                        <option value="{{$usuario->usuario_ID}}">{{$usuario->nombre}} {{$usuario->apellido}}</option>
+                                        <option value="{{$usuario->usuario_ID}}" @if ($vehiculoedit->Usuario->usuario_ID==$usuario->usuario_ID) selected @endif>{{$usuario->nombre}} {{$usuario->apellido}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary mx-2">Crear</button>
+                                <button type="submit" class="btn btn-primary mx-2">Guardar</button>
                                 <a href="{{route('Vehiculo.index')}}" class="btn btn-danger mx-2">Cancelar</a>
                             </div>
                         </form>
