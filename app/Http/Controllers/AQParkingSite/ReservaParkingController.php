@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class ReservaParkingController extends Controller
 {
@@ -22,7 +23,8 @@ class ReservaParkingController extends Controller
      */
     public function index($estacionamiento_ID)
     {
-        $parking=Estacionamiento::findOrFail($estacionamiento_ID);
+        $id_parking = Crypt::decrypt($estacionamiento_ID);
+        $parking=Estacionamiento::findOrFail($id_parking);
         $autos = Vehiculo::all();
         return view('AQParkingSite.Estacionamiento.estacionamiento-reserva', compact('parking', 'autos'));
     }

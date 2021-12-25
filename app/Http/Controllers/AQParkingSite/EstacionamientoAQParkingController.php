@@ -7,6 +7,7 @@ use App\Models\Estacionamiento;
 use App\Models\Reserva;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class EstacionamientoAQParkingController extends Controller
 {
@@ -17,7 +18,8 @@ class EstacionamientoAQParkingController extends Controller
      */
     public function details($estacionamiento_ID)
     {
-        $parking=Estacionamiento::findOrFail($estacionamiento_ID);
+        $id_parking = Crypt::decrypt($estacionamiento_ID);
+        $parking=Estacionamiento::findOrFail($id_parking);
         return view('AQParkingSite.Estacionamiento.estacionamiento-descripcion', compact('parking'));
         
     }
@@ -135,13 +137,15 @@ class EstacionamientoAQParkingController extends Controller
 
     public function show($usuario_ID)
     {
-        $parking=Estacionamiento::findOrFail(Estacionamiento::where('usuario_ID',$usuario_ID)->first()->estacionamiento_ID);
+        $id = Crypt::decrypt($usuario_ID);
+        $parking=Estacionamiento::findOrFail(Estacionamiento::where('usuario_ID',$id)->first()->estacionamiento_ID);
         return view('AQParkingSite.Estacionamiento.cuenta-estacionamiento', compact('parking'));
     }
 
     public function control($usuario_ID)
     {
-        $parking=Estacionamiento::findOrFail(Estacionamiento::where('usuario_ID',$usuario_ID)->first()->estacionamiento_ID);
+        $id = Crypt::decrypt($usuario_ID);
+        $parking=Estacionamiento::findOrFail(Estacionamiento::where('usuario_ID',$id)->first()->estacionamiento_ID);
         $reservas=Reserva::all();
         return view('AQParkingSite.Estacionamiento.control-reservas', compact('parking','reservas'));
         
