@@ -25,10 +25,10 @@ class UsuarioAQParkingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $parkingLots = Estacionamiento::all();
+        $buscar = trim($request->get('buscar'));
+        $parkingLots=Estacionamiento::where('nombre','like','%'.$buscar.'%')->get();
         return view('AQParkingSite.Index.principal', compact('parkingLots'));
     }
 

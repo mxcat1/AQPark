@@ -36,10 +36,10 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                <form class="d-flex my-2 my-lg-0 ms-auto">
+                <form class="d-flex my-2 my-lg-0 ms-auto" action="{{route('main-pageAQParking')}}" method="get">
                     <div class="input-group mb-3 my-sm-3">
                         <input class="form-control" type="search" placeholder="Search" aria-label="Search"
-                            aria-describedby="barrabuscarheader">
+                            aria-describedby="barrabuscarheader" name="buscar">
                         <button class="btn btn-primary" type="submit" id="barrabuscarheader"><i
                                 data-feather="search"></i></button>
                     </div>
