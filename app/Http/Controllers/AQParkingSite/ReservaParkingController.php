@@ -13,6 +13,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Validation\Rule;
+use DateTime;
 
 class ReservaParkingController extends Controller
 {
@@ -97,7 +99,12 @@ class ReservaParkingController extends Controller
      */
     public function show($id)
     {
-        //
+        $listausuarios = Usuario::where('rol', 'Usuario Natural')->get();
+        $listaestacionamientos = Estacionamiento::all();
+        $reservaeditar=Reserva::find($id);
+        return view('AQParkingSite.Estacionamiento.edicion-resserva', compact('listausuarios','listaestacionamientos','reservaeditar'));
+        // $reserva=Reserva::find($id_reserva);
+        // return view('AQParkingSite.Estacionamiento.edicion-resserva', compact('reserva'));       
     }
 
     /**
@@ -120,7 +127,58 @@ class ReservaParkingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            // 'ingreso_vehiculo'=>['required','date'],
+            'estado'=>['required_if:estado,!=,Reserva Concluida','string',Rule::in(['Reservado', 'Reserva en Espera', 'Reserva Activa','Reserva Concluida'])]
+        ]);
+
+        //Logica para calcular el precio total de la reserva
+        $ingreso_vehiculo=new DateTime($request->ingreso_vehiculo);
+        $salida_vehiculo=null;
+        $estacionamiento=Estacionamiento::find($request->estacionamiento);
+        $precio_total=0;
+        $horas_entre_fechas=0;
+        $salida_vehiculo=new DateTime($request->salida_vehiculo);
+        $diferenciahoras=$salida_vehiculo->diff($ingreso_vehiculo);
+        if ($diferenciahoras->i>=30){
+            $horas_entre_fechas++;
+        }
+        // if ($request->salida_vehiculo){
+        //     $request->validate(['salida_vehiculo'=>['date','after_or_equal:ingreso_vehiculo']]);
+        //     $salida_vehiculo=new DateTime($request->salida_vehiculo);
+        //     $diferenciahoras=$salida_vehiculo->diff($ingreso_vehiculo);
+        //     $horas_entre_fechas=$diferenciahoras->h;
+        //     if ($diferenciahoras->i>=30){
+        //         $horas_entre_fechas++;
+        //     }
+        //     $precio_total=(double)($estacionamiento->precio)*$horas_entre_fechas;
+        // }
+
+        $reservaedit=Reserva::find($id);
+        $reservaedit->update([
+
+            'ingreso' => $request->ingreso_vehiculo,
+            'salida' => $salida_vehiculo,
+            'cantidad_horas' => $horas_entre_fechas,
+            // 'precio_total' => $precio_total,
+            'estado' => $request->estado?$request->estado:$reservaedit->estado
+            ]);
+            // if ($request->estado=='Reserva Concluida'){
+            //     $capacidad_actual=$estacionamiento->capacidad_actual;
+            //     $estacionamiento->update([
+            //         'capacidad_actual' => $capacidad_actual+1
+            //     ]);
+            // }
+        if ($request->estado=='Reserva Concluida'){
+            $parking=Estacionamiento::findOrFail($request->estacionamiento);
+            $parking->update([
+                'capacidad_actual' => $parking->capacidad_actual + 1,
+
+            ]);
+        }
+    
+
+        return redirect()->route('control-reservasAQParking',Crypt::encrypt(Auth::user()->usuario_ID))->with('success','Los Datos de la Reserva se Editaron con exito');
     }
 
     /**

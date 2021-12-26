@@ -240,5 +240,6 @@
     $('#tableReserva').DataTable();
 } );
 </script>
+@yield('myscript')
 
 </html>
