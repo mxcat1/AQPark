@@ -17,8 +17,6 @@ Control de Reservaciones
         </div>
     </form>
     <div style="overflow-x:auto;">
-        {{-- <h1>{{ $reservas->reserva_ID}}</h1> --}}
-
         <table class="table align-middle" id="tableReserva">
             <thead>
                 <tr>
@@ -131,7 +129,7 @@ Control de Reservaciones
                     <h5 class="modal-title" id="exampleModalLabel">Editar Reserva</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body">                   
                     <div class="modal-form">
                         <div class="mb-3">
                             <label for="usrReserva" class="form-label">Usuario</label>

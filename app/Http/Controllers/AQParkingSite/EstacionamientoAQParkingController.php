@@ -145,7 +145,7 @@ class EstacionamientoAQParkingController extends Controller
     public function control($usuario_ID)
     {
         $id = Crypt::decrypt($usuario_ID);
-        $parking=Estacionamiento::findOrFail(Estacionamiento::where('usuario_ID',$id)->first()->estacionamiento_ID);
+        $parking=Estacionamiento::findOrFail(Estacionamiento::where('usuario_ID',$id)->first()->estacionamiento_ID);        
         $reservas=Reserva::all();
         return view('AQParkingSite.Estacionamiento.control-reservas', compact('parking','reservas'));
         
