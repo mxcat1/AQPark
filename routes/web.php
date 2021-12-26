@@ -92,3 +92,6 @@ Route::get('/AQParking/registro/usuario',[UsuarioAQParkingController::class,'reg
 Route::put('/AQParkingSite/cuenta-usuario/update-data/{usuario}', [UsuarioAQParkingController::class, 'update'])->name('updateusuario')->middleware('usercheck');
 Route::put('/AQParkingSite/cuenta-usuario/change-password/{usuario}', [UsuarioAQParkingController::class, 'changepassword'])->name('updatepassword')->middleware('usercheck');
 
+    //VEHICULO
+Route::delete('/AQParkingSite/cuenta-usuario/update-data/{vehiculo}', [UsuarioAQParkingController::class, 'vehiculo_destroy'])->name('borrar_vehiculo')->middleware('usercheck');
+

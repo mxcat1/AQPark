@@ -121,10 +121,11 @@ class UsuarioAQParkingController extends Controller
      */
 
     public function show()
-    // public function show($id)
     {
-        return view('AQParkingSite.Usuario.cuenta-usuario');
+        $usuarioselec = Usuario::find(Auth::user()->usuario_ID);
+        return view('AQParkingSite.Usuario.cuenta-usuario', compact('usuarioselec'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -200,5 +201,12 @@ class UsuarioAQParkingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function vehiculo_destroy($id)
+    {
+        $vehiculo = Vehiculo::find($id);
+        $vehiculo->delete();
+        return redirect()->route('cuenta-usuarioAQParking')->with('success delete', 'Se Elimino correctamente el Vehiculo');
     }
 }

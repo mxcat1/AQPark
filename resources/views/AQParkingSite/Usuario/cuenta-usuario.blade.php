@@ -119,6 +119,74 @@
                         </div>
                     </div>
                 </div>
+                @if(count($usuarioselec->Vehiculos))
+                        <div class="my-2 border border-1 p-2">
+                            <h4 class="card-title my-4 text-center">Vehiculos en Propiedad</h4>
+                            <div class="col-12 mb-5">
+                                @foreach($usuarioselec->Vehiculos as $vehiculo)
+                                    <li class="mb-0 d-flex flex-row justify-content-around align-items-center">
+                                        Modelo: {{$vehiculo->modelo}} &nbsp | &nbsp Placa: {{$vehiculo->placa}}
+                                        <div class="my-1">
+                                            <form action="{{ route('borrar_vehiculo',$vehiculo->vehiculo_ID) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" onclick="return confirm('¿Esta seguro de eliminar este Elemento?');" class="btn btn-danger delete" >
+                                                    <i data-feather="trash" class="icon-xs"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </div>
+                        </div>
+                    @else
+                        <h4 class="card-title my-4">No es Propietario de Ningun Vehiculo</h4>
+                    @endif
+                    <div name="nuevo_vehiculo" class="text-center border border-1 p-2 mb-2">
+                        <button type="button" class="btn btn-primary" id="btn-changepass" name="btn-changepass"
+                            data-bs-toggle="modal" data-bs-target="#modalvehiculo">Agregar nuevo Vehículo</button>
+                    </div>
+                    <div class="modal fade" id="modalvehiculo" tabindex="-1" aria-labelledby="modalcontraseña"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalcontraseña">Nuevo Vehículo</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{route('registro-auto')}}" method="post">
+                                        @csrf
+                                            <div class="mb-3">
+                                                <label for="marcaVehiculo" class="form-label">Marca</label>
+                                                <input type="text" class="form-control" id="marcaVehiculo" name="marcaVehiculo"
+                                                    placeholder="Hyundai" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="modeloVehiculo" class="form-label">Modelo</label>
+                                                <input type="text" class="form-control" id="modeloVehiculo" name="modeloVehiculo"
+                                                    placeholder="Tucson" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="colorVehiculo" class="form-label">Color</label>
+                                                <input type="text" class="form-control" id="colorVehiculo" name="colorVehiculo"
+                                                    placeholder="azul" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="placaVehiculo" class="form-label">Placa vehicular</label>
+                                                <input type="text" class="form-control" id="placaVehiculo" name="placaVehiculo"
+                                                    placeholder="XXX-123" required>
+                                            </div>
+                                            <div class="d-grid ">
+                                                <button type="submit" class="btn btn-primary">REGISTRAR</button>
+                                            </div>
+            
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
             <div class="col-sm-6">
                 <h2 class="text-center my-2">Historial de reservas</h2>
