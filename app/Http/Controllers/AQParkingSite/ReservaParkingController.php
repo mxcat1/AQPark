@@ -34,9 +34,12 @@ class ReservaParkingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function check()
+    public function check($estacionamiento_ID)
     {
-        return view('AQParkingSite.Estacionamiento.confirmacion-reserva');
+        $id_parking = Crypt::decrypt($estacionamiento_ID);
+        $parking=Estacionamiento::findOrFail($id_parking);
+        $fecha_actual = Carbon::now();
+        return view('AQParkingSite.Estacionamiento.confirmacion-reserva', compact('parking', 'fecha_actual'));
     }
 
     /**
@@ -77,7 +80,8 @@ class ReservaParkingController extends Controller
             }catch(\Exception $e){
                 return redirect()->back()->with('success delete', 'Algo sucedio y no se pudo realizar la reserva');
             } 
-            return redirect()->back()->with('success', 'Reserva confirmada');
+            //return redirect()->back()->with('success', 'Reserva confirmada');
+            return redirect()->route('reserva-confirmacion', Crypt::encrypt($request->idParking));
         }else{
             return redirect()->back()->with('success delete', 'No hay espacios disponibles');
         }    

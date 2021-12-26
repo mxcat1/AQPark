@@ -79,7 +79,7 @@ Route::post('/AQParking/registro/estacionamiento',[RegistroParkingController::cl
 
     //RESERVAPARKING
 Route::get('/AQParkingSite/detalles-estacionamiento/reserva/{estacionamiento}',[ReservaParkingController::class,'index'])->name('reserva-estacionamiento')->middleware('usercheck');
-Route::get('/AQParkingSite/detalles-estacionamiento/reserva/confirmacion',[ReservaParkingController::class,'check'])->name('reserva-confirmacion')->middleware('usercheck');
+Route::get('/AQParkingSite/detalles-estacionamiento/reserva/{estacionamiento}/confirmacion',[ReservaParkingController::class,'check'])->name('reserva-confirmacion')->middleware('usercheck');
 Route::post('/AQParkingSite/detalles-estacionamiento/reserva/',[ReservaParkingController::class,'store'])->name('proceso-reserva')->middleware('usercheck');
 Route::post('/AQParkingSite/detalles-estacionamiento/reserva/registro_auto',[UsuarioAQParkingController::class,'store_auto'])->name('registro-auto')->middleware('usercheck');
 
