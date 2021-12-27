@@ -18,7 +18,7 @@ class UsuarioSeeder extends Seeder
         Usuario::create([
             'nombre' => 'Administrador',
             'apellido' => 'Administrador',
-            'email' => 'admin@gmail.com',
+            'email' => 'aqparkingadmin@aqparking.tk',
             'telefono' => '958305428',
             'tipo_docu_ID' => 1,
             'documento' => '12345678',

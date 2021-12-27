@@ -12,7 +12,11 @@
                     <div class="alert alert-success my-3">
                         <p>{{ $message }}</p>
                     </div>
-                @elseif($message = Session::get('success delete'))
+            @elseif($message = Session::get('success delete'))
+                    <div class="alert alert-danger my-3">
+                        <p>{{ $message }}</p>
+                    </div>
+            @elseif($message = Session::get('Mensaje succes'))
                     <div class="alert alert-danger my-3">
                         <p>{{ $message }}</p>
                     </div>

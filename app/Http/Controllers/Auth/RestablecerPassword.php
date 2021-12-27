@@ -59,7 +59,7 @@ class RestablecerPassword extends Controller
         );
 
         return $status === Password::PASSWORD_RESET
-            ? redirect()->route('LoginAdministrador')->with('status', __($status))
+            ? redirect()->route('indexAQParking')->with(['status', __($status),'Mensaje succes'=>'Se restablecio con Exito la Contraseña'])
             : back()->withErrors(['email' => [__($status)]]);
     }
 

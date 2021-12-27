@@ -15,8 +15,8 @@ Control de Reservaciones
                     <div class="alert alert-danger my-3">
                         <p>{{ $message }}</p>
                     </div>
-            @endif  
-            @include('AQParkingSite.Mensajes.error') 
+            @endif
+            @include('AQParkingSite.Mensajes.error')
 
 <div class="container py-5 my-5">
     {{-- <form class="d-inline-flex my-2 my-lg-0 ms-auto">
@@ -45,8 +45,8 @@ Control de Reservaciones
                 @if ($reserva->estacionamiento_ID == $parking->estacionamiento_ID)
                 <tr>
                     <th scope="row">{{ $reserva->reserva_ID}}</th>
-                    <td>{{ $reserva->estacionamiento_ID}}</td>
-                    <td>{{ $reserva->vehiculo_ID}}</td>
+                    <td>{{ $reserva->Estacionamiento->nombre}}</td>
+                    <td>{{ $reserva->Vehiculo->placa}}</td>
                     <td>{{ $reserva->fecha}}</td>
                     <td>{{ $reserva->estado}}</td>
                     <td>{{ $reserva->ingreso}}</td>
@@ -144,7 +144,7 @@ Control de Reservaciones
                     <h5 class="modal-title" id="exampleModalLabel">Editar Reserva</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">                   
+                <div class="modal-body">
                     <div class="modal-form">
                         <div class="mb-3">
                             <label for="usrReserva" class="form-label">Usuario</label>

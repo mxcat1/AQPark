@@ -39,7 +39,7 @@ Login
                 </div>
                 <div class="my-3 text-center">
                     <span>No tienes cuenta <a href="{{route('registroAQParking')}}">Registrate</a></span><br>
-                    <span><a href="{{route('restore-password')}}">Recuperar Contraseña</a></span>
+                    <span><a href="{{route('RecuperarPassword')}}">Recuperar Contraseña</a></span>
                 </div>
             </form>
         </div>

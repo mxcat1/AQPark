@@ -41,7 +41,7 @@
 
                             <div class="d-md-flex justify-content-end mt-4">
                                 <div>
-                                    <a href="{{route('inicio')}}" class="btn btn-warning">Volver</a>
+                                    <a href="{{route('indexAQParking')}}" class="btn btn-warning">Volver</a>
                                 </div>
                             </div>
                         </div>

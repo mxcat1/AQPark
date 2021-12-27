@@ -113,7 +113,6 @@ class RegistroParkingController extends Controller
                 'latitud' => $request->latitud,
             ]);
             event(new Registered($usuarionuevo));
-            event(new Registered($parkingnuevo));
         });
         } catch (\Exception $e) {
             // return redirect()->back()->with('success delete', 'Error al registrar el Estacionamiento');

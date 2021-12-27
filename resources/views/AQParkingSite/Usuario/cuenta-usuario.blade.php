@@ -141,11 +141,11 @@
                         </div>
                     </div>
                 </div>
-                @if(count($usuarioselec->Vehiculos))
+                @if(count(Auth::user()->Vehiculos))
                         <div class="my-2 border border-1 p-2">
                             <h4 class="card-title my-4 text-center">Vehiculos en Propiedad</h4>
                             <div class="col-12 mb-5">
-                                @foreach($usuarioselec->Vehiculos as $vehiculo)
+                                @foreach(Auth::user()->Vehiculos as $vehiculo)
                                     <li class="mb-0 d-flex flex-row justify-content-around align-items-center">
                                         Modelo: {{$vehiculo->modelo}} &nbsp | &nbsp Placa: {{$vehiculo->placa}}
                                         <div class="my-1">
@@ -203,7 +203,7 @@
                                             <div class="d-grid ">
                                                 <button type="submit" class="btn btn-primary">REGISTRAR</button>
                                             </div>
-            
+
                                     </form>
                                 </div>
                             </div>

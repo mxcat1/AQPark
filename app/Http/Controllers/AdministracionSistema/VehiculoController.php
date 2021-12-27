@@ -98,7 +98,7 @@ class VehiculoController extends Controller
             'modelo' => 'required|string|max:150',
             'marca' => 'required|string|max:150',
             'color' => 'required|string|max:100',
-            'placa' => 'required|string|min:7|regex:/^[A-Z0-9]{3}-[0-9]{3}$/|unique:vehiculos',
+            'placa' => 'required|string|min:7|regex:/^[A-Z0-9]{3}-[0-9]{3}$/',
             'usuario' => 'required|exists:usuarios,usuario_ID',
         ]);
         if($vehiculo = Vehiculo::find($id)){

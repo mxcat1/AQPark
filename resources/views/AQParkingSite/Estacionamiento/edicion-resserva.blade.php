@@ -36,28 +36,15 @@ Edicion de reserva
                                 <p class="fw-bold">Fecha Registrada de la Reserva: <small>{{$reservaeditar->fecha}}</small></p>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label fw-bold" for="estacionamiento"> Propietario del Estacionamiento</label>
-                                <br>
-                                <select name="estacionamiento" id="estacionamiento" disabled="disabled">
-                                    <option value="">Estacionamineto - Propietario</option>
-                                    @foreach($listaestacionamientos as $estacionamiento)
-                                        <option value="{{$estacionamiento->estacionamiento_ID}}" @if($reservaeditar->estacionamiento_ID==$estacionamiento->estacionamiento_ID) selected @endif>{{$estacionamiento->nombre}} - {{$estacionamiento->Usuario->nombre}} {{$estacionamiento->Usuario->apellido}}</option>
-                                    @endforeach
-                                </select>
+                                <label class="form-label fw-bold" >Nombre y Propietario del Estacionamiento:</label>
+                                <p>Nombre: {{$reservaeditar->Estacionamiento->nombre}}</p>
+                                <p>Propietario: {{$reservaeditar->Estacionamiento->Usuario->nombre}} {{$reservaeditar->Estacionamiento->Usuario->apellido}}</p>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label fw-bold" for="vehiculo">Propietario del Vehiculo y Modelo - Placa del Vehiculo</label>
-                                <br>
-                                <select name="vehiculo" id="vehiculo" disabled="disabled">
-                                    <option value="">Propietario Vehiculo - Modelo Vehiculo - Placa Vehiculo</option>
-                                    @foreach($listausuarios as $usuario)
-                                        <optgroup label="{{$usuario->nombre}} {{$usuario->apellido}}">
-                                            @foreach($usuario->Vehiculos as $vehiculo)
-                                                <option value="{{$vehiculo->vehiculo_ID}}" @if($reservaeditar->vehiculo_ID==$vehiculo->vehiculo_ID) selected @endif>{{$usuario->nombre}} {{$usuario->apellido}} -> {{$vehiculo->modelo}} - {{$vehiculo->placa}}</option>
-                                            @endforeach
-                                        </optgroup>
-                                    @endforeach
-                                </select>
+                                <p>Propietario: {{$reservaeditar->Vehiculo->Usuario->nombre}} {{$reservaeditar->Vehiculo->Usuario->apellido}}</p>
+                                <p>Modelo: {{$reservaeditar->Vehiculo->modelo}}</p>
+                                <p>Placa: {{$reservaeditar->Vehiculo->placa}}</p>
 
                             </div>
                             <div class="row mb-3">
@@ -106,7 +93,7 @@ Edicion de reserva
             </div>
         </div>
         <!-- form -->
-        
+
 
     </div>
 @endsection
@@ -115,14 +102,6 @@ Edicion de reserva
 
     <script>
         $(document).ready(function() {
-            $("#vehiculo").selectize({
-                create: true,
-                sortField: "text",
-            });
-            $("#estacionamiento").selectize({
-                create: true,
-                sortField: "text",
-            });
 
             let ingreso=document.getElementById('ingreso_vehiculo').value=moment(@json($reservaeditar->ingreso)).format("YYYY-MM-DDTHH:mm")
             let salida=document.getElementById('salida_vehiculo').value=moment(@json($reservaeditar->salida)).format("YYYY-MM-DDTHH:mm")

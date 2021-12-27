@@ -95,7 +95,7 @@ class UsuarioAQParkingController extends Controller
             'marcaVehiculo' => 'required|string|max:30',
             'modeloVehiculo' => 'required|string|max:30',
             'colorVehiculo' => 'required|string|max:30',
-            'placa' => 'required|regex:/^[A-Z0-9]{3}[-][0-9]{3}$/|unique:vehiculos',
+            'placaVehiculo' => 'required|regex:/^[A-Z0-9]{3}[-][0-9]{3}$/|unique:vehiculos,placa',
         ]);
 
         Vehiculo::create([
@@ -103,7 +103,7 @@ class UsuarioAQParkingController extends Controller
             'marca' => $request->marcaVehiculo,
             'modelo' => $request->modeloVehiculo,
             'color' => $request->colorVehiculo,
-            'placa' => $request->placa,
+            'placa' => $request->placaVehiculo,
         ]);
 
         return redirect()->back()->with('success', 'Vehiculo Registrado');
@@ -216,7 +216,12 @@ class UsuarioAQParkingController extends Controller
     public function vehiculo_destroy($id)
     {
         $vehiculo = Vehiculo::find($id);
-        $vehiculo->delete();
-        return redirect()->route('cuenta-usuarioAQParking')->with('success delete', 'Se Elimino correctamente el Vehiculo');
+        $reservas=Reserva::where('vehiculo_ID',$vehiculo->vehiculo_ID)->count();
+        if ($reservas>0){
+            return redirect()->route('cuenta-usuarioAQParking')->with('success delete', 'No se Puede Eliminar este Vehiculo por que esta registrado en una o Mas Reservas');
+        }else{
+            $vehiculo->delete();
+            return redirect()->route('cuenta-usuarioAQParking')->with('success delete', 'Se Elimino correctamente el Vehiculo');
+        }
     }
 }

@@ -18,7 +18,9 @@ use App\Http\Controllers\AQParkingSite\UsuarioAQParkingController;
 
 use App\Http\Controllers\AQParkingSistema\InicioAqparkingController;
 use App\Http\Controllers\Auth\RecuperarPassword;
+use App\Http\Controllers\Auth\RecuperarPasswordUsuarioController;
 use App\Http\Controllers\Auth\RestablecerPassword;
+use App\Http\Controllers\Auth\RestablecerPasswordUsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,27 +36,27 @@ use Illuminate\Support\Facades\Route;
 
 // RUTAS AQParkingAdmin
 
-Route::get('/',[InicioController::class,'index'])->name('inicio')->middleware('authrol');
+Route::get('/Admin-Dashboard',[InicioController::class,'index'])->name('inicio')->middleware('authrol');
 
-Route::resource('TipoDocumento',TipoDocumentoController::class)->middleware('authrol');
-Route::resource('Usuario',UsuarioController::class)->middleware('authrol');
-Route::resource('Vehiculo',VehiculoController::class)->middleware('authrol');
-Route::resource('Estacionamiento',EstacionamientoController::class)->middleware('authrol');
-Route::resource('Reserva',ReservaController::class)->middleware('authrol');
+Route::resource('/Admin-Dashboard/TipoDocumento',TipoDocumentoController::class)->middleware('authrol');
+Route::resource('/Admin-Dashboard/Usuario',UsuarioController::class)->middleware('authrol');
+Route::resource('/Admin-Dashboard/Vehiculo',VehiculoController::class)->middleware('authrol');
+Route::resource('/Admin-Dashboard/Estacionamiento',EstacionamientoController::class)->middleware('authrol');
+Route::resource('/Admin-Dashboard/Reserva',ReservaController::class)->middleware('authrol');
 
-Route::get('Usuario/CambiarPassword/{Usuario}',[UsuarioController::class,'cambiarpasswordvista'])->name('CambiarContraseña')->middleware('authrol');
-Route::put('Usuario/CambiarPassword/{Usuario}',[UsuarioController::class,'cambiarpassword'])->name('CambiarContraseñaUsuario')->middleware('authrol');
+Route::get('/Admin-Dashboard/Usuario/CambiarPassword/{Usuario}',[UsuarioController::class,'cambiarpasswordvista'])->name('CambiarContraseña')->middleware('authrol');
+Route::put('/Admin-Dashboard/Usuario/CambiarPassword/{Usuario}',[UsuarioController::class,'cambiarpassword'])->name('CambiarContraseñaUsuario')->middleware('authrol');
 
-Route::get('/login-administrador-sistema',[AutenticateAdminController::class,'login'])->name('LoginAdministrador')->middleware('logincontrol');
+Route::get('/Admin-Dashboard/login-administrador-sistema',[AutenticateAdminController::class,'login'])->name('LoginAdministrador')->middleware('logincontrol');
 Route::post('/iniciarsession',[AutenticateAdminController::class,'autenticate'])->name('LoginAutenticacion')->middleware('logincontrol');;
 Route::post('/cerrarsession',[AutenticateAdminController::class,'logout'])->name('LoginDesautenticacion')->middleware('authrol');
 
-//Rutas para Recuperar y verificar Correo
+//Rutas para Recuperar Contraseña Area de Administracion del Sistema
 Route::get('/Recuperar-Contraseña',[RecuperarPassword::class,'index'])->name('RecuperarPassword')->middleware('guest');
 Route::post('/Recuperar-Contraseña',[RecuperarPassword::class,'store'])->name('RecuperarPassword.email')->middleware('guest');
 Route::get('/Recuperar-Contraseña-Notificacion',[RecuperarPassword::class,'respuesta'])->name('RecuperarPassword.notificacion')->middleware('guest');
 
-//Rutas para Reiniciar Contraseña
+//Rutas para Reiniciar Contraseña Usuarios Naturales y Adminsitradores de Estacionamientos
 Route::get('/Restablecer-Contraseña/{token}',[RestablecerPassword::class,'index'])->name('password.reset')->middleware('guest');
 Route::post('/Restablecer-Contraseña',[RestablecerPassword::class,'store'])->name('password.update')->middleware('guest');
 
@@ -75,14 +77,14 @@ Route::post('/email/verification-notification', [\App\Http\Controllers\Auth\Veri
 
 // RUTAS AQParkingSite
 
-Route::get('/AQParking',[AQParkingController::class,'index'])->name('indexAQParking')->middleware('userloged');
-Route::get('/AQParking/registro',[AQParkingController::class,'registro'])->name('registroAQParking');
-Route::get('/AQParking/politica-de-cookies',[AQParkingController::class,'cookies'])->name('cookiesAQParking');
-Route::get('/AQParking/politica-de-privacidad',[AQParkingController::class,'privacidad'])->name('privacidadAQParking');
-Route::get('/AQParking/terminos-y-condiciones',[AQParkingController::class,'terminos'])->name('terminosAQParking');
+Route::get('/',[AQParkingController::class,'index'])->name('indexAQParking')->middleware('userloged');
+Route::get('/registro',[AQParkingController::class,'registro'])->name('registroAQParking');
+Route::get('/politica-de-cookies',[AQParkingController::class,'cookies'])->name('cookiesAQParking');
+Route::get('/politica-de-privacidad',[AQParkingController::class,'privacidad'])->name('privacidadAQParking');
+Route::get('/terminos-y-condiciones',[AQParkingController::class,'terminos'])->name('terminosAQParking');
 
     //AUTENTICACION
-Route::get('/AQParking/login',[AutenticacionUserController::class,'login'])->name('loginAQParking')->middleware('userloged');
+Route::get('/login',[AutenticacionUserController::class,'login'])->name('loginAQParking')->middleware('userloged');
 Route::post('/Sesionusuario',[AutenticacionUserController::class,'autenticacion'])->name('autenticacionAQParking');
 Route::post('/Cerrarsesion',[AutenticacionUserController::class,'logout'])->name('logout');
 
@@ -99,8 +101,8 @@ Route::put('/AQParkingSite/cuenta-estacionamiento/control-reservas/cambioespacio
 Route::put('/AQParkingSite/cuenta-estacionamiento/control-reservas/cambioestado/{parking}',[EstacionamientoAQParkingController::class,'updatestado'])->name('cambioestado')->middleware('authro2');
 
     //REGISTROPARKING
-Route::get('/AQParking/registro/estacionamiento',[RegistroParkingController::class,'index'])->name('registro-estacionamiento');
-Route::post('/AQParking/registro/estacionamiento',[RegistroParkingController::class,'store'])->name('create-parking');
+Route::get('/registro/estacionamiento',[RegistroParkingController::class,'index'])->name('registro-estacionamiento');
+Route::post('/registro/estacionamiento',[RegistroParkingController::class,'store'])->name('create-parking');
 
 
     //RESERVAPARKING
@@ -116,8 +118,8 @@ Route::delete('/AQParkingSite/detalles-estacionamiento/reserva/edit/{reserva}',[
 Route::get('/AQParkingSite',[UsuarioAQParkingController::class,'index'])->name('main-pageAQParking')->middleware('usercheck');
 Route::get('/AQParkingSite/cuenta-usuario',[UsuarioAQParkingController::class,'show'])->name('cuenta-usuarioAQParking')->middleware('usercheck');
 Route::get('/AQParkingSite/cuenta-usuario/restore-password',[UsuarioAQParkingController::class,'restore'])->name('restore-password')->middleware('usercheck');
-Route::post('/AQParking/registro/newusuario',[UsuarioAQParkingController::class,'store'])->name('new-user');
-Route::get('/AQParking/registro/usuario',[UsuarioAQParkingController::class,'registro'])->name('registro-usuario');
+Route::post('/registro/newusuario',[UsuarioAQParkingController::class,'store'])->name('new-user');
+Route::get('/registro/usuario',[UsuarioAQParkingController::class,'registro'])->name('registro-usuario');
 Route::put('/AQParkingSite/cuenta-usuario/update-data/{usuario}', [UsuarioAQParkingController::class, 'update'])->name('updateusuario')->middleware('usercheck');
 Route::put('/AQParkingSite/cuenta-usuario/change-password/{usuario}', [UsuarioAQParkingController::class, 'changepassword'])->name('updatepassword')->middleware('usercheck');
 

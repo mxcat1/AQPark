@@ -52,7 +52,7 @@
 
                             <div class="d-md-flex justify-content-end mt-4">
                                 <div>
-                                    <a href="{{route('inicio')}}" class="text-inherit fs-5">Volver</a>
+                                    <a href="{{route('indexAQParking')}}" class="text-inherit fs-5">Volver</a>
                                 </div>
                             </div>
                         </div>
