@@ -27,6 +27,7 @@ class VehiculoController extends Controller
      */
     public function create()
     {
+//        $listadousuarios = Usuario::where('rol','Usuario Natural')->orwhere('rol','Administrador Estacionamiento')->get();
         $listadousuarios = Usuario::where('rol','Usuario Natural')->get();
         return view('AQParkingAdmin.Vehiculo.create',compact('listadousuarios'));
     }
@@ -43,7 +44,7 @@ class VehiculoController extends Controller
             'modelo' => 'required|string|max:150',
             'marca' => 'required|string|max:150',
             'color' => 'required|string|max:100',
-            'placa' => 'required|string|min:7|regex:/^[A-Z0-9]{3}-[0-9]{3}$/',
+            'placa' => 'required|string|min:7|regex:/^[A-Z0-9]{3}-[0-9]{3}$/|unique:vehiculos',
             'usuario' => 'required|exists:usuarios,usuario_ID',
         ]);
 
@@ -78,6 +79,7 @@ class VehiculoController extends Controller
     public function edit($id)
     {
         $vehiculoedit = Vehiculo::find($id);
+//        $listadousuarios = Usuario::where('rol','Usuario Natural')->orwhere('rol','Administrador Estacionamiento')->get();
         $listadousuarios = Usuario::where('rol','Usuario Natural')->get();
         return view('AQParkingAdmin.Vehiculo.edit',compact('listadousuarios','vehiculoedit'));
 
@@ -121,6 +123,8 @@ class VehiculoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $vehiculo = Vehiculo::find($id);
+        $vehiculo->delete();
+        return redirect()->route('Vehiculo.index')->with('success delete', 'Se Elimino correctamente el Vehiculo');
     }
 }

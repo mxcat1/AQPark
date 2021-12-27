@@ -67,11 +67,11 @@ class Usuario extends Authenticatable implements MustVerifyEmail
 
     public function Vehiculos()
     {
-        return $this->hasMany(Vehiculo::class);
+        return $this->hasMany(Vehiculo::class,'usuario_ID','usuario_ID');
     }
 
     public function Estacionamientos()
     {
-        return $this->hasMany(Estacionamiento::class);
+        return $this->hasMany(Estacionamiento::class,'usuario_ID','usuario_ID');
     }
 }

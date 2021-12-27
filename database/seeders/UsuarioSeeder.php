@@ -21,10 +21,10 @@ class UsuarioSeeder extends Seeder
             'email' => 'aqparkingadmin@aqparking.tk',
             'telefono' => '958305428',
             'tipo_docu_ID' => 1,
-            'documento' => '78451296',
+            'documento' => '12345678',
             'foto' => 'foto-perfil.jpg',
             'rol' => 'Administrador Sistema',
-            'password' => Hash::make('jose159753'),
+            'password' => Hash::make('admin123456789'),
         ]);
     }
 }
