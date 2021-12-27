@@ -19,13 +19,13 @@ Control de Reservaciones
             @include('AQParkingSite.Mensajes.error') 
 
 <div class="container py-5 my-5">
-    <form class="d-inline-flex my-2 my-lg-0 ms-auto">
+    {{-- <form class="d-inline-flex my-2 my-lg-0 ms-auto">
         <div class="input-group  mb-3 my-sm-3">
             <input class="form-control" type="search" placeholder="Busque por DNI" aria-label="Search"
                 aria-describedby="barrabuscarheader">
             <button class="btn btn-primary" type="submit" id="barrabuscarheader"><i data-feather="search"></i></button>
         </div>
-    </form>
+    </form> --}}
     <div style="overflow-x:auto;">
         <table class="table align-middle" id="tableReserva">
             <thead>
@@ -51,18 +51,21 @@ Control de Reservaciones
                     <td>{{ $reserva->estado}}</td>
                     <td>{{ $reserva->ingreso}}</td>
                     <td>{{ $reserva->salida}}</td>
-                    <td>
+                    <td class="d-flex">
                         <span data-bs-toggle="modal" data-bs-target="#editarReserva">
                             <a href="{{route('reserva-show',$reserva->reserva_ID)}}">
-                            <button type="button" class="btn btn-warning btn-sm px-3" title="Editar reserva">
+                            <button type="button" class="btn btn-warning btn-sm mx-1 p-2" title="Editar reserva">
                                 <i data-feather="edit"></i>
                             </button>
                             </a>
                         </span>
-                        <button type="button" class="btn btn-danger btn-sm px-3" data-bs-toggle="tooltip"
-                            data-bs-placement="top" title="Cancelar reserva">
-                            <i data-feather="delete"></i>
-                        </button>
+                        <form action="{{ route('reserva-delete',$reserva->reserva_ID) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('¿Esta seguro de eliminar esta Reserva?');" class="btn btn-danger delete mx-1" >
+                                <i data-feather="delete"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endif

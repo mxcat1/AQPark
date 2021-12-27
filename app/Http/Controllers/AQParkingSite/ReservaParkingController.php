@@ -160,7 +160,7 @@ class ReservaParkingController extends Controller
             'ingreso' => $request->ingreso_vehiculo,
             'salida' => $salida_vehiculo,
             'cantidad_horas' => $horas_entre_fechas,
-            // 'precio_total' => $precio_total,
+            //  'precio_total' => $precio_total,
             'estado' => $request->estado?$request->estado:$reservaedit->estado
             ]);
             // if ($request->estado=='Reserva Concluida'){
@@ -169,13 +169,13 @@ class ReservaParkingController extends Controller
             //         'capacidad_actual' => $capacidad_actual+1
             //     ]);
             // }
-        if ($request->estado=='Reserva Concluida'){
-            $parking=Estacionamiento::findOrFail($request->estacionamiento);
-            $parking->update([
-                'capacidad_actual' => $parking->capacidad_actual + 1,
+        // if ($request->estado=='Reserva Concluida'){
+        //     $parking=Estacionamiento::findOrFail($request->estacionamiento);
+        //     $parking->update([
+        //         'capacidad_actual' => $parking->capacidad_actual + 1,
 
-            ]);
-        }
+        //     ]);
+        // }
     
 
         return redirect()->route('control-reservasAQParking',Crypt::encrypt(Auth::user()->usuario_ID))->with('success','Los Datos de la Reserva se Editaron con exito');
@@ -187,8 +187,11 @@ class ReservaParkingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
-        //
+        $reservadelete=Reserva::find($id);
+        $reservadelete->delete();
+        return redirect()->route('control-reservasAQParking',Crypt::encrypt(Auth::user()->usuario_ID))->with('success delete','Se Elimino correctamente la Reserva');
     }
 }
