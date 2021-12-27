@@ -16,11 +16,8 @@ use App\Http\Controllers\AQParkingSite\RegistroParkingController;
 use App\Http\Controllers\AQParkingSite\ReservaParkingController;
 use App\Http\Controllers\AQParkingSite\UsuarioAQParkingController;
 
-use App\Http\Controllers\AQParkingSistema\InicioAqparkingController;
 use App\Http\Controllers\Auth\RecuperarPassword;
-use App\Http\Controllers\Auth\RecuperarPasswordUsuarioController;
 use App\Http\Controllers\Auth\RestablecerPassword;
-use App\Http\Controllers\Auth\RestablecerPasswordUsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
