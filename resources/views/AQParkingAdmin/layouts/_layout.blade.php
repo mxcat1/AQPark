@@ -29,8 +29,6 @@
     <link href="{{asset('libs/@mdi/font/css/materialdesignicons.min.css')}}" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css">
-    <!-- flatpickr css-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{asset('css/theme.min.css')}}">
     <title>Adminsitracion Sistema AQParking - @yield('title')</title>
@@ -153,12 +151,12 @@
                     <div id="navestacionamiento" class="collapse " data-bs-parent="#sideNavbar">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link " href="{{route('Estacionamiento.index')}}" aria-expanded="false">
+                                <a class="nav-link " href="../components/accordions.html" aria-expanded="false">
                                     Listar Estacionamientos
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="{{route('Estacionamiento.create')}}" aria-expanded="false">
+                                <a class="nav-link " href="../components/alerts.html" aria-expanded="false">
                                     Crear Estacionamiento
                                 </a>
                             </li>
@@ -175,12 +173,12 @@
                     <div id="navreservas" class="collapse " data-bs-parent="#sideNavbar">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link " href="{{route('Reserva.index')}}" aria-expanded="false">
+                                <a class="nav-link " href="../components/accordions.html" aria-expanded="false">
                                     Listar Reservas
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="{{route('Reserva.create')}}" aria-expanded="false">
+                                <a class="nav-link " href="../components/alerts.html" aria-expanded="false">
                                     Crear Nueva Reservas
                                 </a>
                             </li>
@@ -294,11 +292,8 @@
                         <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             <div class="avatar avatar-md avatar-indicators avatar-online">
-                                @if(Auth::user()->foto!='foto-perfil.jpg')
-                                    <img alt="avatar" src="{{asset('images/usuarioimg/' . Auth::user()->foto)}}" class="rounded-circle" />
-                                @else
-                                    <img alt="avatar" src="{{asset('images/avatar/' . Auth::user()->foto)}}" class="rounded-circle" />
-                                @endif
+                                <img alt="avatar" src="{{asset('images/usuarioimg/' . Auth::user()->foto)}}"
+                                     class="rounded-circle" />
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
@@ -345,8 +340,6 @@
 <!-- Scripts -->
 <!-- Libs JS -->
 <script src="{{asset('libs/jquery/dist/jquery.min.js')}}"></script>
-<script src="{{asset('libs/selectize/standalone/selectize.js')}}"></script>
-<link rel="stylesheet" href="{{asset('libs/selectize/css/selectize.bootstrap5.css')}}">
 <script src="{{asset('libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('libs/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
 <script src="{{asset('libs/feather-icons/dist/feather.min.js')}}"></script>
@@ -356,20 +349,14 @@
 <script src="{{asset('libs/apexcharts/dist/apexcharts.min.js')}}"></script>
 <script src="{{asset('libs/dropzone/dist/min/dropzone.min.js')}}"></script>
 
-{{--<script src="{{asset('libs/selectize/selectize.js')}}"></script>--}}
-{{--<script src="{{asset('libs/leafletjs/leaflet.js')}}"></script>--}}
-
 
 <!-- clipboard -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
-<!-- flatpickr -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 
 <!-- Theme JS -->
 <script src="{{asset('js/theme.min.js')}}"></script>
 
-@yield('myscript')
 
 </body>
 

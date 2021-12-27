@@ -3,10 +3,6 @@
 namespace App\Http\Controllers\AdministracionSistema;
 
 use App\Http\Controllers\Controller;
-use App\Models\Estacionamiento;
-use App\Models\Reserva;
-use App\Models\Usuario;
-use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -39,7 +35,7 @@ class ReservaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -73,14 +69,13 @@ class ReservaController extends Controller
             return redirect()->route('Reserva.index')->with('success delete', 'Error no se puede registrar la reserva porque no hay capacidad actual en el estacionamiento');
         }
 
-
     }
 
     /**
      *
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -92,7 +87,7 @@ class ReservaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -106,12 +101,13 @@ class ReservaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
+
         $request->validate([
             'estacionamiento' => ['required', 'exists:estacionamientos,estacionamiento_ID'],
             'vehiculo' => ['required', 'exists:vehiculos,vehiculo_ID'],
@@ -155,16 +151,18 @@ class ReservaController extends Controller
         }
 
         return redirect()->route('Reserva.index')->with('success', 'Los Datos de la Reserva se Editaron con exito');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
+
         $reservadelete = Reserva::find($id);
         $reservadelete->delete();
         $estacionamiento = Estacionamiento::findorFail($reservadelete->estacionamiento_ID);
@@ -172,5 +170,6 @@ class ReservaController extends Controller
             'capacidad_actual' => $estacionamiento->capacidad_actual + 1,
         ]);
         return redirect()->route('Reserva.index')->with('success delete', 'Se Elimino correctamente la Reserva');
+
     }
 }

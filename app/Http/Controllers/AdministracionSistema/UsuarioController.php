@@ -5,7 +5,6 @@ namespace App\Http\Controllers\AdministracionSistema;
 use App\Http\Controllers\Controller;
 use App\Models\TipoDocumento;
 use App\Models\Usuario;
-use App\Rules\PasswordSistema;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -54,7 +53,7 @@ class UsuarioController extends Controller
             'documento' => 'required|max:50|unique:usuarios',
             'foto' => 'image|max:5120',
             'rol' => ['required', Rule::in(['Usuario Natural', 'Administrador Estacionamiento', 'Administrador Sistema'])],
-            'password' => ['required', 'confirmed', PasswordSistema::defaults()->mixedCase()->letters()->numbers()->symbols()->spaces()]
+            'password' => ['required', 'confirmed', Rules\Password::defaults()]
         ]);
 
         if ($imagen = $request->file('foto')) {
@@ -181,7 +180,7 @@ class UsuarioController extends Controller
     public function cambiarpassword(Request $request, $id)
     {
         $request->validate([
-            'password' => ['required', 'confirmed', PasswordSistema::defaults()->mixedCase()->letters()->numbers()->symbols()->spaces()]
+            'password' => ['required', 'confirmed', Rules\Password::defaults()]
         ]);
         if($usuariocontraseña = Usuario::find($id)){
             $usuariocontraseña->update(['password'=>Hash::make($request->password)]);
