@@ -189,3 +189,11 @@ Control de Reservaciones
     </div>
 </div> --}}
 @endsection
+@section('myscript')
+    <!-- BOTON SEARCH TABLA -->
+    <script>
+        $(document).ready(function() {
+            $('#tableReserva').DataTable();
+        } );
+    </script>
+@endsection

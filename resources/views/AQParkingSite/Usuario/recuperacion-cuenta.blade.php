@@ -18,10 +18,11 @@
       </div>
       <div class="col-sm-6">
         <h2 class="fw-bold text-center py-5">Ingresa tu correo <i data-feather="arrow-down"></i></h2>
-        <form action="#">
+        <form method="post" action="{{route('RecuperarPassword')}}">
+        @csrf
           <div class="mb-4">
-            <label for="iptmail" class="form-label">Correo Electronico</label>
-            <input type="email" class="form-control" id="iptmailrecover" name="iptmailrecover"
+            <label for="email" class="form-label">Correo Electronico</label>
+            <input type="email" class="form-control" id="email" name="email"
               placeholder="name@example.com" required>
           </div>
           <div class="d-grid ">
