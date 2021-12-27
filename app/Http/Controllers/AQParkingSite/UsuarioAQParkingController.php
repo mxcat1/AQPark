@@ -93,7 +93,7 @@ class UsuarioAQParkingController extends Controller
             'marcaVehiculo' => 'required|string|max:30',
             'modeloVehiculo' => 'required|string|max:30',
             'colorVehiculo' => 'required|string|max:30',
-            'placaVehiculo' => 'required|regex:/^[A-Z]{3}[-][0-9]{3}$/',
+            'placaVehiculo' => 'required|string|min:7|regex:/^[A-Z0-9]{3}-[0-9]{3}$/|unique:vehiculos',
         ]);
 
         Vehiculo::create([
