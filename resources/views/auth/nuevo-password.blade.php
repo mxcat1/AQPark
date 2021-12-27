@@ -1,7 +1,7 @@
 @extends('AQParkingAdmin.layouts._layoutBlank')
 
 @section('title')
-    Login Administrador - AQParking
+    Restablecer Contraseña - AQParking
 @endsection
 
 @section('content')
@@ -14,17 +14,13 @@
                 <div class="card-body p-6">
                     <div class="mb-4 text-center">
                         <a href="#" class="navbar-brand"><span style="font-size:30px">AQParking</span></a>
-                        <p class="mb-6">Login Para el Administrador del Sistema</p>
+                        <p class="mb-6">Restablecer Contraseña del Administrador</p>
                     </div>
-                    @if($mensaje=Session::get('Mensaje succes'))
-                        <div class="alert alert-success">
-                            <p>{{$mensaje}}</p>
-                        </div>
-                    @endif
                     <!-- Form -->
-                    <form method="post" action="{{route('LoginAutenticacion')}}">
-                        @csrf
-                        <!-- Username -->
+                    <form method="post" action="{{route('password.update')}}">
+                    @csrf
+                    <!-- Username -->
+                        <input type="hidden" name="token" value="{{$request->route('token')}}">
                         <div class="mb-3">
                             <label for="email" class="form-label">Correo Electronico</label>
                             <input type="email" id="email" class="form-control" name="email" placeholder="Direccion de Correo Electronico" required="">
@@ -34,30 +30,29 @@
                         </div>
                         <!-- Password -->
                         <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña</label>
+                            <label for="password" class="form-label">Nueva Contraseña</label>
                             <input type="password" id="password" class="form-control" name="password" placeholder="**************" required="">
                             @error('password')
                             <small class="text-danger">{{$message}}</small>
                             @enderror
                         </div>
-                        <!-- Checkbox -->
-                        <div class="d-lg-flex justify-content-between align-items-center mb-4">
-                            <div class="form-check custom-checkbox">
-                                <input type="checkbox" class="form-check-input" id="remember_me" name="remember">
-                                <label class="form-check-label" for="remember_me">Recordarme</label>
-                            </div>
-
+                        <div class="mb-3">
+                            <label for="password_confirmation" class="form-label">Confirmar Nueva Contraseña</label>
+                            <input type="password" id="password_confirmation" class="form-control" name="password_confirmation" placeholder="**************" required="">
+                            @error('password')
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
-                            @include('AQParkingAdmin.partials.vererrores')
+                        @include('AQParkingAdmin.partials.vererrores')
                         <div>
                             <!-- Button -->
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Iniciar Sessión</button>
+                                <button type="submit" class="btn btn-primary">Restablecer Contraseña</button>
                             </div>
 
                             <div class="d-md-flex justify-content-end mt-4">
                                 <div>
-                                    <a href="{{route('RecuperarPassword')}}" class="text-inherit fs-5">Recuperar Contraseña</a>
+                                    <a href="{{route('inicio')}}" class="text-inherit fs-5">Volver</a>
                                 </div>
                             </div>
                         </div>
