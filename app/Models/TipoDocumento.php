@@ -22,6 +22,6 @@ class TipoDocumento extends Model
 
     public function Usuarios()
     {
-        return $this->hasMany(Usuario::class);
+        return $this->hasMany(Usuario::class,'usuario_ID', 'usuario_ID');
     }
 }

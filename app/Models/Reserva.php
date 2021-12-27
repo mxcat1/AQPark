@@ -21,8 +21,9 @@ class Reserva extends Model
         'ingreso',
         'salida',
         'cantidad_horas',
-        'precio'
+        'precio_total'
     ];
+    protected $perPage = 10;
 
     /*
      * Relaciones

@@ -26,6 +26,6 @@ class Vehiculo extends Model
 
     public function Reserva()
     {
-        return $this->hasMany(Reserva::class);
+        return $this->hasMany(Reserva::class,'reserva_ID', 'reserva_ID');
     }
 }

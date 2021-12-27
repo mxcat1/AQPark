@@ -67,7 +67,11 @@
                                             <td>{{$item->marca}}</td>
                                             <td>{{$item->color}}</td>
                                             <td>{{$item->placa}}</td>
-                                            <td>{{$item->usuario->nombre}} {{$item->usuario->apellido}}</td>
+                                            <td>
+                                                <a href="{{route('Usuario.show',$item->usuario->usuario_ID)}}" title="Detalle del Propietario">
+                                                    {{$item->usuario->nombre}} {{$item->usuario->apellido}}
+                                                </a>
+                                            </td>
                                             <td class="d-flex justify-content-center">
                                                 <a href="{{route('Vehiculo.edit',$item->vehiculo_ID)}}" title="Editar Datos del Vehiculo" class="btn btn-info mx-1">
                                                     <i data-feather="edit" class="icon-xs"></i>

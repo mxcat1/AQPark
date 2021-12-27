@@ -20,10 +20,10 @@ class Reserva extends Migration
             $table->unsignedBigInteger('vehiculo_ID')->nullable();
             $table->dateTime('fecha');
             $table->enum('estado',['Reservado','Reserva en Espera','Reserva Activa','Reserva Concluida'])->default('Reservado');
-            $table->datetime('ingreso');
-            $table->datetime('salida');
-            $table->integer('cantidad_horas');
-            $table->float('precio',16,4);
+            $table->datetime('ingreso')->nullable();;
+            $table->datetime('salida')->nullable();;
+            $table->integer('cantidad_horas')->default(0)->nullable();
+            $table->float('precio_total',16,4)->default(0)->nullable();
             $table->timestamps();
 
             $table->foreign('estacionamiento_ID')->references('estacionamiento_ID')->on('estacionamientos')->onDelete('cascade');

@@ -1,10 +1,14 @@
 <?php
 
 use App\Http\Controllers\AdministracionSistema\AutenticateAdminController;
+use App\Http\Controllers\AdministracionSistema\EstacionamientoController;
 use App\Http\Controllers\AdministracionSistema\InicioController;
+use App\Http\Controllers\AdministracionSistema\ReservaController;
 use App\Http\Controllers\AdministracionSistema\TipoDocumentoController;
 use App\Http\Controllers\AdministracionSistema\UsuarioController;
 use App\Http\Controllers\AdministracionSistema\VehiculoController;
+
+//Controladores de AqparkingSite
 use App\Http\Controllers\AQParkingSite\AQParkingController;
 use App\Http\Controllers\AQParkingSite\AutenticacionUserController;
 use App\Http\Controllers\AQParkingSite\EstacionamientoAQParkingController;
@@ -17,7 +21,6 @@ use App\Http\Controllers\Auth\RecuperarPassword;
 use App\Http\Controllers\Auth\RecuperarPasswordUsuarioController;
 use App\Http\Controllers\Auth\RestablecerPassword;
 use App\Http\Controllers\Auth\RestablecerPasswordUsuarioController;
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,7 +38,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/Admin-Dashboard',[InicioController::class,'index'])->name('inicio')->middleware('authrol');
 
-
 Route::resource('/Admin-Dashboard/TipoDocumento',TipoDocumentoController::class)->middleware('authrol');
 Route::resource('/Admin-Dashboard/Usuario',UsuarioController::class)->middleware('authrol');
 Route::resource('/Admin-Dashboard/Vehiculo',VehiculoController::class)->middleware('authrol');
@@ -48,7 +50,6 @@ Route::put('/Admin-Dashboard/Usuario/CambiarPassword/{Usuario}',[UsuarioControll
 Route::get('/Admin-Dashboard/login-administrador-sistema',[AutenticateAdminController::class,'login'])->name('LoginAdministrador')->middleware('logincontrol');
 Route::post('/iniciarsession',[AutenticateAdminController::class,'autenticate'])->name('LoginAutenticacion')->middleware('logincontrol');;
 Route::post('/cerrarsession',[AutenticateAdminController::class,'logout'])->name('LoginDesautenticacion')->middleware('authrol');
-
 
 //Rutas para Recuperar Contraseña Area de Administracion del Sistema
 Route::get('/Recuperar-Contraseña',[RecuperarPassword::class,'index'])->name('RecuperarPassword')->middleware('guest');
@@ -72,6 +73,7 @@ Route::get('/verify-email/{id}/{hash}', [\App\Http\Controllers\Auth\Verificacion
 Route::post('/email/verification-notification', [\App\Http\Controllers\Auth\VerificacionCorreoNotificacionController::class, 'store'])
     ->middleware(['auth', 'throttle:6,1'])
     ->name('verification.send');
+
 
 // RUTAS AQParkingSite
 
