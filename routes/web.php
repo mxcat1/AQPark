@@ -17,6 +17,8 @@ use App\Http\Controllers\AQParkingSite\ReservaParkingController;
 use App\Http\Controllers\AQParkingSite\UsuarioAQParkingController;
 
 use App\Http\Controllers\AQParkingSistema\InicioAqparkingController;
+use App\Http\Controllers\Auth\RecuperarPassword;
+use App\Http\Controllers\Auth\RestablecerPassword;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +48,29 @@ Route::put('Usuario/CambiarPassword/{Usuario}',[UsuarioController::class,'cambia
 Route::get('/login-administrador-sistema',[AutenticateAdminController::class,'login'])->name('LoginAdministrador')->middleware('logincontrol');
 Route::post('/iniciarsession',[AutenticateAdminController::class,'autenticate'])->name('LoginAutenticacion')->middleware('logincontrol');;
 Route::post('/cerrarsession',[AutenticateAdminController::class,'logout'])->name('LoginDesautenticacion')->middleware('authrol');
+
+//Rutas para Recuperar y verificar Correo
+Route::get('/Recuperar-Contraseña',[RecuperarPassword::class,'index'])->name('RecuperarPassword')->middleware('guest');
+Route::post('/Recuperar-Contraseña',[RecuperarPassword::class,'store'])->name('RecuperarPassword.email')->middleware('guest');
+Route::get('/Recuperar-Contraseña-Notificacion',[RecuperarPassword::class,'respuesta'])->name('RecuperarPassword.notificacion')->middleware('guest');
+
+//Rutas para Reiniciar Contraseña
+Route::get('/Restablecer-Contraseña/{token}',[RestablecerPassword::class,'index'])->name('password.reset')->middleware('guest');
+Route::post('/Restablecer-Contraseña',[RestablecerPassword::class,'store'])->name('password.update')->middleware('guest');
+
+//Verificacion de Correo
+
+Route::get('/verify-email', [\App\Http\Controllers\Auth\VerificacionCorreoPromptController::class, '__invoke'])
+    ->middleware('auth')
+    ->name('verification.notice');
+
+Route::get('/verify-email/{id}/{hash}', [\App\Http\Controllers\Auth\VerificacionCorreoController::class, '__invoke'])
+    ->middleware(['auth', 'signed', 'throttle:6,1'])
+    ->name('verification.verify');
+
+Route::post('/email/verification-notification', [\App\Http\Controllers\Auth\VerificacionCorreoNotificacionController::class, 'store'])
+    ->middleware(['auth', 'throttle:6,1'])
+    ->name('verification.send');
 
 
 // RUTAS AQParkingSite

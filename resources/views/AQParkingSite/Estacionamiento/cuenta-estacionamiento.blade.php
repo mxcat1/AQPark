@@ -7,16 +7,16 @@
 @section('content')
     <!-- BODY -->
     <h2 class="text-center my-5 text-uppercase">{{$parking->nombre}}</h2>
-    <div class="container py-5 my-5">        
+    <div class="container py-5 my-5">
         <div class="row">
             @if ($message = Session::get('success'))
                     <div class="alert alert-success">
                         <p>{{ $message }}</p>
                     </div>
-            @endif  
-            @include('AQParkingSite.Mensajes.error') 
+            @endif
+            @include('AQParkingSite.Mensajes.error')
             <div class="col-sm-4">
-                <img class="img-fluid" src="{{asset('images/usuarioimg/' . $parking->foto)}}" alt="estacionamiento" width="400" height="600">
+                <img class="img-fluid" src="{{asset('images/estacionamientos/' . $parking->foto)}}" alt="estacionamiento" width="400" height="600">
                 <hr class="d-sm-none ">
                 <form action="{{route('cambiofoto',$parking->estacionamiento_ID)}}" class="mb-2" method="post" enctype="multipart/form-data">
                     @csrf
@@ -37,7 +37,7 @@
                         <p class="fw-bolder fs-6">Referencia:</p>
                         <p id="referenciapark" name="referenciapark">{{$parking->referencia}}</p>
                     </div>
-                        <div class="col-12 mb-3">    
+                        <div class="col-12 mb-3">
                         <button type="button" class="btn btn-primary my-2" id="modaldirection" name="modaldirection"
                             data-bs-toggle="modal" data-bs-target="#modaldirpark">Actualizar Dirección y/o Referencia</button>
                     </div>
@@ -110,7 +110,7 @@
                                     placeholder="Nombre" required >
                             </div>
                         </div>
-                        
+
                         <button type="submit" class="btn btn-primary my-3" id="btm-routeupdate"
                             name="btn-routeupdate">Actualizar</button>
                         <button type="reset" class="btn btn-danger my-3" id="btm-clearroute"
