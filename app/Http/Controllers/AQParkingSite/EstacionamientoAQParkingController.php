@@ -8,6 +8,8 @@ use App\Models\Reserva;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class EstacionamientoAQParkingController extends Controller
 {
@@ -169,9 +171,17 @@ class EstacionamientoAQParkingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updatestado(Request $request, $estacionamiento_ID)
     {
-        //
+        $request->validate([
+            'estado' => ['required', Rule::in(['Activo', 'Clausurado', 'Sin Servicio', 'Abierto', 'Cerrado', 'Falta Verificar'])],
+
+        ]);
+
+        $parking=Estacionamiento::findOrFail($estacionamiento_ID);
+        $parking->estado=$request->estado;
+        $parking->update();
+        return redirect()->route('cuenta-estacionamientoAQParking',Crypt::encrypt(Auth::user()->usuario_ID))->with('success', 'Se actualizo el estado del estacionamiento');    
     }
 
     /**
