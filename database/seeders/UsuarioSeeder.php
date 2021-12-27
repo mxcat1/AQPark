@@ -16,9 +16,9 @@ class UsuarioSeeder extends Seeder
     public function run()
     {
         Usuario::create([
-            'nombre' => 'Jose Alberto',
-            'apellido' => 'Chavez Paredes',
-            'email' => 'j.chavez.paredes@gmail.com',
+            'nombre' => 'Administrador',
+            'apellido' => 'Administrador',
+            'email' => 'aqparkingadmin@aqparking.tk',
             'telefono' => '958305428',
             'tipo_docu_ID' => 1,
             'documento' => '78451296',

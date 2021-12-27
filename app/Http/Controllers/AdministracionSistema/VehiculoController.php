@@ -92,13 +92,25 @@ class VehiculoController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        $request->validate([
-//            'modelo' => 'required|string|max:150',
-//            'marca' => 'required|string|max:150',
-//            'color' => 'required|string|max:100',
-//            'placa' => 'required|string|min:7|regex:/^[A-Z0-9]{3}-[0-9]{3}$/',
-//            'usuario' => 'required|exists:usuarios,usuario_ID',
-//        ]);
+        $request->validate([
+            'modelo' => 'required|string|max:150',
+            'marca' => 'required|string|max:150',
+            'color' => 'required|string|max:100',
+            'placa' => 'required|string|min:7|regex:/^[A-Z0-9]{3}-[0-9]{3}$/',
+            'usuario' => 'required|exists:usuarios,usuario_ID',
+        ]);
+        if($vehiculo = Vehiculo::find($id)){
+            $vehiculo->update([
+                'marca' => $request->marca,
+                'modelo' => $request->modelo,
+                'color' => $request->color,
+                'placa' => $request->placa,
+                'usuario_ID' => $request->usuario
+            ]);
+            return redirect()->route('Vehiculo.index')->with('success', 'Se Actualizo correctamente los datos del Vehiculo');
+        }else{
+            return redirect()->route('Vehiculo.index')->with('success', 'Vehiculo Eliminado anteriormente no se efectuo la actualizacion');
+        }
     }
 
     /**

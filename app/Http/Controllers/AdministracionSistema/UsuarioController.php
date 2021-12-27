@@ -50,7 +50,7 @@ class UsuarioController extends Controller
             'email' => 'required|string|email|max:255|unique:usuarios',
             'telefono' => 'digits_between:8,12',
             'tipo_documento' => 'required|exists:tipo_documentos,tipo_docu_ID',
-            'documento' => 'required|max:50',
+            'documento' => 'required|max:50|unique:usuarios',
             'foto' => 'image|max:5120',
             'rol' => ['required', Rule::in(['Usuario Natural', 'Administrador Estacionamiento', 'Administrador Sistema'])],
             'password' => ['required', 'confirmed', Rules\Password::defaults()]

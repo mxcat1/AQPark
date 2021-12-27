@@ -87,11 +87,23 @@ Registro de estacionamiento
                         </div>
                         <div class="mb-4">
                             <label for="distrito" class="form-label">Distrito</label>
-                            <select class="form-select" aria-label="distrito" id="distrito" name="distrito" required>
-                                <option selected>Selecciona un distrito</option>
-                                <option value="Arequipa">Arequipa</option>
-                                <option value="Cayma">Cayma</option>
-                            </select>
+                            <input type="text" class="form-control" id="distrito" name="distrito" readonly
+                                   placeholder="Distrito" value="{{old('distrito')}}">
+                        </div>
+                        <div class="mb-4">
+                            <div class="row time">
+                                <label for="horario" class="form-label">Coordenadas</label>
+                                <div class="col-6">
+                                    <label for="latitud" class="form-label">Latitud</label>
+                                    <input type="text" class="timepicker form-control" id="latitud" name="latitud" readonly
+                                           placeholder="Latitud" value="{{old('latitud')}}">
+                                </div>
+                                <div class="col-6">
+                                    <label for="longitud" class="form-label">Longitud</label>
+                                    <input type="text" class="timepicker form-control" id="longitud" name="longitud" readonly
+                                           placeholder="Longitud" value="{{old('longitud')}}">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -101,7 +113,7 @@ Registro de estacionamiento
                             <label for="refEstacionamiento" class="form-label">Referencia</label>
                             <input type="text" class="form-control" id="refEstacionamiento" name="refEstacionamiento"
                                 placeholder="Escriba una referencia" value="{{old('refEstacionamiento')}}">
-                        </div>                        
+                        </div>
                         <div class="mb-4">
                             <label for="precioEstacionamiento" class="form-label">Precio</label>
                             <input type="number" step="0.01" class="form-control" id="precioEstacionamiento"
@@ -137,11 +149,16 @@ Registro de estacionamiento
                 </div>
                 <div class="col-12">
                     <div class="mb-3">
+                        <div class="mb3">
+                            <label class="form-label fw-bold" for="geolocalizacion">Indique un Lugar o distrito, ETC cercano al Estacionamiento Buscado</label>
+                            <div class="my-2 d-flex justify-content-around align-items-center">
+                                <input type="text" class="form-control" id="buscarlugar" placeholder="Indique el Lugar cercano del Estacionamiento">
+                                <button type="button" class="btn btn-primary" id="geolocalizacion">Ubicar Estacionamiento</button>
+                            </div>
+
+                        </div>
                         <label class="form-label mb-3">Ubique el estacionamiento en el mapa </label><br>
-                        <div>
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d116862.54554679655!2d90.40409584970706!3d23.749000170125925!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1550040341458"
-                                width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        <div id="mapa" style="height: 500px">
                         </div>
                     </div>
                 </div>
@@ -195,4 +212,69 @@ Registro de estacionamiento
     </div>
 </div>
 <!-- FIN MODAL TYC -->
+@endsection
+@section('myscript')
+    <script>
+        $(document).ready(function() {
+            let apitoken = 'pk.eyJ1IjoibXhjYXQiLCJhIjoiY2t3Y3ZubXBiNGQ4YjJubHR4OWcwenYyeiJ9.emfhV6yYgCju_K58wcRxNA';
+
+
+            function geoFindMe() {
+
+                if (!navigator.geolocation){
+                    alert('ERROR(' + error.code + '): ' + error.message);
+                    return;
+                }
+
+                function success(position) {
+                    let l1=position.coords.latitude;
+                    let l2=position.coords.longitude;
+                    let mymap = L.map('mapa').setView([l1, l2], 15);
+                    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXhjYXQiLCJhIjoiY2t3Y3ZubXBiNGQ4YjJubHR4OWcwenYyeiJ9.emfhV6yYgCju_K58wcRxNA', {
+                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                        maxZoom: 18,
+                        id: 'mapbox/streets-v11',
+                        tileSize: 512,
+                        zoomOffset: -1
+                    }).addTo(mymap);
+                    let marcadoresta = L.marker([l1, l2],{draggable:true}).addTo(mymap);
+                    marcadoresta.bindPopup("Indica la Ubicacion del Estacionamiento Arrastrando el marcador").openPopup();
+                    marcadoresta.on('dragend',function () {
+                        $('#longitud').val(marcadoresta.getLatLng().lng);
+                        $('#latitud').val(marcadoresta.getLatLng().lat);
+                        $.ajax({
+                            url:`https://api.mapbox.com/geocoding/v5/mapbox.places/${marcadoresta.getLatLng().lng}%2C%20${marcadoresta.getLatLng().lat}.json?access_token=${apitoken}`,
+                            success: function (result) {
+                                $('#distrito').val(result.features[1].text)
+                            },
+                            error: function () {
+                                alert('Error Lugar no encontrado')
+                            }
+                        })
+                    })
+                    $('#geolocalizacion').click(function() {
+                        let buscar=$('#buscarlugar').val();
+                        $.ajax({
+                            url:`https://api.mapbox.com/geocoding/v5/mapbox.places/${buscar}.json?access_token=${apitoken}`,
+                            success: function (result) {
+                                // console.log(result.features[0].center[0])
+                                marcadoresta.setLatLng([result.features[0].center[1],result.features[0].center[0]]);
+                                mymap.setView([result.features[0].center[1],result.features[0].center[0]],13)
+                            },
+                            error: function () {
+                                alert('Error Lugar no encontrado')
+                            }
+                        })
+                    });
+                }
+
+                function error() {
+                    alert('ERROR(' + error.code + '): ' + error.message);
+                }
+
+                navigator.geolocation.getCurrentPosition(success, error);
+            }
+            geoFindMe();
+        })
+    </script>
 @endsection

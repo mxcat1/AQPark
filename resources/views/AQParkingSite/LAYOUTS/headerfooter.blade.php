@@ -12,6 +12,13 @@
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
+    {{--    Libreria Leaflet.js --}}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
     <!--flatpickr time picker CSS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <title>AQParking - @yield('title')</title>
@@ -36,10 +43,10 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                <form class="d-flex my-2 my-lg-0 ms-auto">
+                <form class="d-flex my-2 my-lg-0 ms-auto" action="{{route('main-pageAQParking')}}" method="get">
                     <div class="input-group mb-3 my-sm-3">
                         <input class="form-control" type="search" placeholder="Search" aria-label="Search"
-                            aria-describedby="barrabuscarheader">
+                            aria-describedby="barrabuscarheader" name="buscar">
                         <button class="btn btn-primary" type="submit" id="barrabuscarheader"><i
                                 data-feather="search"></i></button>
                     </div>
@@ -66,12 +73,12 @@
                                 @if(Auth::user()->rol == 'Administrador Estacionamiento')
                                 <li class="nav-item">
                                     <a class="dropdown-item"
-                                        href="{{route('cuenta-estacionamientoAQParking',Auth::user()->usuario_ID)}}">Estacionamiento
+                                        href="{{route('cuenta-estacionamientoAQParking',Crypt::encrypt(Auth::user()->usuario_ID))}}">Estacionamiento
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="dropdown-item"
-                                        href="{{route('control-reservasAQParking',Auth::user()->usuario_ID)}}">Reservaciones
+                                        href="{{route('control-reservasAQParking',Crypt::encrypt(Auth::user()->usuario_ID))}}">Reservaciones
                                     </a>
                                 </li>
                                 @endif
@@ -234,11 +241,5 @@
 </script>
 <!-- FIN MODAL TYC -->
 
-<!-- BOTON SEARCH TABLA -->
-<script>
-    $(document).ready(function() {
-    $('#tableReserva').DataTable();
-} );
-</script>
-
+@yield('myscript')
 </html>

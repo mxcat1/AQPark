@@ -21,22 +21,21 @@ Confirmación de Reservación
                                 <tr>
                                     <td>
                                         <div class="py-2"> <span class="d-block text-muted">Estacionamiento</span>
-                                            <span>ALEMERCED</span> </div>
+                                            <span>{{$parking->nombre}}</span> </div>
                                     </td>
                                     <td>
-                                        <div class="py-2"> <span class="d-block text-muted">Fecha</span> <span> 10 de
-                                                diciembre de 2021</span> </div>
+                                        <div class="py-2"> <span class="d-block text-muted">Fecha</span> <span> {{ $fecha_actual }} </span> </div>
                                     </td>
                                     <td>
                                         <div class="py-2"> <span class="d-block text-muted">Dirección</span> <span>
-                                                Calle la Merced 540 </span> </div>
+                                            {{$parking->direccion}} </span> </div>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
-                    <a href="index.html" class="card-link">
+                    <a href="{{route('main-pageAQParking')}}" class="card-link">
                         Inicio</a>
 
                 </div>

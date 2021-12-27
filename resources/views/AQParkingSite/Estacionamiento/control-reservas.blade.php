@@ -7,18 +7,26 @@ Control de Reservaciones
 @section('content')
 <!-- BODY -->
 <h2 class="text-center my-5 text-uppercase">historial de reservaciones <br> en {{$parking->nombre}}</h2>
+@if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
+                    </div>
+                    @elseif($message = Session::get('success delete'))
+                    <div class="alert alert-danger my-3">
+                        <p>{{ $message }}</p>
+                    </div>
+            @endif
+            @include('AQParkingSite.Mensajes.error')
 
 <div class="container py-5 my-5">
-    <form class="d-inline-flex my-2 my-lg-0 ms-auto">
+    {{-- <form class="d-inline-flex my-2 my-lg-0 ms-auto">
         <div class="input-group  mb-3 my-sm-3">
             <input class="form-control" type="search" placeholder="Busque por DNI" aria-label="Search"
                 aria-describedby="barrabuscarheader">
             <button class="btn btn-primary" type="submit" id="barrabuscarheader"><i data-feather="search"></i></button>
         </div>
-    </form>
+    </form> --}}
     <div style="overflow-x:auto;">
-        {{-- <h1>{{ $reservas->reserva_ID}}</h1> --}}
-
         <table class="table align-middle" id="tableReserva">
             <thead>
                 <tr>
@@ -37,23 +45,27 @@ Control de Reservaciones
                 @if ($reserva->estacionamiento_ID == $parking->estacionamiento_ID)
                 <tr>
                     <th scope="row">{{ $reserva->reserva_ID}}</th>
-                    <td>{{ $reserva->estacionamiento_ID}}</td>
-                    <td>{{ $reserva->vehiculo_ID}}</td>
+                    <td>{{ $reserva->Estacionamiento->nombre}}</td>
+                    <td>{{ $reserva->Vehiculo->placa}}</td>
                     <td>{{ $reserva->fecha}}</td>
                     <td>{{ $reserva->estado}}</td>
                     <td>{{ $reserva->ingreso}}</td>
                     <td>{{ $reserva->salida}}</td>
-                    <td>
+                    <td class="d-flex">
                         <span data-bs-toggle="modal" data-bs-target="#editarReserva">
-                            <button type="button" class="btn btn-warning btn-sm px-3" data-bs-toggle="tooltip"
-                                data-bs-placement="top" title="Editar reserva">
+                            <a href="{{route('reserva-show',$reserva->reserva_ID)}}">
+                            <button type="button" class="btn btn-warning btn-sm mx-1 p-2" title="Editar reserva">
                                 <i data-feather="edit"></i>
                             </button>
+                            </a>
                         </span>
-                        <button type="button" class="btn btn-danger btn-sm px-3" data-bs-toggle="tooltip"
-                            data-bs-placement="top" title="Cancelar reserva">
-                            <i data-feather="delete"></i>
-                        </button>
+                        <form action="{{ route('reserva-delete',$reserva->reserva_ID) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('¿Esta seguro de eliminar esta Reserva?');" class="btn btn-danger delete mx-1" >
+                                <i data-feather="delete"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endif
@@ -61,7 +73,8 @@ Control de Reservaciones
             </tbody>
         </table>
     </div>
-    <div class="button-add mt-5">
+    <img src="{{asset('img/logo.png')}}" title="logo AQPparking" alt="logo AQPparking" class="img-fluid mt-5 d-none  d-xxl-block mx-auto mt-5 mb-3">
+    {{-- <div class="button-add mt-5">
         <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#reservaRegistro">Agregar
             reserva</button>
         <div class="modal fade" id="reservaRegistro" tabindex="-1" aria-labelledby="reservaRegistro" aria-hidden="true">
@@ -117,13 +130,13 @@ Control de Reservaciones
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 
 <!-- MODAL PARA EDITAR -->
 
 
-<div class="modal fade" id="editarReserva" tabindex="-1" aria-labelledby="editarReserva" aria-hidden="true">
+{{-- <div class="modal fade" id="editarReserva" tabindex="-1" aria-labelledby="editarReserva" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <form>
@@ -174,5 +187,13 @@ Control de Reservaciones
             </form>
         </div>
     </div>
-</div>
+</div> --}}
+@endsection
+@section('myscript')
+    <!-- BOTON SEARCH TABLA -->
+    <script>
+        $(document).ready(function() {
+            $('#tableReserva').DataTable();
+        } );
+    </script>
 @endsection

@@ -16,6 +16,16 @@
     <link rel="stylesheet" href="{{asset('libs/prismjs/plugins/toolbar/prism-toolbar.css')}}">
     <link rel="stylesheet" href="{{asset('libs/bootstrap-icons/font/bootstrap-icons.css')}}">
     <link rel="stylesheet" href="{{asset('libs/dropzone/dist/dropzone.css')}}">
+{{--    <link rel="stylesheet" href="{{asset('libs/leafletjs/leaflet.css')}}">--}}
+{{--    Libreria Leaflet.js --}}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+
+
     <link href="{{asset('libs/@mdi/font/css/materialdesignicons.min.css')}}" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css">

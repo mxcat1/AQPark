@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\AQParkingSite;
 
 use App\Http\Controllers\Controller;
+use App\Models\Reserva;
 use App\Models\Usuario;
 use App\Models\Estacionamiento;
 use App\Models\Vehiculo;
 use App\Models\TipoDocumento;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
@@ -25,10 +27,10 @@ class UsuarioAQParkingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $parkingLots = Estacionamiento::all();
+        $buscar = trim($request->get('buscar'));
+        $parkingLots=Estacionamiento::where('nombre','like','%'.$buscar.'%')->get();
         return view('AQParkingSite.Index.principal', compact('parkingLots'));
     }
 
@@ -59,7 +61,7 @@ class UsuarioAQParkingController extends Controller
             'email' => 'required|string|email|max:76|unique:usuarios',
             'foto' => 'image|max:5120',
             'tipo_documento' => 'required|exists:tipo_documentos,tipo_docu_ID',
-            'documento' => 'required|digits_between:8,9|unique:usuarios',            
+            'documento' => 'required|digits_between:8,9|unique:usuarios',
             // 'rol' => ['required', Rule::in(['Usuario Natural', 'Administrador Estacionamiento', 'Administrador Sistema'])],
             'telefono' => 'digits:9',
             'password' => ['required','regex:/^\S+$/', 'confirmed', Rules\Password::defaults()]
@@ -78,7 +80,7 @@ class UsuarioAQParkingController extends Controller
             'foto' => $nombreimagen,
             'telefono' => $request->telefono,
             'tipo_docu_ID' => $request->tipo_documento,
-            'documento' => $request->documento,            
+            'documento' => $request->documento,
             'rol' => 'Usuario Natural',
             'password' => Hash::make($request->password),
         ]);
@@ -93,7 +95,7 @@ class UsuarioAQParkingController extends Controller
             'marcaVehiculo' => 'required|string|max:30',
             'modeloVehiculo' => 'required|string|max:30',
             'colorVehiculo' => 'required|string|max:30',
-            'placaVehiculo' => 'required|regex:/^[A-Z]{3}[-][0-9]{3}$/',
+            'placaVehiculo' => 'required|regex:/^[A-Z0-9]{3}[-][0-9]{3}$/|unique:vehiculos,placa',
         ]);
 
         Vehiculo::create([
@@ -120,11 +122,20 @@ class UsuarioAQParkingController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function show()
+
+    public function show(Request $request)
     // public function show($id)
     {
-        return view('AQParkingSite.Usuario.cuenta-usuario');
+        $estacionamientos=Estacionamiento::all();
+//        $reservas=Reservas::where()->get();
+        $año=$request->get('año');
+        $mes=$request->get('mes');
+        $idestacionamiento = $request->get('buscarparking')?Crypt::decrypt($request->get('buscarparking')):null;
+        $reservas=Reserva::Anio($año)->Mes($mes)->BuscarParking($idestacionamiento)->ReservasUsuario()->paginate(2);
+//        dd($idestacionamiento);
+        return view('AQParkingSite.Usuario.cuenta-usuario', compact('estacionamientos','reservas'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -200,5 +211,17 @@ class UsuarioAQParkingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function vehiculo_destroy($id)
+    {
+        $vehiculo = Vehiculo::find($id);
+        $reservas=Reserva::where('vehiculo_ID',$vehiculo->vehiculo_ID)->count();
+        if ($reservas>0){
+            return redirect()->route('cuenta-usuarioAQParking')->with('success delete', 'No se Puede Eliminar este Vehiculo por que esta registrado en una o Mas Reservas');
+        }else{
+            $vehiculo->delete();
+            return redirect()->route('cuenta-usuarioAQParking')->with('success delete', 'Se Elimino correctamente el Vehiculo');
+        }
     }
 }
