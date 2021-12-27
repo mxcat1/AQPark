@@ -175,7 +175,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="placaVehiculo" class="form-label">Placa vehicular</label>
-                                                <input type="text" class="form-control" id="placaVehiculo" name="placaVehiculo"
+                                                <input type="text" class="form-control" id="placa" name="placa"
                                                     placeholder="XXX-123" required>
                                             </div>
                                             <div class="d-grid ">

@@ -93,7 +93,7 @@ class UsuarioAQParkingController extends Controller
             'marcaVehiculo' => 'required|string|max:30',
             'modeloVehiculo' => 'required|string|max:30',
             'colorVehiculo' => 'required|string|max:30',
-            'placaVehiculo' => 'required|string|min:7|regex:/^[A-Z0-9]{3}-[0-9]{3}$/|unique:vehiculos',
+            'placa' => 'required|regex:/^[A-Z0-9]{3}[-][0-9]{3}$/|unique:vehiculos',
         ]);
 
         Vehiculo::create([
@@ -101,7 +101,7 @@ class UsuarioAQParkingController extends Controller
             'marca' => $request->marcaVehiculo,
             'modelo' => $request->modeloVehiculo,
             'color' => $request->colorVehiculo,
-            'placa' => $request->placaVehiculo,
+            'placa' => $request->placa,
         ]);
 
         return redirect()->back()->with('success', 'Vehiculo Registrado');
