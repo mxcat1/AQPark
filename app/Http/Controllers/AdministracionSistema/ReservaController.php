@@ -9,6 +9,7 @@ use App\Models\Usuario;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class ReservaController extends Controller
 {
@@ -46,19 +47,27 @@ class ReservaController extends Controller
         $request->validate([
             'estacionamiento'=>['required','exists:estacionamientos,estacionamiento_ID'],
             'vehiculo'=>['required','exists:vehiculos,vehiculo_ID']
-        ]);
+        ]);        
 
         $estacionamientocapacidad=Estacionamiento::find($request->estacionamiento);
         $capacidad_actual=$estacionamientocapacidad->capacidad_actual;
         if ($capacidad_actual>0){
+            try{
+                DB::transaction(function () use ($request) {
             $reservanueva=Reserva::create([
                 'estacionamiento_ID'=>$request->estacionamiento,
                 'vehiculo_ID' =>$request->vehiculo,
                 'fecha' => date('Y-m-d H:i:s'),
             ]);
+            $estacionamientocapacidad=Estacionamiento::find($request->estacionamiento);
+        $capacidad_actual=$estacionamientocapacidad->capacidad_actual;
             $estacionamientocapacidad->update([
                 'capacidad_actual' => $capacidad_actual-1
             ]);
+        });
+        }catch(\Exception $e){
+            return redirect()->route('Reserva.index')->with('success delete','Error no se puede registrar la reserva porque no hay capacidad actual en el estacionamiento');
+        } 
             return redirect()->route('Reserva.index')->with('success','Nuevo Reserva Registrado Proceda a Efectuar el pago o Editar los datos');
         }else{
             return redirect()->route('Reserva.index')->with('success delete','Error no se puede registrar la reserva porque no hay capacidad actual en el estacionamiento');
@@ -69,6 +78,7 @@ class ReservaController extends Controller
     }
 
     /**
+     * 
      * Display the specified resource.
      *
      * @param int $id

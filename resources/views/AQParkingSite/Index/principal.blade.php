@@ -29,6 +29,9 @@
                                             <p class="card-text"><strong>Direccio: </strong><span id="dirplaya"
                                                     name="dirplaya">{{$parking->direccion}}</span>
                                             </p>
+                                            <p class="card-text"><strong>Estado: </strong><span id="dirplaya"
+                                                name="dirplaya">{{$parking->estado}}</span>
+                                        </p>
                                         </div>
                                         <div class="col-6">
                                             <p class="card-text"><strong>Precio: </strong><span id="priceplaya"
@@ -39,10 +42,10 @@
                                                     name="timeplaya">{{$parking->apertura}} - {{$parking->cierre}}</span></p>
                                         </div>
                                         <div class="col-12">
-                                            <a href="{{route('reserva-estacionamiento',$parking->estacionamiento_ID)}}"><button type="button"
+                                            <a href="{{route('reserva-estacionamiento',Crypt::encrypt($parking->estacionamiento_ID))}}"><button type="button"
                                                     class="btn btn-primary">Reservar</button></a>
 
-                                            <a href="{{route('estacionamientoAQParking',$parking->estacionamiento_ID)}}"><button type="button"
+                                            <a href="{{route('estacionamientoAQParking',Crypt::encrypt($parking->estacionamiento_ID))}}"><button type="button"
                                                     class="btn btn-success">Ver más</button></a>
                                         </div>
                                     </div>

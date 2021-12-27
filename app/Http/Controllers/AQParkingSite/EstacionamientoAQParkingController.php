@@ -7,6 +7,9 @@ use App\Models\Estacionamiento;
 use App\Models\Reserva;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class EstacionamientoAQParkingController extends Controller
 {
@@ -17,7 +20,8 @@ class EstacionamientoAQParkingController extends Controller
      */
     public function details($estacionamiento_ID)
     {
-        $parking=Estacionamiento::findOrFail($estacionamiento_ID);
+        $id_parking = Crypt::decrypt($estacionamiento_ID);
+        $parking=Estacionamiento::findOrFail($id_parking);
         return view('AQParkingSite.Estacionamiento.estacionamiento-descripcion', compact('parking'));
         
     }
@@ -135,13 +139,15 @@ class EstacionamientoAQParkingController extends Controller
 
     public function show($usuario_ID)
     {
-        $parking=Estacionamiento::findOrFail(Estacionamiento::where('usuario_ID',$usuario_ID)->first()->estacionamiento_ID);
+        $id = Crypt::decrypt($usuario_ID);
+        $parking=Estacionamiento::findOrFail(Estacionamiento::where('usuario_ID',$id)->first()->estacionamiento_ID);
         return view('AQParkingSite.Estacionamiento.cuenta-estacionamiento', compact('parking'));
     }
 
     public function control($usuario_ID)
     {
-        $parking=Estacionamiento::findOrFail(Estacionamiento::where('usuario_ID',$usuario_ID)->first()->estacionamiento_ID);
+        $id = Crypt::decrypt($usuario_ID);
+        $parking=Estacionamiento::findOrFail(Estacionamiento::where('usuario_ID',$id)->first()->estacionamiento_ID);        
         $reservas=Reserva::all();
         return view('AQParkingSite.Estacionamiento.control-reservas', compact('parking','reservas'));
         
@@ -165,9 +171,17 @@ class EstacionamientoAQParkingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updatestado(Request $request, $estacionamiento_ID)
     {
-        //
+        $request->validate([
+            'estado' => ['required', Rule::in(['Activo', 'Clausurado', 'Sin Servicio', 'Abierto', 'Cerrado', 'Falta Verificar'])],
+
+        ]);
+
+        $parking=Estacionamiento::findOrFail($estacionamiento_ID);
+        $parking->estado=$request->estado;
+        $parking->update();
+        return redirect()->route('cuenta-estacionamientoAQParking',Crypt::encrypt(Auth::user()->usuario_ID))->with('success', 'Se actualizo el estado del estacionamiento');    
     }
 
     /**

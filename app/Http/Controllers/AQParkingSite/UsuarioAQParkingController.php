@@ -27,10 +27,10 @@ class UsuarioAQParkingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $parkingLots = Estacionamiento::all();
+        $buscar = trim($request->get('buscar'));
+        $parkingLots=Estacionamiento::where('nombre','like','%'.$buscar.'%')->get();
         return view('AQParkingSite.Index.principal', compact('parkingLots'));
     }
 
@@ -95,7 +95,7 @@ class UsuarioAQParkingController extends Controller
             'marcaVehiculo' => 'required|string|max:30',
             'modeloVehiculo' => 'required|string|max:30',
             'colorVehiculo' => 'required|string|max:30',
-            'placaVehiculo' => 'required|regex:/^[A-Z]{3}[-][0-9]{3}$/',
+            'placa' => 'required|regex:/^[A-Z0-9]{3}[-][0-9]{3}$/|unique:vehiculos',
         ]);
 
         Vehiculo::create([
@@ -103,7 +103,7 @@ class UsuarioAQParkingController extends Controller
             'marca' => $request->marcaVehiculo,
             'modelo' => $request->modeloVehiculo,
             'color' => $request->colorVehiculo,
-            'placa' => $request->placaVehiculo,
+            'placa' => $request->placa,
         ]);
 
         return redirect()->back()->with('success', 'Vehiculo Registrado');
@@ -122,6 +122,7 @@ class UsuarioAQParkingController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
     public function show(Request $request)
     // public function show($id)
     {
@@ -133,8 +134,8 @@ class UsuarioAQParkingController extends Controller
         $reservas=Reserva::Anio($año)->Mes($mes)->BuscarParking($idestacionamiento)->ReservasUsuario()->paginate(2);
 //        dd($idestacionamiento);
         return view('AQParkingSite.Usuario.cuenta-usuario', compact('estacionamientos','reservas'));
-
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -210,5 +211,12 @@ class UsuarioAQParkingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function vehiculo_destroy($id)
+    {
+        $vehiculo = Vehiculo::find($id);
+        $vehiculo->delete();
+        return redirect()->route('cuenta-usuarioAQParking')->with('success delete', 'Se Elimino correctamente el Vehiculo');
     }
 }
