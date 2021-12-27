@@ -67,7 +67,7 @@ class ReservaParkingController extends Controller
 
                 $reservanueva = Reserva::create([
                     'estacionamiento_ID' => $request->idParking,
-                    'vehiculo_ID' => 1, $request->vehiculoRegistrado,
+                    'vehiculo_ID' => $request->vehiculoRegistrado,
                     'fecha' => Carbon::now(),  
                 ]);
                 
